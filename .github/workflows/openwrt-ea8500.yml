@@ -56,11 +56,11 @@ jobs:
       - name: add kenzo8/openwrt-packages and kenzo8/small
         run: |
           git clone --single-branch -b openwrt-19.07 https://github.com/openwrt/openwrt       
-          sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' ./feeds.conf.default
-          sed -i '$a src-git small https://github.com/kenzok8/small' ./feeds.conf.default
           du -h --max-depth=1
       - name: Update feeds
         run: |
+          sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' ./feeds.conf.default
+          sed -i '$a src-git small https://github.com/kenzok8/small' ./feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
           # rm -rf feeds/packages/libs/libcap
