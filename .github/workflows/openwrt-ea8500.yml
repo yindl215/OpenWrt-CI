@@ -53,11 +53,12 @@ jobs:
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
           df -h
-      - name: add kenzo8/openwrt-packages and kenzo8/small
+      - name: git clone openwrt
         run: |
           git clone --single-branch -b openwrt-19.07 https://github.com/openwrt/openwrt       
+          mv ./openwrt/* ./ 
           du -h --max-depth=1
-      - name: Update feeds
+      - name: add kenzo8/openwrt-packages and kenzo8/small Update feeds
         run: |
           sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' ./feeds.conf.default
           sed -i '$a src-git small https://github.com/kenzok8/small' ./feeds.conf.default
