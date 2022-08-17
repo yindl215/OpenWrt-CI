@@ -53,7 +53,7 @@ jobs:
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
           df -h
-      - name: git clone openwrt
+      - name: git clone lede
         run: |
           # git clone --single-branch -b openwrt-19.07 https://github.com/openwrt/openwrt       
           # mv ./openwrt/* ./ 
@@ -66,25 +66,19 @@ jobs:
           sed -i '$a src-git small https://github.com/kenzok8/small' ./feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
+          # compiling openwrt-19.07 need use branch master-libcap to replace ./feeds/packages/libs/libcap 
           # rm -rf feeds/packages/libs/libcap
           # svn co https://github.com/openwrt/packages/trunk/libs/libcap ./feeds/packages/libs/libcap
           # svn co https://github.com/coolsnowwolf/lede/master/package/libs/libcap ./feeds/packages/libs/libcap
       - name: download some code
         run: |
-          sed -i "s/#push @mirrors, 'https:\/\/mirror1.openwrt.org';/push @mirrors, 'https:\/\/sources.cdn.openwrt.org';\r\npush @mirrors, 'https:\/\/github.com';/g" ./scripts/download.pl
-          # mkdir -p ./dl
-          # cd ./dl
-          # wget -c -r -nd -np http://204.13.154.47:1000/openwrt-dl/
-          # rm -rf $(find -name "index.html*")
-          git switch -c 5a2559f0648198c290bb8839b9f6a0adab8ebcdc
-          git switch -c d63ff863800a5645aca4309d5dd5962bd1e95543
-          git switch -c 486bebd9208539058e57e23a12f23103016e09b4
-          git switch -c 697977d8d0ccf0ab596e5692d08608a75dd7f33d
-          git switch -c 740d0102c518cd49f30c5580982b218b480006b1
-          git switch -c 809a00deffe9f3d4ecd15965790a152757073437
-          git switch -c 9228212b4238c0d8c296f795948ede8f2ca0242e
-          git switch -c 9b74deef2816d91e58926e6fab7a6ff931eb3b22
-          git switch -c 31f5cd4b83da5a7c0fdca240b4e72677e4523b6e
+          # compiling openwrt-19.07 need add "push @mirrors, 'https:\/\/sources.cdn.openwrt.org'"
+          sed -i "s/#push @mirrors, 'https:\/\/mirror1.openwrt.org';/push @mirrors, 'https:\/\/sources.cdn.openwrt.org';/g" ./scripts/download.pl
+          # here is openwrt-19.07 or lede can not download some code
+          mkdir -p ./dl
+          cd ./dl
+          wget -c -r -nd -np http://204.13.154.47:1000/openwrt-dl/
+          rm -rf $(find -name "index.html*")
       - name: Generate configuration file
         run: |
           rm -f ./.config*
@@ -757,7 +751,6 @@ jobs:
           CONFIG_PACKAGE_luci-mod-system=y
           CONFIG_PACKAGE_luci-app-adblock=y
           CONFIG_PACKAGE_luci-app-advanced-reboot=y
-          CONFIG_PACKAGE_luci-app-argon-config=y
           CONFIG_PACKAGE_luci-app-argonne-config=y
           CONFIG_PACKAGE_luci-app-autoreboot=y
           CONFIG_PACKAGE_luci-app-bypass=y
@@ -946,6 +939,7 @@ jobs:
           CONFIG_PACKAGE_v2ray-plugin=y
           EOF
           #
+          # CONFIG_PACKAGE_luci-app-argon-config=y
           # CONFIG_PACKAGE_luci-app-adguardhome=y
           # CONFIG_PACKAGE_luci-app-adguardhome_INCLUDE_binary=y
           # CONFIG_PACKAGE_luci-i18n-adguardhome-zh-cn=y
@@ -963,6 +957,15 @@ jobs:
         run: |
           make download -j1 V=s
           rm -rf $(find ./dl/ -size -1024c)
+          git switch -c 5a2559f0648198c290bb8839b9f6a0adab8ebcdc
+          git switch -c d63ff863800a5645aca4309d5dd5962bd1e95543
+          git switch -c 486bebd9208539058e57e23a12f23103016e09b4
+          git switch -c 697977d8d0ccf0ab596e5692d08608a75dd7f33d
+          git switch -c 740d0102c518cd49f30c5580982b218b480006b1
+          git switch -c 809a00deffe9f3d4ecd15965790a152757073437
+          git switch -c 9228212b4238c0d8c296f795948ede8f2ca0242e
+          git switch -c 9b74deef2816d91e58926e6fab7a6ff931eb3b22
+          git switch -c 31f5cd4b83da5a7c0fdca240b4e72677e4523b6e
           df -h
       - name: Compile firmware
         run: |
