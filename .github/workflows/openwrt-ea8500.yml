@@ -955,7 +955,7 @@ jobs:
           make defconfig
       - name: Make download
         run: |
-          make download -j1 V=s
+          make download -j8 || make download -j1 V=s
           rm -rf $(find ./dl/ -size -1024c)
           git switch -c 5a2559f0648198c290bb8839b9f6a0adab8ebcdc
           git switch -c d63ff863800a5645aca4309d5dd5962bd1e95543
@@ -969,7 +969,7 @@ jobs:
           df -h
       - name: Compile firmware
         run: |
-          make -j1 V=sc
+          make -j$(nproc) || make -j1 V=sc
           echo "======================="
           echo "Space usage:"
           echo "======================="
@@ -986,6 +986,8 @@ jobs:
           cp -rf $(find ./bin/targets/ -type f) ./artifact/firmware/
           cp -rf $(find ./bin/packages/ -type f -name "*.ipk") ./artifact/package/
           cp -rf $(find ./bin/targets/ -type f -name "*.buildinfo" -o -name "*.manifest") ./artifact/buildinfo/
+          tar -czvf ./srtifact/firmware/ea8500.tar.xz ./bin/targets ./bin/packages
+          
       - name: Deliver buildinfo
         uses: actions/upload-artifact@v2
         with:
