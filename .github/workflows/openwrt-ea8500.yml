@@ -53,11 +53,15 @@ jobs:
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
           df -h
+          # 可用空间仅有31GB,编译需要约34-38GB空间
           sudo rm -rf /usr/share/dotnet
+          # 可获得3GB空间
           df -h
           sudo rm -rf /usr/local/lib/android
+          # 可获得11GB空间
           df -h
           sudo rm -rf /opt/ghc
+          # 可获得0GB空间
           df -h
       - name: git clone lede
         run: |
@@ -76,6 +80,10 @@ jobs:
           # rm -rf feeds/packages/libs/libcap
           # svn co https://github.com/openwrt/packages/trunk/libs/libcap ./feeds/packages/libs/libcap
           # svn co https://github.com/coolsnowwolf/lede/master/package/libs/libcap ./feeds/packages/libs/libcap
+          # add luci-app-omcproxy and luci-app-iptvhelper
+          cd ./package
+          git clone https://github.com/riverscn/luci-app-omcproxy.git
+          git clone https://github.com/riverscn/openwrt-iptvhelper.git
       - name: download some code
         run: |
           # compiling openwrt-19.07 need add "push @mirrors, 'https:\/\/sources.cdn.openwrt.org'"
@@ -996,7 +1004,7 @@ jobs:
           du -h ./ --max-depth=3
           tar -czvf ea8500.tar.xz targets packages
           cd -
-          cp ./bin/ea8500.tar.xz ./artifact/firmware/
+          cp ./bin/ea8500.tar.xz ./artifact/buildinfo/
           
       - name: Deliver buildinfo
         uses: actions/upload-artifact@v2
