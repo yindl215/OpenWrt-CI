@@ -78,8 +78,8 @@ jobs:
           ./scripts/feeds install -a
           # compiling openwrt-19.07 need use branch master-libcap to replace ./feeds/packages/libs/libcap 
           # rm -rf feeds/packages/libs/libcap
-          # svn co https://github.com/openwrt/packages/trunk/libs/libcap ./feeds/packages/libs/libcap
-          # svn co https://github.com/coolsnowwolf/lede/master/package/libs/libcap ./feeds/packages/libs/libcap
+          # svn co https://github.com/openwrt/openwrt/trunk/packages/libs/libcap ./feeds/packages/libs/libcap
+          # svn co https://github.com/coolsnowwolf/lede/trunk/package/libs/libcap ./feeds/packages/libs/libcap
           # add luci-app-omcproxy and luci-app-iptvhelper
           cd ./package
           git clone https://github.com/riverscn/luci-app-omcproxy.git
@@ -996,16 +996,16 @@ jobs:
           mkdir -p ./artifact/firmware
           mkdir -p ./artifact/package
           mkdir -p ./artifact/buildinfo
+          cd ./bin
+          du -h ./ --max-depth=3
+          tar -czvf ea8500.tar.xz targets packages
+          cd -   
+          cp ./bin/ea8500.tar.xz ./artifact/buildinfo/
+          
           rm -rf $(find ./bin/targets/ -type d -name "packages")
           cp -rf $(find ./bin/targets/ -type f) ./artifact/firmware/
           cp -rf $(find ./bin/packages/ -type f -name "*.ipk") ./artifact/package/
           cp -rf $(find ./bin/targets/ -type f -name "*.buildinfo" -o -name "*.manifest") ./artifact/buildinfo/
-          cd ./bin
-          du -h ./ --max-depth=3
-          tar -czvf ea8500.tar.xz targets packages
-          cd -
-          cp ./bin/ea8500.tar.xz ./artifact/buildinfo/
-          
       - name: Deliver buildinfo
         uses: actions/upload-artifact@v2
         with:
