@@ -80,7 +80,7 @@ jobs:
           tar -xJf sdk.tar.xz -C wrt
           rm -Rf sdk.tar.xz
           cd wrt
-          mv -rf ./openwrt-sdk*/. ../ || true
+          mv -f ./openwrt-sdk*/. ../ || true
           cd -
           du -h --max-depth=1
       - name: add kenzo8/openwrt-packages and kenzo8/small Update feeds
