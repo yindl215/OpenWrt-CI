@@ -76,15 +76,15 @@ jobs:
           curl -fL -m 60 -o sdk.tar.xz https://downloads.openwrt.org/releases/19.07.10/targets/ipq806x/generic/openwrt-sdk-19.07.10-ipq806x-generic_gcc-7.5.0_musl_eabi.Linux-x86_64.tar.xz
           # git clone https://github.com/coolsnowwolf/lede
           # mv ./lede/* ./
-          mkdir wrt
-          tar -xJf sdk.tar.xz -C wrt
+          mkdir openwrt
+          tar -xJf sdk.tar.xz -C openwrt
           rm -Rf sdk.tar.xz
-          cd wrt
-          cp -rf ./openwrt-sdk*/. ../ || true
-          cd -
-          du -h --max-depth=1
+          cd openwrt
+          cp -rf ./openwrt-sdk*/. ./ || true
+          du -h --max-depth=2
       - name: add kenzo8/openwrt-packages and kenzo8/small Update feeds
         run: |
+          cd ./openwrt
           sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' ./feeds.conf.default
           sed -i '$a src-git small https://github.com/kenzok8/small' ./feeds.conf.default
           ./scripts/feeds update -a
@@ -99,6 +99,7 @@ jobs:
           git clone https://github.com/riverscn/openwrt-iptvhelper.git
       - name: download some code
         run: |
+          cd ./openwrt
           # compiling openwrt-19.07 need add "push @mirrors, 'https:\/\/sources.cdn.openwrt.org'"
           sed -i "s/#push @mirrors, 'https:\/\/mirror1.openwrt.org';/push @mirrors, 'https:\/\/sources.cdn.openwrt.org';/g" ./scripts/download.pl
           # here is openwrt-19.07 or lede can not download some code
@@ -108,6 +109,7 @@ jobs:
           rm -rf $(find -name "index.html*")
       - name: Generate configuration file
         run: |
+          cd ./openwrt
           rm -f ./.config*
           touch ./.config
           #cp ./myea8500.config ./.config
@@ -982,6 +984,7 @@ jobs:
           make defconfig
       - name: Make download
         run: |
+          cd ./openwrt
           make download -j8 || make download -j1 V=s
           rm -rf $(find ./dl/ -size -1024c)
           git switch -c 5a2559f0648198c290bb8839b9f6a0adab8ebcdc
@@ -996,6 +999,7 @@ jobs:
           df -h
       - name: Compile firmware
         run: |
+          cd ./openwrt
           make -j$(nproc) || make -j1 V=sc
           echo "======================="
           echo "Space usage:"
@@ -1009,16 +1013,17 @@ jobs:
           mkdir -p ./artifact/firmware
           mkdir -p ./artifact/package
           mkdir -p ./artifact/buildinfo
+          cd ./openwrt
           cd ./bin
           du -h ./ --max-depth=3
           tar -czvf ea8500.tar.xz targets packages
           cd -   
-          cp ./bin/ea8500.tar.xz ./artifact/buildinfo/
+          cp ./bin/ea8500.tar.xz ../artifact/buildinfo/
           
           rm -rf $(find ./bin/targets/ -type d -name "packages")
-          cp -rf $(find ./bin/targets/ -type f) ./artifact/firmware/
-          cp -rf $(find ./bin/packages/ -type f -name "*.ipk") ./artifact/package/
-          cp -rf $(find ./bin/targets/ -type f -name "*.buildinfo" -o -name "*.manifest") ./artifact/buildinfo/
+          cp -rf $(find ./bin/targets/ -type f) ../artifact/firmware/
+          cp -rf $(find ./bin/packages/ -type f -name "*.ipk") ../artifact/package/
+          cp -rf $(find ./bin/targets/ -type f -name "*.buildinfo" -o -name "*.manifest") ../artifact/buildinfo/
       - name: Deliver buildinfo
         uses: actions/upload-artifact@v2
         with:
