@@ -73,7 +73,7 @@ jobs:
         run: |
           # git clone --single-branch -b openwrt-19.07 https://github.com/openwrt/openwrt       
           # mv ./openwrt/* ./ 
-          curl -fL -m 60 -o sdk.tar.xz https://downloads.openwrt.org/releases/19.07.10/targets/ipq806x/generic/openwrt-sdk-19.07.10-ipq806x_gcc-7.5.0_musl_eabi.Linux-x86_64.tar.xz
+          curl -fL -m 60 -o sdk.tar.xz https://downloads.openwrt.org/releases/19.07.10/targets/ipq806x/generic/openwrt-sdk-19.07.10-ipq806x-generic_gcc-7.5.0_musl_eabi.Linux-x86_64.tar.xz
           # git clone https://github.com/coolsnowwolf/lede
           # mv ./lede/* ./
           mkdir wrt
