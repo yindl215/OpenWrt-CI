@@ -218,9 +218,9 @@ jobs:
           CONFIG_GDB=y
           CONFIG_USE_MUSL=y
           CONFIG_SSP_SUPPORT=y
-          CONFIG_BINUTILS_VERSION_2_31_1=y
-          CONFIG_BINUTILS_VERSION="2.31.1"
-          CONFIG_GCC_VERSION="7.5.0"
+          CONFIG_BINUTILS_VERSION_2_34=y
+          CONFIG_BINUTILS_VERSION="2.34"
+          CONFIG_GCC_VERSION="8.4.0"
           CONFIG_LIBC="musl"
           CONFIG_TARGET_SUFFIX="muslgnueabi"
           CONFIG_TARGET_PREINIT_SUPPRESS_STDERR=y
@@ -239,6 +239,8 @@ jobs:
           CONFIG_FEED_routing=y
           CONFIG_FEED_telephony=y
           CONFIG_FEED_freifunk=y
+          CONFIG_FEED_lienol=y
+          CONFIG_FEED_other=y 
           CONFIG_FEED_kenzo=y
           CONFIG_FEED_small=y
           CONFIG_PACKAGE_base-files=y
