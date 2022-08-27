@@ -886,9 +886,6 @@ jobs:
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_Plugin=y
           CONFIG_PACKAGE_luci-app-timecontrol=y
-          CONFIG_PACKAGE_luci-app-turboacc=y
-          CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_DRV=y
-          CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_BBR_CCA=y
           CONFIG_PACKAGE_luci-app-upnp=y
           CONFIG_PACKAGE_luci-app-vssr=y
           CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray=y
@@ -1029,6 +1026,9 @@ jobs:
           # CONFIG_PACKAGE_kmod-shortcut-fe=y
           # CONFIG_PACKAGE_kmod-shortcut-fe-cm=y
           # CONFIG_PACKAGE_kmod-shortcut-fe-drv=y
+          # CONFIG_PACKAGE_luci-app-turboacc=y
+          # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_DRV=y
+          # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_BBR_CCA=y
           # CONFIG_PACKAGE_luci-app-adguardhome=y
           # CONFIG_PACKAGE_luci-app-adguardhome_INCLUDE_binary=y
           # CONFIG_PACKAGE_luci-i18n-adguardhome-zh-cn=y
