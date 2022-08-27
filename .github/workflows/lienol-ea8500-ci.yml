@@ -692,8 +692,6 @@ jobs:
           CONFIG_PACKAGE_kmod-mppe=y
           CONFIG_PACKAGE_kmod-pppoe=y
           CONFIG_PACKAGE_kmod-pppox=y
-          CONFIG_PACKAGE_kmod-shortcut-fe=y
-          CONFIG_PACKAGE_kmod-shortcut-fe-drv=y
           CONFIG_PACKAGE_kmod-slhc=y
           CONFIG_PACKAGE_kmod-tcp-bbr=y
           CONFIG_PACKAGE_kmod-tun=y
@@ -1028,6 +1026,9 @@ jobs:
           #
           # CONFIG_PACKAGE_luci-app-argon-config=y
           # CONFIG_PACKAGE_luci-i18n-argon-config-zh-cn=y
+          # CONFIG_PACKAGE_kmod-shortcut-fe=y
+          # CONFIG_PACKAGE_kmod-shortcut-fe-cm=y
+          # CONFIG_PACKAGE_kmod-shortcut-fe-drv=y
           # CONFIG_PACKAGE_luci-app-adguardhome=y
           # CONFIG_PACKAGE_luci-app-adguardhome_INCLUDE_binary=y
           # CONFIG_PACKAGE_luci-i18n-adguardhome-zh-cn=y
