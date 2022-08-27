@@ -139,7 +139,6 @@ jobs:
           CONFIG_DEFAULT_kmod-usb3=y
           CONFIG_DEFAULT_libc=y
           CONFIG_DEFAULT_libgcc=y
-          CONFIG_DEFAULT_libustream-wolfssl=y
           CONFIG_DEFAULT_logd=y
           CONFIG_DEFAULT_luci=y
           CONFIG_DEFAULT_luci-app-control-timewol=y
@@ -815,7 +814,6 @@ jobs:
           CONFIG_PACKAGE_libuclient=y
           CONFIG_PACKAGE_libudns=y
           CONFIG_PACKAGE_libustream-openssl=y
-          CONFIG_PACKAGE_libustream-wolfssl=y
           CONFIG_PACKAGE_libuuid=y
           CONFIG_RE2_SHARED=y
           CONFIG_PACKAGE_rpcd-mod-rrdns=y
@@ -1025,6 +1023,8 @@ jobs:
           # CONFIG_PACKAGE_kmod-shortcut-fe=y
           # CONFIG_PACKAGE_kmod-shortcut-fe-cm=y
           # CONFIG_PACKAGE_kmod-shortcut-fe-drv=y
+          # CONFIG_DEFAULT_libustream-wolfssl=y
+          # CONFIG_PACKAGE_libustream-wolfssl=y
           # CONFIG_PACKAGE_luci-app-clash=y
           # CONFIG_PACKAGE_luci-app-turboacc=y
           # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_DRV=y
