@@ -845,7 +845,6 @@ jobs:
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Xray=y
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan=y
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Socks_Server=y
-          CONFIG_PACKAGE_luci-app-clash=y
           CONFIG_PACKAGE_luci-app-control-timewol=y
           CONFIG_PACKAGE_luci-app-control-webrestriction=y
           CONFIG_PACKAGE_luci-app-control-weburl=y
