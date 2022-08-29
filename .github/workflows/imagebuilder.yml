@@ -99,7 +99,8 @@ jobs:
           # add luci-app-omcproxy and luci-app-iptvhelper
           cd ./package
           git clone https://github.com/riverscn/luci-app-omcproxy.git
-          git clone https://github.com/riverscn/openwrt-iptvhelper.git
+          # git clone https://github.com/riverscn/openwrt-iptvhelper.git
+          # imagebuilder can not compile iptvhelper:iptvhelper/Makefile can not found rule
       - name: Generate configuration file
         run: |
           cd ./openwrt
