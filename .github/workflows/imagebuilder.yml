@@ -101,6 +101,8 @@ jobs:
           git clone https://github.com/riverscn/luci-app-omcproxy.git
           # git clone https://github.com/riverscn/openwrt-iptvhelper.git
           # imagebuilder can not compile iptvhelper:iptvhelper/Makefile can not found rule
+          du -h ./ --max-depth=4
+
       - name: Generate configuration file
         run: |
           cd ./openwrt
