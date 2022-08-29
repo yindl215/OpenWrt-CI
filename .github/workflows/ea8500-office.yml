@@ -94,11 +94,11 @@ jobs:
            rm -rf feeds/packages/libs/libcap
            svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap ./feeds/packages/libs/libcap
           # svn co https://github.com/coolsnowwolf/lede/trunk/package/libs/libcap ./feeds/packages/libs/libcap
+          sed -i "s/#push @mirrors, 'https:\/\/mirror1.openwrt.org';/push @mirrors, 'https:\/\/sources.cdn.openwrt.org';/g" ./scripts/download.pl
           # add luci-app-omcproxy and luci-app-iptvhelper
           cd ./package
           git clone https://github.com/riverscn/luci-app-omcproxy.git
           git clone https://github.com/riverscn/openwrt-iptvhelper.git
-          sed -i "s/#push @mirrors, 'https:\/\/mirror1.openwrt.org';/push @mirrors, 'https:\/\/sources.cdn.openwrt.org';/g" ./scripts/download.pl
       - name: Generate configuration file
         run: |
           cd ./openwrt
@@ -161,11 +161,12 @@ jobs:
       - name: Compile firmware
         run: |
           cd ./openwrt
-          for ipk in $(find package/* -maxdepth 0 -type d); do
-             if [ $ipk != */feeds* ]; then
-               make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
-             fi  
-          done
+          make package/luci-app-omcproxy/compile -j$(($(nproc)+1))
+          # for ipk in $(find package/* -maxdepth 0 -type d); do
+          #    if [ $ipk != */feeds* ]; then
+          # make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
+          #    fi  
+          # done
           echo "======================="
           echo "Space usage:"
           echo "======================="
