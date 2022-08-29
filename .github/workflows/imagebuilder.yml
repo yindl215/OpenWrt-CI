@@ -155,7 +155,7 @@ jobs:
           cd ./openwrt
           for ipk in $(find package/* -type d); do
             if [ -e "$ipk/Makefile" ]; then 
-              if [ `echo $ipk | grep "ddnsto"` ] || [ $ipk = luci-* ]; then
+              if [[ `echo $ipk | grep "ddnsto"` ] || [ $ipk = luci-* ]]; then
                 make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
               fi
             fi
