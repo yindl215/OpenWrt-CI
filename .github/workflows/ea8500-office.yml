@@ -162,7 +162,9 @@ jobs:
         run: |
           cd ./openwrt
           for ipk in $(find package/* -maxdepth 0 -type d); do
-             make package/$ipk/compile -j$(($(nproc)+1)) || make package/$ipk/compile V=s
+             if [ $ipk != */feeds* ]; then
+               make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
+             fi  
           done
           echo "======================="
           echo "Space usage:"
