@@ -104,7 +104,7 @@ jobs:
           # in current mode feeds install can not install kenzok8/small-package to package/feeds/kenzo
           git clone https://github.com/kenzok8/small-package kenzo
           du -h ./ --max-depth=3
-          rm -rf $(find package/kenzo/* -type d -name "diy")
+          rm -rf $(find ./kenzo/* -maxdepth 0 -type d ! -name "diy")
 
       - name: Generate configuration file
         run: |
