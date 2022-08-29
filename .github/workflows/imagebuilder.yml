@@ -85,7 +85,7 @@ jobs:
       - name: add kenzo8/small-package and Update feeds
         run: |
           cd ./openwrt
-          sed -i '$a src-git kenzo https://github.com/kenzok8/small-package' ./feeds.conf.default
+          # sed -i '$a src-git kenzo https://github.com/kenzok8/small-package' ./feeds.conf.default
        
           sed -i '/	refresh_config();/d' scripts/feeds
           ./scripts/feeds update -a
@@ -99,9 +99,11 @@ jobs:
           # add luci-app-omcproxy and luci-app-iptvhelper
           cd ./package
           git clone https://github.com/riverscn/luci-app-omcproxy.git
-          # git clone https://github.com/riverscn/openwrt-iptvhelper.git
-          # imagebuilder can not compile iptvhelper:iptvhelper/Makefile can not found rule
-          du -h ./ --max-depth=4
+          git clone https://github.com/riverscn/openwrt-iptvhelper.git
+          
+          # in current mode feeds install can not install kenzok8/small-package to package/feeds/kenzo
+          svn co https://github.com/kenzok8/small-package ./kenzo
+          du -h ./ --max-depth=3
 
       - name: Generate configuration file
         run: |
@@ -152,7 +154,7 @@ jobs:
           cd ./openwrt
           for ipk in $(find package/* -type d); do
             if [ -e "$ipk/Makefile" ]; then 
-              if [ `echo $ipk | grep "omcproxy"` ] || [ `echo $ipk | grep "iptv"` ] || [ `echo $ipk | grep "kenzo"` ]; then
+              if [ `echo $ipk | grep "ddnsto"` ] || [ $ipk = luci-* ]; then
                 make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
               fi
             fi
