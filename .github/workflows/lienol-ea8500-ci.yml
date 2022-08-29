@@ -899,7 +899,6 @@ jobs:
           CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray_plugin=y
           CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Libev_Server=y
           CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Hysteria=y
-          CONFIG_PACKAGE_luci-app-wol=y
           CONFIG_PACKAGE_luci-theme-argonne=y
           CONFIG_PACKAGE_luci-theme-bootstrap=y
           CONFIG_PACKAGE_luci-proto-ipv6=y
@@ -1037,7 +1036,6 @@ jobs:
           # CONFIG_PACKAGE_kmod-shortcut-fe=y
           # CONFIG_PACKAGE_kmod-shortcut-fe-cm=y
           # CONFIG_PACKAGE_kmod-shortcut-fe-drv=y
-          # CONFIG_DEFAULT_luci-app-wol=y
           # CONFIG_PACKAGE_libustream-openssl=y
           # CONFIG_DEFAULT_libustream-wolfssl=y
           # CONFIG_PACKAGE_libustream-wolfssl=y
@@ -1045,6 +1043,7 @@ jobs:
           # CONFIG_PACKAGE_luci-app-turboacc=y
           # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_DRV=y
           # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_BBR_CCA=y
+          # CONFIG_DEFAULT_luci-app-wol=y
           # ===============================================================
           # 
           sed -i 's/^[ \t]*//g' ./.config
