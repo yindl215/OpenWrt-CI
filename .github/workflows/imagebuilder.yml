@@ -102,8 +102,9 @@ jobs:
           git clone https://github.com/riverscn/openwrt-iptvhelper.git
           
           # in current mode feeds install can not install kenzok8/small-package to package/feeds/kenzo
-          svn co https://github.com/kenzok8/small-package ./kenzo
+          git clone https://github.com/kenzok8/small-package kenzo
           du -h ./ --max-depth=3
+          rm -rf $(find package/kenzo/* -type d -name "diy")
 
       - name: Generate configuration file
         run: |
