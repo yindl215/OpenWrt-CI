@@ -102,9 +102,9 @@ jobs:
           git clone https://github.com/riverscn/openwrt-iptvhelper.git
           
           # in current mode feeds install can not install kenzok8/small-package to package/feeds/kenzo
-          git clone https://github.com/kenzok8/small-package kenzo
+          git clone https://github.com/kenzok8/small-package.git ./kenzo
           du -h ./ --max-depth=3
-          rm -rf $(find ./kenzo/* -maxdepth 0 -type d ! -name "diy")
+          rm -rf `find ./kenzo/* -maxdepth 0 -type d ! -name "diy"`
 
       - name: Generate configuration file
         run: |
@@ -155,7 +155,7 @@ jobs:
           cd ./openwrt
           for ipk in $(find package/* -type d); do
             if [ -e "$ipk/Makefile" ]; then 
-              if [ `echo $ipk | grep "ddnsto"` ] || [ $ipk = luci-* ]; then
+              if [ `echo $ipk | grep -E "ddnsto"` ] || [ `echo $ipk grep -E "luci-"` ]; then
                 make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
               fi
             fi
