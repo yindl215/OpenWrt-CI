@@ -104,11 +104,11 @@ jobs:
           git clone https://github.com/riverscn/luci-app-omcproxy.git 
           # kenzok8/small-package have include iptvhelper
           # git clone https://github.com/riverscn/openwrt-iptvhelper.git
-          du -h ./ --max-depth=3
-          rm -rf `find ./cutom/* -maxdepth 0 -type d -name "diy"`
-          rm -rf `find ./cutom/* -maxdepth 0 -type d -name ".git*"`
-          rm -rf `find ./cutom/* -maxdepth 0 -type d -name "my*"`
-          du -h ./ --max-depth=3
+          # du -h ./ --max-depth=3
+          rm -rf $(find ./ -maxdepth 0 -type d -name "diy")
+          rm -rf $(find ./ -maxdepth 0 -type d -name ".git*")
+          rm -rf $(find ./ -maxdepth 0 -type d -name "my*")
+          du -h ./ --max-depth=0
 
       - name: Generate configuration file
         run: |
@@ -159,6 +159,7 @@ jobs:
           cd ./openwrt
           # luci-app-passwall compile error
           # luci-app-adguardhome compile error
+          make package/custom/luci-app-adguardhome/compile -j$(($(nproc)+1))
           for ipk in $(find package/custom/* -type d); do
             if [ -e "$ipk/Makefile" ]; then 
               if [ ! `echo $ipk | grep -E "luci-app-passwall"` ]; then
