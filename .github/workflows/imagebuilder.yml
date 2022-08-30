@@ -157,12 +157,12 @@ jobs:
       - name: Compile firmware
         run: |
           cd ./openwrt
-          # luci-app-passwall compile error
+          # luci-app-passwall compile error: v2ray-core-5.0.8 error
           # luci-app-adguardhome compile error
-          make package/custom/luci-app-passwall/compile -j1 V=s
+          # make package/custom/luci-app-passwall/compile -j1 V=s
           for ipk in $(find package/custom/* -type d); do
             if [ -e "$ipk/Makefile" ]; then 
-              if [ ! `echo $ipk | grep -E "luci-app-passwall"` ]; then
+              if [ ! `echo $ipk | grep -E "luci-app-passwall"` ] && [ ! `echo $ipk | grep -E "luci-app-adguardhome"` ]; then
                 if [ `echo $ipk | grep -E "ddnsto"` ] || [ `echo $ipk | grep -E "luci-"` ]; then
                   make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
                 fi
