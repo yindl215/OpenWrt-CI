@@ -114,7 +114,7 @@ jobs:
           #else
           #	ln -sf /usr/bin/python3 staging_dir/host/bin/python
           #fi
-          ln -sf /usr/bin/python3 staging_dir/host/bin/python3
+          #ln -sf /usr/bin/python3 staging_dir/host/bin/python3
           svn co https://raw.githubusercontent.com/kenzok8/compile-package/main/devices/common/po2lmo staging_dir/host/bin/po2lmo
           # cp -f devices/common/po2lmo staging_dir/host/bin/po2lmo
           # https://raw.githubusercontent.com/kenzok8/compile-package/main/devices/common/po2lmo
