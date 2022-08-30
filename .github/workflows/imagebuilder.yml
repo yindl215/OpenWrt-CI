@@ -104,7 +104,6 @@ jobs:
           git clone https://github.com/riverscn/luci-app-omcproxy.git 
           # kenzok8/small-package have include iptvhelper
           # git clone https://github.com/riverscn/openwrt-iptvhelper.git
-          cd -
           du -h ./ --max-depth=3
           rm -rf `find ./cutom/* -maxdepth 0 -type d -name "diy"`
           rm -rf `find ./cutom/* -maxdepth 0 -type d -name ".git*"`
