@@ -110,15 +110,15 @@ jobs:
           rm -rf $(find ./ -maxdepth 1 -type d -name ".git*")
           rm -rf $(find ./ -maxdepth 1 -type d -name "my*")
           du -h ./ --max-depth=1
-          #if [ -f /usr/bin/python ]; then
-          #	ln -sf /usr/bin/python staging_dir/host/bin/python
-          #else
-          #	ln -sf /usr/bin/python3 staging_dir/host/bin/python
-          #fi
+          cd ../../
+          if [ -f /usr/bin/python ]; then
+          	ln -sf /usr/bin/python staging_dir/host/bin/python
+          else
+          	ln -sf /usr/bin/python3 staging_dir/host/bin/python
+          fi
           ln -sf /usr/bin/python3 staging_dir/host/bin/python3
-          svn co https://raw.githubusercontent.com/kenzok8/compile-package/main/devices/common/po2lmo staging_dir/host/bin/po2lmo
-          # cp -f devices/common/po2lmo staging_dir/host/bin/po2lmo
-          # https://raw.githubusercontent.com/kenzok8/compile-package/main/devices/common/po2lmo
+          wget -c -nd -np https://raw.githubusercontent.com/kenzok8/compile-package/main/devices/common/po2lmo
+          cp -f ./po2lmo staging_dir/host/bin/po2lmo
           chmod +x staging_dir/host/bin/po2lmo
       - name: Generate configuration file
         run: |
