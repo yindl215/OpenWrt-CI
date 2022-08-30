@@ -108,7 +108,7 @@ jobs:
           rm -rf $(find ./ -maxdepth 0 -type d -name "diy")
           rm -rf $(find ./ -maxdepth 0 -type d -name ".git*")
           rm -rf $(find ./ -maxdepth 0 -type d -name "my*")
-          du -h ./ --max-depth=0
+          du -h ./ --max-depth=1
 
       - name: Generate configuration file
         run: |
@@ -159,7 +159,7 @@ jobs:
           cd ./openwrt
           # luci-app-passwall compile error
           # luci-app-adguardhome compile error
-          make package/custom/luci-app-adguardhome/compile -j$(($(nproc)+1))
+          make package/custom/luci-app-adguardhome/compile -j1 V=s
           for ipk in $(find package/custom/* -type d); do
             if [ -e "$ipk/Makefile" ]; then 
               if [ ! `echo $ipk | grep -E "luci-app-passwall"` ]; then
