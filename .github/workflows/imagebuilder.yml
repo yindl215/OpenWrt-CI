@@ -111,6 +111,10 @@ jobs:
           rm -rf $(find ./ -maxdepth 1 -type d -name "my*")
           du -h ./ --max-depth=1
           cd ../../
+          sed -i "/mediaurlbase/d" package/feeds/*/luci-theme*/root/etc/uci-defaults/*
+          sed -i '/WARNING: Makefile/d' scripts/package-metadata.pl
+          rm -Rf tmp
+          
           if [ -f /usr/bin/python ]; then
           	ln -sf /usr/bin/python staging_dir/host/bin/python
           else
@@ -131,7 +135,7 @@ jobs:
           CONFIG_LUCI_CSSTIDY=n
           CONFIG_AUTOREBUILD=y
           CONFIG_AUTOREMOVE=n
-          CONFIG_ALL=y
+          CONFIG_ALL=n
           CONFIG_ALL_NONSHARED=n
           CONFIG_ALL_KMODS=n
           CONFIG_SIGNED_PACKAGES=n
@@ -162,8 +166,8 @@ jobs:
           # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin=n
           # ===============================================================
           # 
-          sed -i 's/^[ \t]*//g' ./.config
           make defconfig
+
       - name: Compile firmware
         run: |
           cd ./openwrt
