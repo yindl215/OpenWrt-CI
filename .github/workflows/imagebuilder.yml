@@ -157,11 +157,14 @@ jobs:
         run: |
           cd ./openwrt
           # luci-app-passwall compile error
+          # luci-app-adguardhome compile error
           for ipk in $(find package/custom/* -type d); do
             if [ -e "$ipk/Makefile" ]; then 
-              if [ `echo $ipk | grep -E "ddnsto"` ] || [ `echo $ipk | grep -E "luci-"` ] && [ ! `echo $ipk | grep -E "luci-app-passwall"` ]; then
-                make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
-              fi
+              if [ ! `echo $ipk | grep -E "luci-app-passwall"` ]; then
+                if [ `echo $ipk | grep -E "ddnsto"` ] || [ `echo $ipk | grep -E "luci-"` ]; then
+                  make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
+                fi
+              fi  
             fi
           done  
           echo "======================="
