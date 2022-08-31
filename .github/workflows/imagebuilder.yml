@@ -104,9 +104,9 @@ jobs:
           # kenzok8/small-package have include iptvhelper
           # git clone https://github.com/riverscn/openwrt-iptvhelper.git
           # du -h ./ --max-depth=3
-          rm -rf $(find ./ -maxdepth 1 -type d -name "diy" -or -name ".git*" -or -name "my*")
-          #rm -rf $(find ./ -maxdepth 1 -type d -name ".git*")
-          #rm -rf $(find ./ -maxdepth 1 -type d -name "my*")
+          rm -rf $(find ./. -maxdepth 1 -type d -name "diy" -or -name ".git*" -or -name "my*")
+          #rm -rf $(find ./. -maxdepth 1 -type d -name ".git*")
+          #rm -rf $(find ./. -maxdepth 1 -type d -name "my*")
           du -h ./ --max-depth=1
           cd ../../
           sed -i "/mediaurlbase/d" package/feeds/*/luci-theme*/root/etc/uci-defaults/*
@@ -172,7 +172,7 @@ jobs:
           # luci-app-passwall compile error: v2ray-core-5.0.8 error
           # luci-app-adguardhome compile error
           # make package/custom/luci-app-passwall/compile -j$(($(nproc)+1))
-          for ipk in $(find package/custom/* -type d); do
+          for ipk in $(find package/custom/* -maxdepth 0 -type d); do
             if [ -e "$ipk/Makefile" ]; then 
               if [ ! `echo $ipk | grep -E "luci-app-passwall"` ] && [ ! `echo $ipk | grep -E "luci-app-adguardhome"` ]; then
                 if [ `echo $ipk | grep -E "luci-"` ]; then
