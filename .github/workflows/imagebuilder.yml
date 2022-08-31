@@ -97,12 +97,13 @@ jobs:
           sed -i "s/#push @mirrors, 'https:\/\/mirror1.openwrt.org';/push @mirrors, 'https:\/\/sources.cdn.openwrt.org';/g" ./scripts/download.pl
           # in current mode feeds install can not install kenzok8/small-package to package/feeds/kenzo
           cd ./package
-          git clone https://github.com/kenzok8/small-package.git ./custom
+          #git clone https://github.com/kenzok8/small-package.git ./custom
+          git clone https://github.com/kenzok8/openwrt-packages.git ./custom
           # add luci-app-omcproxy and luci-app-iptvhelper
           cd ./custom
           git clone https://github.com/riverscn/luci-app-omcproxy.git 
           # kenzok8/small-package have include iptvhelper
-          # git clone https://github.com/riverscn/openwrt-iptvhelper.git
+          git clone https://github.com/riverscn/openwrt-iptvhelper.git
           # du -h ./ --max-depth=3
           rm -rf $(find ./. -maxdepth 1 -type d -name "diy" -or -name ".git*" -or -name "my*")
           #rm -rf $(find ./. -maxdepth 1 -type d -name ".git*")
@@ -174,11 +175,11 @@ jobs:
           # make package/custom/luci-app-passwall/compile -j$(($(nproc)+1))
           for ipk in $(find package/custom/* -maxdepth 0 -type d); do
             if [ -e "$ipk/Makefile" ]; then 
-              if [ ! `echo $ipk | grep -E "luci-app-passwall"` ] && [ ! `echo $ipk | grep -E "luci-app-adguardhome"` ]; then
+             # if [ ! `echo $ipk | grep -E "luci-app-passwall"` ] && [ ! `echo $ipk | grep -E "luci-app-adguardhome"` ]; then
                 if [ `echo $ipk | grep -E "luci-"` ]; then
                   make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
                 fi
-              fi  
+             # fi  
             fi
           done  
           echo "======================="
