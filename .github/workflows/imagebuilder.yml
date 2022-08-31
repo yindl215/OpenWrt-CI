@@ -75,8 +75,6 @@ jobs:
           # git clone --single-branch -b openwrt-19.07 https://github.com/openwrt/openwrt       
           # mv ./openwrt/* ./ 
           curl -fL -m 300 -o sdk.tar.xz https://downloads.openwrt.org/releases/19.07.10/targets/ipq806x/generic/openwrt-sdk-19.07.10-ipq806x-generic_gcc-7.5.0_musl_eabi.Linux-x86_64.tar.xz
-          # git clone https://github.com/coolsnowwolf/lede
-          # mv ./lede/* ./
           mkdir openwrt
           tar -xJf sdk.tar.xz -C openwrt
           rm -Rf sdk.tar.xz
@@ -106,15 +104,15 @@ jobs:
           # kenzok8/small-package have include iptvhelper
           # git clone https://github.com/riverscn/openwrt-iptvhelper.git
           # du -h ./ --max-depth=3
-          rm -rf $(find ./ -maxdepth 1 -type d -name "diy")
-          rm -rf $(find ./ -maxdepth 1 -type d -name ".git*")
-          rm -rf $(find ./ -maxdepth 1 -type d -name "my*")
+          rm -rf $(find ./ -maxdepth 1 -type d -name "diy" -or -name ".git*" -or -name "my*")
+          #rm -rf $(find ./ -maxdepth 1 -type d -name ".git*")
+          #rm -rf $(find ./ -maxdepth 1 -type d -name "my*")
           du -h ./ --max-depth=1
           cd ../../
           sed -i "/mediaurlbase/d" package/feeds/*/luci-theme*/root/etc/uci-defaults/*
           sed -i '/WARNING: Makefile/d' scripts/package-metadata.pl
           rm -Rf tmp
-          
+          #staging_dir/host/bin/ have lack python3 and po2lmo
           if [ -f /usr/bin/python ]; then
           	ln -sf /usr/bin/python staging_dir/host/bin/python
           else
@@ -173,11 +171,11 @@ jobs:
           cd ./openwrt
           # luci-app-passwall compile error: v2ray-core-5.0.8 error
           # luci-app-adguardhome compile error
-          # make package/custom/luci-app-passwall/compile -j1 V=s
+          # make package/custom/luci-app-passwall/compile -j$(($(nproc)+1))
           for ipk in $(find package/custom/* -type d); do
             if [ -e "$ipk/Makefile" ]; then 
               if [ ! `echo $ipk | grep -E "luci-app-passwall"` ] && [ ! `echo $ipk | grep -E "luci-app-adguardhome"` ]; then
-                if [ `echo $ipk | grep -E "ddnsto"` ] || [ `echo $ipk | grep -E "luci-"` ]; then
+                if [ `echo $ipk | grep -E "luci-"` ]; then
                   make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
                 fi
               fi  
