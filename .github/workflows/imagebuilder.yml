@@ -99,7 +99,8 @@ jobs:
           cd ./package
           #git clone https://github.com/kenzok8/small-package.git ./custom
           git clone https://github.com/kenzok8/openwrt-packages.git ./custom
-          git clone https://github.com/kenzok8/small.git ./custom
+          git clone https://github.com/kenzok8/small.git ./custom1
+          mv ./custom1/* ./custom/
           # add luci-app-omcproxy and luci-app-iptvhelper
           #cd ./custom
           #git clone https://github.com/riverscn/luci-app-omcproxy.git 
