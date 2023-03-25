@@ -42,7 +42,7 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@main
         with:
           ref: master
 
@@ -50,7 +50,6 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          # docker rmi `docker images -q`
           # sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
           # sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* || true
           sudo -E apt-get update
@@ -74,36 +73,38 @@ jobs:
         run: |
           # git clone --single-branch -b openwrt-19.07 https://github.com/openwrt/openwrt       
           # mv ./openwrt/* ./ 
-          curl -fL -m 300 -o sdk.tar.xz https://downloads.openwrt.org/releases/19.07.10/targets/ipq806x/generic/openwrt-sdk-19.07.10-ipq806x-generic_gcc-7.5.0_musl_eabi.Linux-x86_64.tar.xz
+          #curl -fL -m 300 -o sdk.tar.xz https://downloads.openwrt.org/releases/19.07.10/targets/ipq806x/generic/openwrt-sdk-19.07.10-ipq806x-generic_gcc-7.5.0_musl_eabi.Linux-x86_64.tar.xz
+          curl -fL -m 300 -o sdk.tar.xz https://downloads.openwrt.org/releases/22.03.3/targets/ipq806x/generic/openwrt-sdk-22.03.3-ipq806x-generic_gcc-11.2.0_musl_eabi.Linux-x86_64.tar.xz
           mkdir openwrt
           tar -xJf sdk.tar.xz -C openwrt
           rm -Rf sdk.tar.xz
           cd openwrt
           cp -rf ./openwrt-sdk*/. ./ || true
           du -h --max-depth=2
-      - name: add kenzo8/small-package and Update feeds
+      - name: add kenzo8/small-packages and small and Update feeds
         run: |
           cd ./openwrt
-          # sed -i '$a src-git kenzo https://github.com/kenzok8/small-package' ./feeds.conf.default
+          # sed -i '$a src-git kenzo https://github.com/kenzok8/small-packages' ./feeds.conf.default
        
           sed -i '/	refresh_config();/d' scripts/feeds
           ./scripts/feeds update -a
           ./scripts/feeds install -a
           # compiling openwrt-19.07 need use branch master-libcap to replace ./feeds/packages/libs/libcap 
-           rm -rf feeds/packages/libs/libcap
-           svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap ./feeds/packages/libs/libcap
+          # rm -rf feeds/packages/libs/libcap
+          # svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap ./feeds/packages/libs/libcap
           # svn co https://github.com/coolsnowwolf/lede/trunk/package/libs/libcap ./feeds/packages/libs/libcap
          
-          sed -i "s/#push @mirrors, 'https:\/\/mirror1.openwrt.org';/push @mirrors, 'https:\/\/sources.cdn.openwrt.org';/g" ./scripts/download.pl
+          #sed -i "s/#push @mirrors, 'https:\/\/mirror1.openwrt.org';/push @mirrors, 'https:\/\/sources.cdn.openwrt.org';/g" ./scripts/download.pl
           # in current mode feeds install can not install kenzok8/small-package to package/feeds/kenzo
           cd ./package
           #git clone https://github.com/kenzok8/small-package.git ./custom
           git clone https://github.com/kenzok8/openwrt-packages.git ./custom
+          git clone https://github.com/kenzok8/small.git ./custom
           # add luci-app-omcproxy and luci-app-iptvhelper
-          cd ./custom
-          git clone https://github.com/riverscn/luci-app-omcproxy.git 
-          # kenzok8/small-package have include iptvhelper
-          git clone https://github.com/riverscn/openwrt-iptvhelper.git
+          #cd ./custom
+          #git clone https://github.com/riverscn/luci-app-omcproxy.git 
+          # kenzok8/small-packages have include iptvhelper
+          #git clone https://github.com/riverscn/openwrt-iptvhelper.git
           # du -h ./ --max-depth=3
           rm -rf $(find ./. -maxdepth 1 -type d -name "diy" -or -name ".git*" -or -name "my*")
           #rm -rf $(find ./. -maxdepth 1 -type d -name ".git*")
@@ -120,9 +121,9 @@ jobs:
           	ln -sf /usr/bin/python3 staging_dir/host/bin/python
           fi
           ln -sf /usr/bin/python3 staging_dir/host/bin/python3
-          wget -c -nd -np https://raw.githubusercontent.com/kenzok8/compile-package/main/devices/common/po2lmo
-          cp -f ./po2lmo staging_dir/host/bin/po2lmo
-          chmod +x staging_dir/host/bin/po2lmo
+          #wget -c -nd -np https://raw.githubusercontent.com/kenzok8/compile-package/main/devices/common/po2lmo
+          #cp -f ./po2lmo staging_dir/host/bin/po2lmo
+          #chmod +x staging_dir/host/bin/po2lmo
       - name: Generate configuration file
         run: |
           cd ./openwrt
@@ -176,11 +177,11 @@ jobs:
           # make package/custom/luci-app-passwall/compile -j$(($(nproc)+1))
           for ipk in $(find package/custom/* -maxdepth 0 -type d); do
             if [ -e "$ipk/Makefile" ]; then 
-              if [ ! `echo $ipk | grep -E "luci-app-adguardhome"` ] && [ ! `echo $ipk | grep -E "luci-app-filebrowser"` ]; then
+              #if [ ! `echo $ipk | grep -E "luci-app-adguardhome"` ] && [ ! `echo $ipk | grep -E "luci-app-filebrowser"` ]; then
                 if [ `echo $ipk | grep -E "luci-"` ]; then
                   make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
                 fi
-              fi  
+              #fi  
             fi
           done  
           echo "======================="
