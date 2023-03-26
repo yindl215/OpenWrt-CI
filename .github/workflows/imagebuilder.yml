@@ -113,7 +113,7 @@ jobs:
           du -h ./ --max-depth=1
           cd ../../
           #sed -i "/mediaurlbase/d" package/feeds/*/luci-theme*/root/etc/uci-defaults/*
-          sed -i '/WARNING: Makefile/d' scripts/package-metadata.pl
+          #sed -i '/WARNING: Makefile/d' scripts/package-metadata.pl
           rm -Rf tmp
           #staging_dir/host/bin/ have lack python3 and po2lmo
           if [ -f /usr/bin/python ]; then
