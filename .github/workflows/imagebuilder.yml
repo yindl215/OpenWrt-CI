@@ -101,7 +101,7 @@ jobs:
           git clone https://github.com/kenzok8/openwrt-packages.git ./custom
           git clone https://github.com/kenzok8/small.git ./custom1
           mv ./custom1/* ./custom/
-          # add luci-app-omcproxy and luci-app-iptvhelper
+          # add luci-app-omcproxy and luci-app-iptvhelper,22.03hane include omcproxy,kenzok8/openwrt-packages have include iptvhelper
           #cd ./custom
           #git clone https://github.com/riverscn/luci-app-omcproxy.git 
           # kenzok8/small-packages have include iptvhelper
@@ -112,15 +112,17 @@ jobs:
           #rm -rf $(find ./. -maxdepth 1 -type d -name "my*")
           du -h ./ --max-depth=1
           cd ../../
+          # 22.03 is not zhe two file
           #sed -i "/mediaurlbase/d" package/feeds/*/luci-theme*/root/etc/uci-defaults/*
           #sed -i '/WARNING: Makefile/d' scripts/package-metadata.pl
           rm -Rf tmp
           #staging_dir/host/bin/ have lack python3 and po2lmo
-          if [ -f /usr/bin/python ]; then
-          	ln -sf /usr/bin/python staging_dir/host/bin/python
-          else
-          	ln -sf /usr/bin/python3 staging_dir/host/bin/python
-          fi
+          # 22.03 is not zhe python file
+          #if [ -f /usr/bin/python ]; then
+          #	ln -sf /usr/bin/python staging_dir/host/bin/python
+          # else
+          #	ln -sf /usr/bin/python3 staging_dir/host/bin/python
+          # fi
           ln -sf /usr/bin/python3 staging_dir/host/bin/python3
           #wget -c -nd -np https://raw.githubusercontent.com/kenzok8/compile-package/main/devices/common/po2lmo
           #cp -f ./po2lmo staging_dir/host/bin/po2lmo
