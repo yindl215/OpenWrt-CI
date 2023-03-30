@@ -123,6 +123,7 @@ jobs:
           CONFIG_DEFAULT_ddns-scripts_aliyun=y
           CONFIG_DEFAULT_ddns-scripts_dnspod=y
           CONFIG_DEFAULT_default-settings=y
+
           CONFIG_DEFAULT_dnsmasq=y
           CONFIG_DEFAULT_dropbear=y
           CONFIG_DEFAULT_firewall=y
@@ -898,7 +899,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-adblock=m
           CONFIG_PACKAGE_luci-app-adbyby-plus=m
           CONFIG_PACKAGE_luci-app-adguardhome=m
-          CONFIG_PACKAGE_luci-app-advanced-reboot=m
+          CONFIG_PACKAGE_luci-app-advanced-reboot=y
           CONFIG_PACKAGE_luci-app-bypass=m
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Client=y
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server=y
@@ -1001,7 +1002,7 @@ jobs:
           CONFIG_PACKAGE_default-settings=y
           CONFIG_PACKAGE_luci-i18n-adblock-zh-cn=m
           CONFIG_PACKAGE_luci-i18n-adbyby-plus-zh-cn=m
-          CONFIG_PACKAGE_luci-i18n-advanced-reboot-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-advanced-reboot-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-bypass-zh-cn=m
           CONFIG_PACKAGE_luci-i18n-control-timewol-zh-cn=y
