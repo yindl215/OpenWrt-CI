@@ -1169,20 +1169,20 @@ jobs:
           path: ./artifact/buildinfo/
 
       - name: Deliver package
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@main
         with:
           name: OpenWrt_package
           path: ./artifact/package/
 
       - name: Deliver firmware
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@main
         with:
           name: OpenWrt_firmware
           path: ./bin/targets/
 
  #     - name: Upload release asset
  #       if: github.event == 'release'
- #       uses: svenstaro/upload-release-action@v2
+ #       uses: svenstaro/upload-release-action@v1
  #       with:
  #         repo_token: ${{ secrets.YOURTOKEN }}
  #         file: ./artifact/firmware/*
