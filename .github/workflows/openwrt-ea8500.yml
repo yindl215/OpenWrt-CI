@@ -123,9 +123,7 @@ jobs:
           CONFIG_DEFAULT_ddns-scripts_aliyun=y
           CONFIG_DEFAULT_ddns-scripts_dnspod=y
           CONFIG_DEFAULT_default-settings=y
-          
-          CONFIG_DEFAULT_dnsmasq-full=m
-          
+          CONFIG_DEFAULT_dnsmasq=y
           CONFIG_DEFAULT_dropbear=y
           CONFIG_DEFAULT_firewall=y
           CONFIG_DEFAULT_fstools=y
