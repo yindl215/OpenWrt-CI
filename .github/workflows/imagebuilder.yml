@@ -178,16 +178,17 @@ jobs:
           # openwrt-packages:luci-app-filebrowser compile error
           # both:luci-app-adguardhome compile error
           # make package/custom/luci-app-passwall/compile -j$(($(nproc)+1))
-          for ipk in $(find package/custom/* -maxdepth 0 -type d); do
-            if [ -e "$ipk/Makefile" ]; then 
-              #if [ ! `echo $ipk | grep -E "luci-app-adguardhome"` ] && [ ! `echo $ipk | grep -E "luci-app-filebrowser"` ]; then
-              if [ ! `echo $ipk | grep -E "alist"` ] && [ ! `echo $ipk | grep -E "trojan-plus"` ]; then
-                if [ `echo $ipk | grep -E "luci-"` ]; then
-                  make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
-                fi
-              fi  
-            fi
-          done  
+          make package/custom/luci-app-passwall/compile V=s
+          #for ipk in $(find package/custom/* -maxdepth 0 -type d); do
+          #  if [ -e "$ipk/Makefile" ]; then 
+          #    #if [ ! `echo $ipk | grep -E "luci-app-adguardhome"` ] && [ ! `echo $ipk | grep -E "luci-app-filebrowser"` ]; then
+          #    if [ ! `echo $ipk | grep -E "alist"` ] && [ ! `echo $ipk | grep -E "trojan-plus"` ]; then
+          #      if [ `echo $ipk | grep -E "luci-"` ]; then
+          #        make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
+          #      fi
+          #    fi  
+          #  fi
+          #done  
           echo "======================="
           echo "Space usage:"
           echo "======================="
