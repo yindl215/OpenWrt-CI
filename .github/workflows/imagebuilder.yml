@@ -71,10 +71,8 @@ jobs:
           df -h
       - name: git clone openwrt image builder
         run: |
-          # git clone --single-branch -b openwrt-19.07 https://github.com/openwrt/openwrt       
-          # mv ./openwrt/* ./ 
           #curl -fL -m 300 -o sdk.tar.xz https://downloads.openwrt.org/releases/19.07.10/targets/ipq806x/generic/openwrt-sdk-19.07.10-ipq806x-generic_gcc-7.5.0_musl_eabi.Linux-x86_64.tar.xz
-          curl -fL -m 300 -o sdk.tar.xz https://downloads.openwrt.org/releases/22.03.3/targets/ipq806x/generic/openwrt-sdk-22.03.3-ipq806x-generic_gcc-11.2.0_musl_eabi.Linux-x86_64.tar.xz
+          curl -fL -m 300 -o sdk.tar.xz https://downloads.openwrt.org/releases/22.03.5/targets/ipq806x/generic/openwrt-sdk-22.03.5-ipq806x-generic_gcc-11.2.0_musl_eabi.Linux-x86_64.tar.xz
           mkdir openwrt
           tar -xJf sdk.tar.xz -C openwrt
           rm -Rf sdk.tar.xz
@@ -97,7 +95,6 @@ jobs:
           #sed -i "s/#push @mirrors, 'https:\/\/mirror1.openwrt.org';/push @mirrors, 'https:\/\/sources.cdn.openwrt.org';/g" ./scripts/download.pl
           # in current mode feeds install can not install kenzok8/small-package to package/feeds/kenzo
           cd ./package
-          #git clone https://github.com/kenzok8/small-package.git ./custom
           git clone https://github.com/kenzok8/openwrt-packages.git ./custom
           git clone https://github.com/kenzok8/small-package.git ./custom1
           mv ./custom1/* ./custom/
@@ -123,7 +120,7 @@ jobs:
           #sed -i '/WARNING: Makefile/d' scripts/package-metadata.pl
           rm -Rf tmp
           #staging_dir/host/bin/ have lack python3 and po2lmo
-          # 22.03 is not zhe python and python3 file
+          # 22.03 is not the python and python3 file
           #if [ -f /usr/bin/python ]; then
           #	ln -sf /usr/bin/python staging_dir/host/bin/python
           # else
@@ -171,6 +168,27 @@ jobs:
           CONFIG_TARGET_ipq806x=y
           CONFIG_TARGET_ipq806x_generic=y
           CONFIG_TARGET_ipq806x_generic_DEVICE_linksys_ea8500=y
+          
+          CONFIG_PACKAGE_luci-app-passwall_Iptables_Transparent_Proxy=m
+          CONFIG_PACKAGE_luci-app-passwall_Nftables_Transparent_Proxy=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Haproxy=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Hysteria=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_NaiveProxy=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Client=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Client=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_Libev_Client=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Simple_Obfs=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_GO=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_Plus=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Geodata=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Plugin=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray_Plugin=m
+          
           EOF
           #
           # ===============================================================
