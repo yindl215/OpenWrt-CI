@@ -99,6 +99,8 @@ jobs:
           #a few of small-package have exist in openwrt-packages
           git clone https://github.com/kenzok8/small-package.git ./custom
           #mv ./custom1/* ./custom/
+          #20230907 22.03.5 package/custom/trojan-plus failed to build
+          rm -rf ./custom/trojan-plus
           # add luci-app-omcproxy and luci-app-iptvhelper,22.03hane include omcproxy,kenzok8/openwrt-packages have include iptvhelper
           #cd ./custom
           #git clone https://github.com/riverscn/luci-app-omcproxy.git 
