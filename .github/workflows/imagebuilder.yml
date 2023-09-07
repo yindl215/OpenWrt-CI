@@ -106,10 +106,16 @@ jobs:
           #git clone https://github.com/riverscn/luci-app-omcproxy.git 
           # kenzok8/small-packages have include iptvhelper
           #git clone https://github.com/riverscn/openwrt-iptvhelper.git
-          # du -h ./ --max-depth=3
           rm -rf $(find ./. -maxdepth 1 -type d -name "diy" -or -name ".git*" -or -name "my*")
           #rm -rf $(find ./. -maxdepth 1 -type d -name ".git*")
           #rm -rf $(find ./. -maxdepth 1 -type d -name "my*")
+          # here is 20230906 22.03 can not download some code
+          cd ../
+          mkdir -p ./dl
+          cd ./dl
+          wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/trojan-plus-10.0.3.tar.xz
+          rm -rf $(find -name "index.html*")
+
           du -h ./ --max-depth=1
           cd ../../
           # 22.03 is not zhe two file
