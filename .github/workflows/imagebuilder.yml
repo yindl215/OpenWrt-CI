@@ -95,9 +95,10 @@ jobs:
           #sed -i "s/#push @mirrors, 'https:\/\/mirror1.openwrt.org';/push @mirrors, 'https:\/\/sources.cdn.openwrt.org';/g" ./scripts/download.pl
           # in current mode feeds install can not install kenzok8/small-package to package/feeds/kenzo
           cd ./package
-          git clone https://github.com/kenzok8/openwrt-packages.git ./custom
-          git clone https://github.com/kenzok8/small-package.git ./custom1
-          mv ./custom1/* ./custom/
+          #git clone https://github.com/kenzok8/openwrt-packages.git ./custom
+          #a few of small-package have exist in openwrt-packages
+          git clone https://github.com/kenzok8/small-package.git ./custom
+          #mv ./custom1/* ./custom/
           # add luci-app-omcproxy and luci-app-iptvhelper,22.03hane include omcproxy,kenzok8/openwrt-packages have include iptvhelper
           #cd ./custom
           #git clone https://github.com/riverscn/luci-app-omcproxy.git 
@@ -115,7 +116,7 @@ jobs:
 
           du -h ./ --max-depth=1
           cd ../../
-          # 22.03 is not zhe two file
+          # 22.03 is not the two file
           #sed -i "/mediaurlbase/d" package/feeds/*/luci-theme*/root/etc/uci-defaults/*
           #sed -i '/WARNING: Makefile/d' scripts/package-metadata.pl
           rm -Rf tmp
