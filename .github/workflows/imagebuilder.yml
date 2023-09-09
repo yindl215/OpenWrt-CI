@@ -172,27 +172,6 @@ jobs:
           CONFIG_TARGET_ipq806x=y
           CONFIG_TARGET_ipq806x_generic=y
           CONFIG_TARGET_ipq806x_generic_DEVICE_linksys_ea8500=y
-
-          CONFIG_PACKAGE_luci-app-passwall=y
-          CONFIG_PACKAGE_luci-app-passwall_Iptables_Transparent_Proxy=m
-          CONFIG_PACKAGE_luci-app-passwall_Nftables_Transparent_Proxy=m
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=m
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Haproxy=m
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Hysteria=m
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_NaiveProxy=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Client=m
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server=m
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Client=m
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_Libev_Client=m
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Simple_Obfs=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_GO=m
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_Plus=m
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=m
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Geodata=m
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Plugin=m
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray_Plugin=m
           
           EOF
           #
@@ -207,7 +186,7 @@ jobs:
           # openwrt-packages:luci-app-filebrowser compile error
           # both:luci-app-adguardhome compile error
           # make package/custom/luci-app-passwall/compile -j$(($(nproc)+1))
-          make package/custom/luci-app-passwall/compile V=s
+          make package/custom/xray-plugin/compile V=s
           #for ipk in $(find package/custom/* -maxdepth 0 -type d); do
           #  if [ -e "$ipk/Makefile" ]; then 
           #    #if [ ! `echo $ipk | grep -E "luci-app-adguardhome"` ] && [ ! `echo $ipk | grep -E "luci-app-filebrowser"` ]; then
