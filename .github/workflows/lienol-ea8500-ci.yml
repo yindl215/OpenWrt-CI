@@ -75,7 +75,7 @@ jobs:
           sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
           #20230906 compiling occur  package/feeds/small(-package)/hysteria xray-plugin sing-boxfailed to build
           rm -rf feeds/small/hysteria
-          rm -rf feeds/small/xray-plugin
+          #rm -rf feeds/small/xray-plugin
           rm -rf feeds/small/sing-box
       - name: download some code
         run: |
@@ -923,7 +923,7 @@ jobs:
           CONFIG_PACKAGE_iptables-mod-tproxy=y
           CONFIG_PACKAGE_iptables-mod-extra=y
           CONFIG_PACKAGE_luci-app-opkg=y
-          CONFIG_PACKAGE_luci-app-passwall=m
+          CONFIG_PACKAGE_luci-app-passwall=y
           CONFIG_PACKAGE_luci-app-passwall_Iptables_Transparent_Proxy=m
           CONFIG_PACKAGE_luci-app-passwall_Nftables_Transparent_Proxy=m
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=m
@@ -941,7 +941,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=m
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Geodata=m
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Plugin=m
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=m
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray_Plugin=m
           CONFIG_PACKAGE_luci-app-passwall2=m
           CONFIG_PACKAGE_luci-app-passwall2_Transparent_Proxy=m
