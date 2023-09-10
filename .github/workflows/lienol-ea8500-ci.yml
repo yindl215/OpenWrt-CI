@@ -76,7 +76,7 @@ jobs:
           #20230906 compiling occur  package/feeds/small(-package)/hysteria xray-plugin sing-boxfailed to build
           rm -rf feeds/small/hysteria
           rm -rf feeds/small/xray-plugin
-          rm -rf feeds/small/sing-box
+          #rm -rf feeds/small/sing-box
       - name: download some code
         run: |
           # compiling openwrt-19.07 need add "push @mirrors, 'https:\/\/sources.cdn.openwrt.org'"
