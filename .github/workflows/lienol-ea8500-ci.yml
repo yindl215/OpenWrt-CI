@@ -1137,7 +1137,7 @@ jobs:
       - name: Compile firmware
         run: |
           #make -j$(nproc) || 
-          make -j1 V=sc
+          make V=sc
           echo "======================="
           echo "Space usage:"
           echo "======================="
