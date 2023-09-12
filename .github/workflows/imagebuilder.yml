@@ -97,9 +97,6 @@ jobs:
           #a few of small-package have exist in openwrt-package
           git clone https://github.com/kenzok8/small-package.git ./custom
           #mv ./custom1/* ./custom/
-          #20230907 22.03.5 package/custom/trojan-plus sing-box failed to build
-          #rm -rf ./custom/trojan-plus
-          #rm -rf ./custom/sing-box
           # add luci-app-omcproxy and luci-app-iptvhelper,22.03hane include omcproxy,kenzok8/openwrt-packages have include iptvhelper
           #cd ./custom
           #git clone https://github.com/riverscn/luci-app-omcproxy.git 
@@ -180,8 +177,9 @@ jobs:
           # openwrt-packages:alist and trojan-plus compile error
           # openwrt-packages:luci-app-filebrowser compile error
           # both:luci-app-adguardhome compile error
+          #20230907 22.03.5 package/custom/hysteria trojan-plus sing-box failed to build
           # make package/custom/luci-app-passwall/compile -j$(($(nproc)+1))
-          make package/custom/hysteria/compile V=s
+          make package/custom/xray-plugin/compile V=s
           #for ipk in $(find package/custom/* -maxdepth 0 -type d); do
           #  if [ -e "$ipk/Makefile" ]; then 
           #    #if [ ! `echo $ipk | grep -E "luci-app-adguardhome"` ] && [ ! `echo $ipk | grep -E "luci-app-filebrowser"` ]; then
