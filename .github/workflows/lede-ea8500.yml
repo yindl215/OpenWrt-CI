@@ -87,9 +87,9 @@ jobs:
           # svn co https://github.com/openwrt/openwrt/trunk/packages/libs/libcap ./feeds/packages/libs/libcap
           # svn co https://github.com/coolsnowwolf/lede/trunk/package/libs/libcap ./feeds/packages/libs/libcap
           # add luci-app-omcproxy and luci-app-iptvhelper
-          cd ./package
-          git clone https://github.com/riverscn/luci-app-omcproxy.git
-          git clone https://github.com/riverscn/openwrt-iptvhelper.git
+          #cd ./package
+          #git clone https://github.com/riverscn/luci-app-omcproxy.git
+          #git clone https://github.com/riverscn/openwrt-iptvhelper.git
       - name: download some code
         run: |
           # compiling openwrt-19.07 need add "push @mirrors, 'https:\/\/sources.cdn.openwrt.org'"
@@ -1146,20 +1146,20 @@ jobs:
         run: |
           make download -j8 || make download -j1 V=s
           rm -rf $(find ./dl/ -size -1024c)
-          git switch -c 5a2559f0648198c290bb8839b9f6a0adab8ebcdc
-          git switch -c d63ff863800a5645aca4309d5dd5962bd1e95543
-          git switch -c 486bebd9208539058e57e23a12f23103016e09b4
-          git switch -c 697977d8d0ccf0ab596e5692d08608a75dd7f33d
-          git switch -c 740d0102c518cd49f30c5580982b218b480006b1
-          git switch -c 809a00deffe9f3d4ecd15965790a152757073437
-          git switch -c 9228212b4238c0d8c296f795948ede8f2ca0242e
-          git switch -c 9b74deef2816d91e58926e6fab7a6ff931eb3b22
-          git switch -c 31f5cd4b83da5a7c0fdca240b4e72677e4523b6e
+          #git switch -c 5a2559f0648198c290bb8839b9f6a0adab8ebcdc
+          #git switch -c d63ff863800a5645aca4309d5dd5962bd1e95543
+          #git switch -c 486bebd9208539058e57e23a12f23103016e09b4
+          #git switch -c 697977d8d0ccf0ab596e5692d08608a75dd7f33d
+          #git switch -c 740d0102c518cd49f30c5580982b218b480006b1
+          #git switch -c 809a00deffe9f3d4ecd15965790a152757073437
+          #git switch -c 9228212b4238c0d8c296f795948ede8f2ca0242e
+          #git switch -c 9b74deef2816d91e58926e6fab7a6ff931eb3b22
+          #git switch -c 31f5cd4b83da5a7c0fdca240b4e72677e4523b6e
           df -h
       - name: Compile firmware
         run: |
           #make -j$(nproc) || make -j1 V=sc
-          make -j1 V=sc
+          make -j1 V=s
           echo "======================="
           echo "Space usage:"
           echo "======================="
