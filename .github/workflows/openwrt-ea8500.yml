@@ -927,7 +927,7 @@ jobs:
           CONFIG_PACKAGE_iptables-mod-tproxy=y
           CONFIG_PACKAGE_iptables-mod-extra=y
           CONFIG_PACKAGE_luci-app-opkg=y
-          CONFIG_PACKAGE_luci-app-passwall=m
+          CONFIG_PACKAGE_luci-app-passwall=y
           CONFIG_PACKAGE_luci-app-passwall_Iptables_Transparent_Proxy=m
           CONFIG_PACKAGE_luci-app-passwall_Nftables_Transparent_Proxy=m
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=m
@@ -1140,7 +1140,7 @@ jobs:
       - name: Compile firmware
         run: |
           #make -j$(nproc) ||
-          make -j$(nproc) V=sc
+          make V=sc -j$(nproc)
           echo "======================="
           echo "Space usage:"
           echo "======================="
