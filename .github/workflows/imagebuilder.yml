@@ -181,7 +181,7 @@ jobs:
           # openwrt-packages:luci-app-filebrowser compile error
           # both:luci-app-adguardhome compile error
           # make package/custom/luci-app-passwall/compile -j$(($(nproc)+1))
-          make package/custom/hy/compile V=s
+          make package/custom/hysteria/compile V=s
           #for ipk in $(find package/custom/* -maxdepth 0 -type d); do
           #  if [ -e "$ipk/Makefile" ]; then 
           #    #if [ ! `echo $ipk | grep -E "luci-app-adguardhome"` ] && [ ! `echo $ipk | grep -E "luci-app-filebrowser"` ]; then
