@@ -1125,7 +1125,7 @@ jobs:
           CONFIG_PACKAGE_shellsync=y
           CONFIG_STRACE_NONE=y
           CONFIG_PACKAGE_ubi-utils=y
-          EOF          
+          EOF
           #
           # CONFIG_PACKAGE_luci-app-argon-config=y
           # CONFIG_PACKAGE_luci-app-adguardhome=y
