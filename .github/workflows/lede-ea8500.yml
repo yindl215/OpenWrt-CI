@@ -93,12 +93,12 @@ jobs:
       - name: download some code
         run: |
           # compiling openwrt-19.07 need add "push @mirrors, 'https:\/\/sources.cdn.openwrt.org'"
-          sed -i "s/#push @mirrors, 'https:\/\/mirror1.openwrt.org';/push @mirrors, 'https:\/\/sources.cdn.openwrt.org';/g" ./scripts/download.pl
+          #sed -i "s/#push @mirrors, 'https:\/\/mirror1.openwrt.org';/push @mirrors, 'https:\/\/sources.cdn.openwrt.org';/g" ./scripts/download.pl
           # here is openwrt-19.07 or lede can not download some code
-          mkdir -p ./dl
-          cd ./dl
-          wget -c -r -nd -np http://204.13.154.47:1000/openwrt-dl/
-          rm -rf $(find -name "index.html*")
+          #mkdir -p ./dl
+          #cd ./dl
+          #wget -c -r -nd -np http://204.13.154.47:1000/openwrt-dl/
+          #rm -rf $(find -name "index.html*")
       - name: Generate configuration file
         run: |
           rm -f ./.config*
