@@ -79,6 +79,7 @@ jobs:
           ./scripts/feeds install -a
           # openwrt-22.03 include omcproxy and iptvhelper,kenzok8/openwrt-packages include ddnsto 
           sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
+          sed -i "s/%D %V, %C/openwrt $(date +'%m/%d') by yindl/g" package/base-files/files/etc/banner
       - name: download some code
         run: |
           # compiling openwrt-19.07 need add "push @mirrors, 'https:\/\/sources.cdn.openwrt.org'"
@@ -1136,8 +1137,7 @@ jobs:
           df -h
       - name: Compile firmware
         run: |
-          #make -j$(nproc) || make -j1 V=sc
-          make V=sc
+          make -j$(nproc) || make -j1 V=sc
           echo "======================="
           echo "Space usage:"
           echo "======================="
