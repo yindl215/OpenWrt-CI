@@ -77,7 +77,7 @@ jobs:
           #sed -i 's/%D %V, %C/openwrt $(date +\'%m.%d\') by yindl/g' package/base-files/files/etc/banner
           #20230906 compiling occur  package/feeds/small(-package)/hysteria xray-plugin sing-boxfailed to build
           #rm -rf feeds/small/hysteria
-          #rm -rf feeds/small/xray-plugin
+          rm -rf feeds/small/xray-plugin
           #rm -rf feeds/small/sing-box
       - name: download some code
         run: |
