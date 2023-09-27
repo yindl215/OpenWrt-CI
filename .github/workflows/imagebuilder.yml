@@ -113,6 +113,10 @@ jobs:
           cd ./dl
           wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/trojan-plus-10.0.3.tar.xz
           rm -rf $(find -name "index.html*")
+          cd ../
+          rm -rf ./package/custom/hysteria
+          rm -rf ./package/custom/trojan-plus
+          rm -rf ./package/custom/xray-plugin
           du -h ./ --max-depth=1
           cd ../../
           # 22.03 is not the two file
