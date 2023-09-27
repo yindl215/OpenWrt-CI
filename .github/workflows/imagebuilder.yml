@@ -95,7 +95,9 @@ jobs:
           cd ./package
           #git clone https://github.com/kenzok8/openwrt-package.git ./custom
           #a few of small-package have exist in openwrt-package
-          git clone https://github.com/kenzok8/small-package.git ./custom
+          #git clone https://github.com/kenzok8/small-package.git ./custom
+          git clone https://github.com/xiaorouji/openwrt-passwall-packages.git ./custom
+          git clone https://github.com/xiaorouji/openwrt-passwall.git ./custom
           #mv ./custom1/* ./custom/
           # add luci-app-omcproxy and luci-app-iptvhelper,22.03hane include omcproxy,kenzok8/openwrt-packages have include iptvhelper
           #cd ./custom
@@ -107,10 +109,10 @@ jobs:
           #rm -rf $(find ./. -maxdepth 1 -type d -name "my*")
           # here is 20230906 22.03 can not download some code
           #cd ../
-          mkdir -p ./dl
-          cd ./dl
-          wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/trojan-plus-10.0.3.tar.xz
-          rm -rf $(find -name "index.html*")
+          #mkdir -p ./dl
+          #cd ./dl
+          #wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/trojan-plus-10.0.3.tar.xz
+          #rm -rf $(find -name "index.html*")
           du -h ./ --max-depth=1
           cd ../../
           # 22.03 is not the two file
@@ -179,7 +181,7 @@ jobs:
           # both:luci-app-adguardhome compile error
           #20230907 22.03.5 package/custom/hysteria trojan-plus sing-box failed to build
           #make package/custom/luci-app-passwall/compile -j$(($(nproc)+1))
-          make package/custom/luci-app-passwall/compile V=s
+          make package/custom/luci-app-passwall/compile V=sc
           #make package/custom/xray-plugin/compile V=s
           #for ipk in $(find package/custom/* -maxdepth 0 -type d); do
           #  if [ -e "$ipk/Makefile" ]; then 
