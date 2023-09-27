@@ -182,7 +182,7 @@ jobs:
           #20230907 22.03.5 package/custom/hysteria trojan-plus sing-box failed to build
           #make package/custom/hysteria/compile V=sc
           make package/custom/sing-box/compile V=sc
-          make package/custom/trojan-plus/compile V=sc
+          #make package/custom/trojan-plus/compile V=sc
           make package/custom/xray-plugin/compile V=sc
           #make package/custom/luci-app-passwall/compile -j$(($(nproc)+1))
           #make package/custom/luci-app-passwall/compile V=sc
