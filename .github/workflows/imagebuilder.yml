@@ -97,8 +97,8 @@ jobs:
           #a few of small-package have exist in openwrt-package
           #git clone https://github.com/kenzok8/small-package.git ./custom
           git clone https://github.com/xiaorouji/openwrt-passwall-packages.git ./custom
-          git clone https://github.com/xiaorouji/openwrt-passwall.git ./custom
-          #mv ./custom1/* ./custom/
+          git clone https://github.com/xiaorouji/openwrt-passwall.git ./custom1
+          mv ./custom1/* ./custom/
           # add luci-app-omcproxy and luci-app-iptvhelper,22.03hane include omcproxy,kenzok8/openwrt-packages have include iptvhelper
           #cd ./custom
           #git clone https://github.com/riverscn/luci-app-omcproxy.git 
