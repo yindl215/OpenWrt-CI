@@ -88,7 +88,7 @@ jobs:
           #20230907 lienol-22.03 can not download trojan-plugin
           mkdir -p ./dl
           cd ./dl
-          wget -c -r -nd -np http://204.13.154.47:1000/openwrt-dl/
+          wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/
           rm -rf $(find -name "index.html*")
       - name: Generate configuration file
         run: |
