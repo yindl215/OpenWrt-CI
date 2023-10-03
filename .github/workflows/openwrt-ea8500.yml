@@ -90,6 +90,7 @@ jobs:
           wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/
           rm -rf $(find -name "index.html*")
           rm -rf feeds/small/xray-plugin
+          rm -rf feeds/small/v2ray-plugin
           #rm -rf feeds/small/trojan-plus
       - name: Generate configuration file
         run: |
