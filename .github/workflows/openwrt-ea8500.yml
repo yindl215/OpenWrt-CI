@@ -87,7 +87,7 @@ jobs:
           # here is openwrt-19.07 or lede can not download some code
           mkdir -p ./dl
           cd ./dl
-          wget -c -r -nd -np http://204.13.154.47:1000/openwrt-dl/
+          wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/
           rm -rf $(find -name "index.html*")
       - name: Generate configuration file
         run: |
