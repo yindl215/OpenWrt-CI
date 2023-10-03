@@ -78,6 +78,7 @@ jobs:
           #20230906 compiling occur  package/feeds/small(-package)/hysteria xray-plugin sing-boxfailed to build
           #rm -rf feeds/small/hysteria
           rm -rf feeds/small/xray-plugin
+          rm -rf feeds/small/v2ray-plugin
           #rm -rf feeds/small/trojan-plus
           #rm -rf feeds/small/sing-box
       - name: download some code
