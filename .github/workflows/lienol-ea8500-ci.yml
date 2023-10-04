@@ -55,14 +55,22 @@ jobs:
           df -h
       - name: git clone Lienol
         run: |
-          git clone --single-branch -b 22.03 https://github.com/Lienol/openwrt.git       
+          git clone --depth 1 --single-branch -b 23.05 https://github.com/Lienol/openwrt.git       
           mv ./openwrt/* ./ 
           du -h --max-depth=1
       - name: add kenzo8/openwrt-packages and kenzo8/small Update feeds
         run: |
-          sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' ./feeds.conf.default
+          #sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' ./feeds.conf.default
           sed -i '$a src-git small https://github.com/kenzok8/small-package' ./feeds.conf.default
           ./scripts/feeds update -a
+          rm -rf feeds/small/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
+          rm -rf feeds/luci/themes/luci-theme-argon && rm -rf feeds/other/{luci-app-adguardhome,luci-app-dockerman}
+          rm -rf feeds/lienol/luci-app-fileassistant && rm -rf feeds/packages/net/{adguardhome,smartdns}
+          cp -f feeds/small/.github/diy/zzz-default-settings package/default-settings/files/zzz-default-settings
+          #cp -f feeds/small/.github/diy/banner package/base-files/files/etc/banner
+          rm -rf feeds/small/luci-theme-design && git clone -b js --single-branch https://github.com/gngpp/luci-theme-design feeds/small/luci-theme-design
+          sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
+          sed -i "s/%D %V, %C/openwrt $(date +'%m.%d') by yindl/g" package/base-files/files/etc/banner
           ./scripts/feeds install -a
           # compiling openwrt-19.07 need use branch master-libcap to replace ./feeds/packages/libs/libcap 
           #rm -rf feeds/packages/libs/libcap
@@ -77,8 +85,8 @@ jobs:
           #sed -i 's/%D %V, %C/openwrt $(date +\'%m.%d\') by yindl/g' package/base-files/files/etc/banner
           #20230906 compiling occur  package/feeds/small(-package)/hysteria xray-plugin sing-boxfailed to build
           #rm -rf feeds/small/hysteria
-          rm -rf feeds/small/xray-plugin
-          rm -rf feeds/small/v2ray-plugin
+          #rm -rf feeds/small/xray-plugin
+          #rm -rf feeds/small/v2ray-plugin
           #rm -rf feeds/small/trojan-plus
           #rm -rf feeds/small/sing-box
       - name: download some code
@@ -87,10 +95,10 @@ jobs:
           #sed -i "s/#push @mirrors, 'https:\/\/mirror1.openwrt.org';/push @mirrors, 'https:\/\/sources.cdn.openwrt.org';/g" ./scripts/download.pl
           # here is openwrt-19.07 or lede can not download some code
           #20230907 lienol-22.03 can not download trojan-plugin
-          mkdir -p ./dl
-          cd ./dl
-          wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/
-          rm -rf $(find -name "index.html*")
+          #mkdir -p ./dl
+          #cd ./dl
+          #wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/
+          #rm -rf $(find -name "index.html*")
       - name: Generate configuration file
         run: |
           rm -f ./.config*
@@ -1125,8 +1133,9 @@ jobs:
           make defconfig
       - name: Make download
         run: |
-          make download -j8 || make download -j1 V=s
+          make download -j$(nproc) || make download -j1 V=s
           rm -rf $(find ./dl/ -size -1024c)
+          #find dl -size -1024c -exec rm -f {} \;
           # git switch -c 5a2559f0648198c290bb8839b9f6a0adab8ebcdc
           #git switch -c d63ff863800a5645aca4309d5dd5962bd1e95543
           #git switch -c 486bebd9208539058e57e23a12f23103016e09b4
