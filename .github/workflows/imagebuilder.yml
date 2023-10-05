@@ -83,12 +83,13 @@ jobs:
         run: |
           cd ./openwrt
           sed -i '/	refresh_config();/d' scripts/feeds
+          ls -la
           echo "src-git base https://github.com/openwrt/openwrt.git;openwrt-22.03.5" > feeds.conf
           echo "src-git packages https://github.com/openwrt/packages.git;openwrt-22.03.5" >> feeds.conf
           echo "src-git luci https://github.com/openwrt/luci.git;openwrt-22.03.5" >> feeds.conf
           echo "src-git routing https://git.openwrt.org/feed/routing.git;openwrt-22.03.5"  >> feeds.conf
-          echo "src-git passwall_packages https://github.com/openwrt-passwall-packages.git.git;main" >> feeds.conf
-          echo "src-git passwall https://github.com/openwrt-passwall.git.git;main" >> feeds.conf
+          echo "src-git passwall_packages https://github.com/openwrt-passwall-packages.git;main" >> feeds.conf
+          echo "src-git passwall https://github.com/openwrt-passwall.git;main" >> feeds.conf
           ./scripts/feeds update -a
           ./scripts/feeds install -d n luci-app-passwall
           #./scripts/feeds install -a
@@ -183,7 +184,27 @@ jobs:
           CONFIG_TARGET_ipq806x=y
           CONFIG_TARGET_ipq806x_generic=y
           CONFIG_TARGET_ipq806x_generic_DEVICE_linksys_ea8500=y
-          
+          CONFIG_LUCI_LANG_zh_Hans=y
+          CONFIG_PACKAGE_luci-app-passwall=m
+          CONFIG_PACKAGE_luci-app-passwall_Iptables_Transparent_Proxy=m
+          CONFIG_PACKAGE_luci-app-passwall_Nftables_Transparent_Proxy=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Haproxy=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Hysteria=n
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_NaiveProxy=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Client=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Client=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_Libev_Client=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Simple_Obfs=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_GO=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_Plus=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Geodata=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Plugin=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray_Plugin=m
           EOF
           #
           # ===============================================================
@@ -192,15 +213,13 @@ jobs:
       - name: Compile firmware
         run: |
           cd ./openwrt
-          # openwrt-packages:alist and trojan-plus compile error
-          # openwrt-packages:luci-app-filebrowser compile error
-          # both:luci-app-adguardhome compile error
           #20230907 22.03.5 package/custom/hysteria trojan-plus sing-box failed to build
           #make package/custom/hysteria/compile V=sc
-          make package/custom/sing-box/compile V=sc
+          #make package/custom/sing-box/compile V=sc
           #make package/custom/trojan-plus/compile V=sc
-          make package/custom/xray-plugin/compile V=sc
-          make package/custom/v2ray-plugin/compile V=sc
+          #make package/custom/xray-plugin/compile V=sc
+          #make package/custom/v2ray-plugin/compile V=sc
+          make package/luci-app-passwall/{clean,compile} -j$(nproc)
           #make package/custom/luci-app-passwall/compile -j$(($(nproc)+1))
           #make package/custom/luci-app-passwall/compile V=sc
           #for ipk in $(find package/custom/* -maxdepth 0 -type d); do
