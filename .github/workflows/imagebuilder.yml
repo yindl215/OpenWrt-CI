@@ -188,7 +188,7 @@ jobs:
           # openwrt-packages:luci-app-filebrowser compile error
           # both:luci-app-adguardhome compile error
           #20230907 22.03.5 package/custom/hysteria trojan-plus sing-box failed to build
-          make package/custom/hysteria/compile V=sc
+          #make package/custom/hysteria/compile V=sc
           make package/custom/sing-box/compile V=sc
           make package/custom/trojan-plus/compile V=sc
           make package/custom/xray-plugin/compile V=sc
