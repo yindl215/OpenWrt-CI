@@ -99,6 +99,10 @@ jobs:
           #git clone https://github.com/xiaorouji/openwrt-passwall-packages.git ./custom
           #git clone https://github.com/xiaorouji/openwrt-passwall.git ./custom1
           #mv ./custom1/* ./custom/
+          cd ../
+          rm -rf feeds/packages/lang/golang
+          git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
+          cd -
           # add luci-app-omcproxy and luci-app-iptvhelper,22.03hane include omcproxy,kenzok8/openwrt-packages have include iptvhelper
           #cd ./custom
           #git clone https://github.com/riverscn/luci-app-omcproxy.git 
@@ -108,15 +112,15 @@ jobs:
           #rm -rf $(find ./. -maxdepth 1 -type d -name ".git*")
           #rm -rf $(find ./. -maxdepth 1 -type d -name "my*")
           # here is 20230906 22.03 can not download some code
-          cd ../
-          mkdir -p ./dl
-          cd ./dl
-          wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/trojan-plus-10.0.3.tar.xz
-          rm -rf $(find -name "index.html*")
-          cd ../
-          rm -rf ./package/custom/hysteria
-          rm -rf ./package/custom/trojan-plus
-          rm -rf ./package/custom/xray-plugin
+          #cd ../
+          #mkdir -p ./dl
+          #cd ./dl
+          #wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/trojan-plus-10.0.3.tar.xz
+          #rm -rf $(find -name "index.html*")
+          #cd ../
+          #rm -rf ./package/custom/hysteria
+          #rm -rf ./package/custom/trojan-plus
+          #rm -rf ./package/custom/xray-plugin
           du -h ./ --max-depth=1
           cd ../../
           # 22.03 is not the two file
@@ -184,12 +188,13 @@ jobs:
           # openwrt-packages:luci-app-filebrowser compile error
           # both:luci-app-adguardhome compile error
           #20230907 22.03.5 package/custom/hysteria trojan-plus sing-box failed to build
-          #make package/custom/hysteria/compile V=sc
-          #make package/custom/sing-box/compile V=sc
-          #make package/custom/trojan-plus/compile V=sc
-          #make package/custom/xray-plugin/compile V=sc
+          make package/custom/hysteria/compile V=sc
+          make package/custom/sing-box/compile V=sc
+          make package/custom/trojan-plus/compile V=sc
+          make package/custom/xray-plugin/compile V=sc
+          make package/custom/v2ray-plugin/compile V=sc
           #make package/custom/luci-app-passwall/compile -j$(($(nproc)+1))
-          make package/custom/luci-app-passwall/compile V=sc
+          #make package/custom/luci-app-passwall/compile V=sc
           #for ipk in $(find package/custom/* -maxdepth 0 -type d); do
           #  if [ -e "$ipk/Makefile" ]; then 
           #    #if [ ! `echo $ipk | grep -E "luci-app-adguardhome"` ] && [ ! `echo $ipk | grep -E "luci-app-filebrowser"` ]; then
