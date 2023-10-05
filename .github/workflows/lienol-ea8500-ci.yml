@@ -66,7 +66,7 @@ jobs:
           rm -rf feeds/small/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
           rm -rf feeds/luci/themes/luci-theme-argon && rm -rf feeds/other/{luci-app-adguardhome,luci-app-dockerman}
           rm -rf feeds/lienol/luci-app-fileassistant && rm -rf feeds/packages/net/{adguardhome,smartdns}
-          cp -f feeds/small/.github/diy/zzz-default-settings package/default-settings/files/zzz-default-settings
+          #cp -f feeds/small/.github/diy/zzz-default-settings package/default-settings/files/zzz-default-settings
           #cp -f feeds/small/.github/diy/banner package/base-files/files/etc/banner
           rm -rf feeds/small/luci-theme-design && git clone -b js --single-branch https://github.com/gngpp/luci-theme-design feeds/small/luci-theme-design
           sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
