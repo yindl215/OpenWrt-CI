@@ -68,8 +68,14 @@ jobs:
           df -h
       - name: git clone openwrt
         run: |
-          git clone --single-branch -b openwrt-22.03 https://github.com/openwrt/openwrt       
-          mv ./openwrt/* ./ 
+          #git clone --single-branch -b openwrt-22.03 https://github.com/openwrt/openwrt       
+          #mv ./openwrt/* ./ 
+          curl -fL -m 300 -o sdk.tar.xz https://downloads.openwrt.org/releases/22.03.5/targets/ipq806x/generic/openwrt-sdk-22.03.5-ipq806x-generic_gcc-11.2.0_musl_eabi.Linux-x86_64.tar.xz
+          mkdir openwrt
+          tar -xJf sdk.tar.xz -C openwrt
+          rm -Rf sdk.tar.xz
+          cd openwrt
+          cp -rf ./openwrt-sdk*/. ./ || true
           du -h --max-depth=1
       - name: add kenzok8/openwrt-packages and kenzok8/small and Update feeds
         run: |
@@ -954,7 +960,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-passwall2_Transparent_Proxy=m
           CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Brook=m
           CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Hysteria=m
-          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_NaiveProxy=y
+          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_NaiveProxy=m
           CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Shadowsocks_Libev_Client=m
           CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Shadowsocks_Rust_Client=m
           CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_ShadowsocksR_Libev_Client=m
@@ -971,7 +977,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Hysteria=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_IPT2Socks=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=m
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Simple_Obfs=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_V2ray_Plugin=m
@@ -1128,7 +1134,7 @@ jobs:
           make defconfig
       - name: Make download
         run: |
-          make download -j8 || make download -j1 V=s
+          make download -j$(nproc) || make download -j1 V=s
           rm -rf $(find ./dl/ -size -1024c)
           #git switch -c 5a2559f0648198c290bb8839b9f6a0adab8ebcdc
           #git switch -c d63ff863800a5645aca4309d5dd5962bd1e95543
