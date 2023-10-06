@@ -928,11 +928,11 @@ jobs:
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan=m
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_NaiveProxy=m
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Kcptun=m
-          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Hysteria=m
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Hysteria=n
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Socks5_Proxy=m
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Socks_Server=m
           CONFIG_PACKAGE_luci-app-clash=m
-          CONFIG_PACKAGE_luci-app-control-timewol=m
+          CONFIG_PACKAGE_luci-app-control-timewol=n
           CONFIG_PACKAGE_luci-app-control-webrestriction=y
           CONFIG_PACKAGE_luci-app-control-weburl=y
           CONFIG_PACKAGE_luci-app-ddns=m
@@ -951,7 +951,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=m
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=m
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Haproxy=m
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Hysteria=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Hysteria=n
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_NaiveProxy=y
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Client=m
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server=m
@@ -965,10 +965,10 @@ jobs:
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Plugin=m
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=m
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray_Plugin=m
-          CONFIG_PACKAGE_luci-app-passwall2=m
+          CONFIG_PACKAGE_luci-app-passwall2=n
           CONFIG_PACKAGE_luci-app-passwall2_Transparent_Proxy=m
           CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Brook=m
-          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Hysteria=m
+          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Hysteria=n
           CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_NaiveProxy=m
           CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Shadowsocks_Libev_Client=m
           CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Shadowsocks_Rust_Client=m
@@ -983,7 +983,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ChinaDNS_NG=m
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Hysteria=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Hysteria=n
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_IPT2Socks=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy=m
@@ -993,7 +993,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Client=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Server=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=m
-          CONFIG_PACKAGE_luci-app-timecontrol=m
+          CONFIG_PACKAGE_luci-app-timecontrol=n
           CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_DRV=y
           CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_BBR_CCA=y
           CONFIG_PACKAGE_luci-app-udpxy=m
@@ -1006,7 +1006,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Kcptun=m
           CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray_plugin=m
           CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Libev_Server=m
-          CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Hysteria=m
+          CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Hysteria=n
           CONFIG_PACKAGE_luci-app-wol=y
           CONFIG_PACKAGE_luci-theme-bootstrap=y
           CONFIG_PACKAGE_luci-proto-ipv6=y
@@ -1097,7 +1097,7 @@ jobs:
           CONFIG_BAIDUPCS_WEB_COMPRESS_UPX=y
           CONFIG_PACKAGE_etherwake=y
           CONFIG_PACKAGE_ethtool=y
-          CONFIG_PACKAGE_hysteria=m
+          CONFIG_PACKAGE_hysteria=n
           CONFIG_PACKAGE_ipset=y
           CONFIG_PACKAGE_ipt2socks=m
           CONFIG_PACKAGE_iw=y
