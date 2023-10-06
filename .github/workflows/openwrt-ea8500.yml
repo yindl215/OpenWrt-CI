@@ -76,6 +76,7 @@ jobs:
           rm -Rf sdk.tar.xz
           cd openwrt
           cp -rf ./openwrt-sdk*/. ../ || true
+          #sdk.tar.xz is not have package/base-files/files/bin/config_generate,it only in original code
           du -h --max-depth=1
       - name: add kenzok8/openwrt-packages and kenzok8/small and Update feeds
         run: |
