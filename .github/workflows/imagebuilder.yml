@@ -333,18 +333,17 @@ jobs:
           #    #if [ ! `echo $ipk | grep -E "luci-app-adguardhome"` ] && [ ! `echo $ipk | grep -E "luci-app-filebrowser"` ]; then
           #    if [ ! `echo $ipk | grep -E "alist"` ] && [ ! `echo $ipk | grep -E "trojan-plus"` ]; then
           #      if [ `echo $ipk | grep -E "luci-"` ]; then
-          #        make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
+          #        make $ipk/{clean,compile} -j$(nproc) || make $ipk/compile V=s
           #      fi
           #    fi  
           #  fi
           #done 
           find package/feeds/ -maxdepth 1 -type d
-          for ipk in $(find package/feeds/ -maxdepth 1 -type d); do
+          #find mexdepth and mindepth does not work or invalid
+          ls -R -d package/feeds/*/luci-*
+          for ipk in $(ls -R -d package/feeds/*/luci-*); do
             if [ -e "$ipk/Makefile" ]; then 
-                if [ `echo $ipk | grep -E "luci-"` ]; then
-                  make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
-                fi
-          #    fi  
+               make $ipk/{clean,compile} -j$(nproc) || make $ipk/compile V=s
             fi
           done            
           echo "======================="
