@@ -159,6 +159,36 @@ jobs:
           CONFIG_TARGET_ipq806x_generic=y
           CONFIG_TARGET_ipq806x_generic_DEVICE_linksys_ea8500=y
           CONFIG_LUCI_LANG_zh_Hans=y
+          CONFIG_PACKAGE_luci-app-advanced-reboot=m
+          CONFIG_PACKAGE_luci-app-adblock=m
+          CONFIG_PACKAGE_luci-app-adbyby-plus=m
+          CONFIG_PACKAGE_luci-app-adguardhome=m
+          CONFIG_PACKAGE_luci-app-bypass=m
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Client=m
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server=m
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Client=m
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Simple_Obfs=m
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray_plugin=m
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Xray=m
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan=m
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_NaiveProxy=m
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Kcptun=m
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Hysteria=n
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Socks5_Proxy=m
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Socks_Server=m
+          CONFIG_PACKAGE_luci-app-clash=m
+          CONFIG_PACKAGE_luci-app-control-timewol=m
+          CONFIG_PACKAGE_luci-app-control-webrestriction=m
+          CONFIG_PACKAGE_luci-app-control-weburl=m
+          CONFIG_PACKAGE_luci-app-ddns=m
+          CONFIG_PACKAGE_luci-app-ddnsto=m
+          CONFIG_PACKAGE_luci-app-diskman_INCLUDE_btrfs_progs=m
+          CONFIG_PACKAGE_luci-app-diskman_INCLUDE_lsblk=m
+          CONFIG_PACKAGE_luci-app-firewall=m
+          CONFIG_PACKAGE_luci-app-iptvhelper=m
+          CONFIG_PACKAGE_luci-app-omcproxy=m
+          CONFIG_PACKAGE_luci-app-openclash=m
+          CONFIG_PACKAGE_luci-app-opkg=m
           CONFIG_PACKAGE_luci-app-passwall=m
           CONFIG_PACKAGE_luci-app-passwall_Iptables_Transparent_Proxy=m
           CONFIG_PACKAGE_luci-app-passwall_Nftables_Transparent_Proxy=m
@@ -179,6 +209,105 @@ jobs:
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Plugin=m
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=m
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray_Plugin=m
+          CONFIG_PACKAGE_luci-app-passwall2=m
+          CONFIG_PACKAGE_luci-app-passwall2_Transparent_Proxy=m
+          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Brook=m
+          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Hysteria=n
+          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_NaiveProxy=m
+          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Shadowsocks_Libev_Client=m
+          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Shadowsocks_Rust_Client=m
+          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_ShadowsocksR_Libev_Client=m
+          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Simple_Obfs=m
+          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_V2ray=m
+          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_V2ray_Plugin=m
+          CONFIG_PACKAGE_luci-app-qbittorrent_static=m
+          CONFIG_PACKAGE_luci-app-ramfree=m
+          CONFIG_PACKAGE_luci-app-ssr-plus=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Client=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ChinaDNS_NG=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Hysteria=n
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_IPT2Socks=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Simple_Obfs=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_V2ray_Plugin=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Client=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Server=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=m
+          CONFIG_PACKAGE_luci-app-timecontrol=m
+          CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_DRV=m
+          CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_BBR_CCA=m
+          CONFIG_PACKAGE_luci-app-udpxy=m
+          CONFIG_PACKAGE_luci-app-unblockmusic_INCLUDE_UnblockNeteaseMusic_Go=m
+          CONFIG_PACKAGE_luci-app-upnp=m
+          CONFIG_PACKAGE_luci-app-vlmcsd=m
+          CONFIG_PACKAGE_luci-app-vssr=m
+          CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray=m
+          CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan=m
+          CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Kcptun=m
+          CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray_plugin=m
+          CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Libev_Server=m
+          CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Hysteria=n
+          CONFIG_PACKAGE_luci-app-wol=m
+          CONFIG_PACKAGE_luci-i18n-advanced-reboot-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-adblock-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-adbyby-plus-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-base-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-bypass-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-control-webrestriction-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-control-weburl-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-ddns-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-ddnsto-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-firewall-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-iptvhelper-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-omcproxy-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-opkg-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-passwall-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-passwall2-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-ramfree-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-ssr-plus-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-timecontrol-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-udpxy-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-vlmcsd-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-vssr-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-wol-zh-cn=m
+          CONFIG_PACKAGE_chinadns-ng=m
+          CONFIG_PACKAGE_ddns-scripts=m
+          CONFIG_PACKAGE_ddns-scripts-cloudflare=m
+          CONFIG_PACKAGE_ddns-scripts-services=m
+          CONFIG_PACKAGE_ddns-scripts_aliyun=m
+          CONFIG_PACKAGE_ddns-scripts_dnspod=m
+          CONFIG_PACKAGE_dns2socks=m
+          CONFIG_PACKAGE_dns2tcp=m
+          CONFIG_PACKAGE_pdnsd-alt=m
+          CONFIG_PACKAGE_v2ray-geoip=m
+          CONFIG_PACKAGE_v2ray-geosite=m
+          CONFIG_PACKAGE_ip-full=m
+          CONFIG_PACKAGE_brook=m
+          CONFIG_PACKAGE_cgi-io=m
+          CONFIG_PACKAGE_ddnsto=m
+          CONFIG_PACKAGE_haproxy=m
+          CONFIG_PACKAGE_kcptun-client=m
+          CONFIG_PACKAGE_microsocks=m
+          CONFIG_PACKAGE_naiveproxy=m
+          CONFIG_PACKAGE_redsocks2=m
+          CONFIG_PACKAGE_shadowsocks-libev-ss-local=m
+          CONFIG_PACKAGE_shadowsocks-libev-ss-redir=m
+          CONFIG_PACKAGE_shadowsocks-libev-ss-server=m
+          CONFIG_PACKAGE_shadowsocks-rust-sslocal=m
+          CONFIG_PACKAGE_shadowsocksr-libev-ssr-check=m
+          CONFIG_PACKAGE_shadowsocksr-libev-ssr-local=m
+          CONFIG_PACKAGE_shadowsocksr-libev-ssr-redir=m
+          CONFIG_PACKAGE_shadowsocksr-libev-ssr-server=m
+          CONFIG_PACKAGE_trojan-go=m
+          CONFIG_PACKAGE_uhttpd=m
+          CONFIG_PACKAGE_uhttpd-mod-ubus=m
+          CONFIG_PACKAGE_v2ray-plugin=m
+          CONFIG_PACKAGE_xray-plugin=m
           EOF
           #
           # ===============================================================
@@ -195,7 +324,7 @@ jobs:
           #make package/custom/trojan-plus/compile V=sc
           #make package/custom/xray-plugin/compile V=sc
           #make package/custom/v2ray-plugin/compile V=sc
-          make package/luci-app-passwall/{clean,compile} -j$(nproc)
+          #make package/luci-app-passwall/{clean,compile} -j$(nproc)
           #make package/custom/luci-app-passwall/compile -j$(($(nproc)+1))
           #make package/custom/luci-app-passwall/compile V=sc
           #for ipk in $(find package/custom/* -maxdepth 0 -type d); do
@@ -207,7 +336,16 @@ jobs:
           #      fi
           #    fi  
           #  fi
-          #done  
+          #done 
+          find package/feeds/ -maxdepth 1 -type d
+          for ipk in $(find package/feeds/ -maxdepth 1 -type d); do
+            if [ -e "$ipk/Makefile" ]; then 
+                if [ `echo $ipk | grep -E "luci-"` ]; then
+                  make $ipk/compile -j$(($(nproc)+1)) || make $ipk/compile V=s
+                fi
+          #    fi  
+            fi
+          done            
           echo "======================="
           echo "Space usage:"
           echo "======================="
