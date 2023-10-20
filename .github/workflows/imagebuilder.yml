@@ -85,11 +85,13 @@ jobs:
           echo "src-git packages https://github.com/openwrt/packages.git;openwrt-22.03" >> feeds.conf
           echo "src-git luci https://github.com/openwrt/luci.git;openwrt-22.03" >> feeds.conf
           echo "src-git routing https://git.openwrt.org/feed/routing.git;openwrt-22.03"  >> feeds.conf
-          echo "src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git;main" >> feeds.conf
-          echo "src-git passwall https://github.com/xiaorouji/openwrt-passwall.git;main" >> feeds.conf
+          #echo "src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git;main" >> feeds.conf
+          #echo "src-git passwall https://github.com/xiaorouji/openwrt-passwall.git;main" >> feeds.conf
+          echo "src-git kenzo https://github.com/kenzok8/openwrt-package.git" >> feeds.conf
+          echo "src-git small https://github.com/kenzok8/small-package.git" >> feeds.conf
           ./scripts/feeds update -a
-          ./scripts/feeds install -d n luci-app-passwall
-          #./scripts/feeds install -a
+          #./scripts/feeds install -d n luci-app-passwall
+          ./scripts/feeds install -a
           # compiling openwrt-19.07 need use branch master-libcap to replace ./feeds/packages/libs/libcap 
           # rm -rf feeds/packages/libs/libcap
           # svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap ./feeds/packages/libs/libcap
@@ -106,12 +108,6 @@ jobs:
           #cd ../
           rm -rf feeds/packages/lang/golang
           git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
-          #cd -
-          # add luci-app-omcproxy and luci-app-iptvhelper,22.03hane include omcproxy,kenzok8/openwrt-packages have include iptvhelper
-          #cd ./custom
-          #git clone https://github.com/riverscn/luci-app-omcproxy.git 
-          # kenzok8/small-packages have include iptvhelper
-          #git clone https://github.com/riverscn/openwrt-iptvhelper.git
           #rm -rf $(find ./. -maxdepth 1 -type d -name "diy" -or -name ".git*" -or -name "my*")
           #rm -rf $(find ./. -maxdepth 1 -type d -name ".git*")
           #rm -rf $(find ./. -maxdepth 1 -type d -name "my*")
@@ -119,28 +115,11 @@ jobs:
           #cd ../
           mkdir -p ./dl
           cd ./dl
-          wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/trojan-plus-10.0.3.tar.xz
+          wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/*.*
           rm -rf $(find -name "index.html*")
           cd ../
-          #rm -rf ./package/custom/hysteria
-          #rm -rf ./package/custom/trojan-plus
-          #rm -rf ./package/custom/xray-plugin
           du -h ./ --max-depth=1
-          # 22.03 is not the two file
-          #sed -i "/mediaurlbase/d" package/feeds/*/luci-theme*/root/etc/uci-defaults/*
-          #sed -i '/WARNING: Makefile/d' scripts/package-metadata.pl
           rm -Rf tmp
-          #staging_dir/host/bin/ have lack python3 and po2lmo
-          # 22.03 is not the python and python3 file
-          #if [ -f /usr/bin/python ]; then
-          #	ln -sf /usr/bin/python staging_dir/host/bin/python
-          # else
-          #	ln -sf /usr/bin/python3 staging_dir/host/bin/python
-          # fi
-          # ln -sf /usr/bin/python3 staging_dir/host/bin/python3
-          #wget -c -nd -np https://raw.githubusercontent.com/kenzok8/compile-package/main/devices/common/po2lmo
-          #cp -f ./po2lmo staging_dir/host/bin/po2lmo
-          #chmod +x staging_dir/host/bin/po2lmo
       - name: Generate configuration file
         run: |
           cd ./openwrt
