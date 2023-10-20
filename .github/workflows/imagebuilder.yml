@@ -115,7 +115,7 @@ jobs:
           #cd ../
           mkdir -p ./dl
           cd ./dl
-          wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/*.*
+          wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/
           rm -rf $(find -name "index.html*")
           cd ../
           du -h ./ --max-depth=1
