@@ -70,13 +70,6 @@ jobs:
         run: |
           git clone --single-branch -b openwrt-22.03 https://github.com/openwrt/openwrt       
           mv ./openwrt/* ./ 
-          #curl -fL -m 300 -o sdk.tar.xz https://downloads.openwrt.org/releases/22.03.5/targets/ipq806x/generic/openwrt-sdk-22.03.5-ipq806x-generic_gcc-11.2.0_musl_eabi.Linux-x86_64.tar.xz
-          #mkdir -p openwrt
-          #tar -xJf sdk.tar.xz -C openwrt
-          #rm -Rf sdk.tar.xz
-          #cd openwrt
-          #cp -rf ./openwrt-sdk*/. ../ || true
-          #sdk.tar.xz are not have package/base-files/files/bin/config_generate and feeds.conf.default,it only in original code
           du -h --max-depth=1
       - name: add kenzok8/openwrt-packages and kenzok8/small and Update feeds
         run: |
@@ -94,11 +87,10 @@ jobs:
           sed -i '$a src-git passwall https://github.com/xiaorouji/openwrt-passwall.git;main' feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-          # openwrt-22.03 include omcproxy and iptvhelper,kenzok8/openwrt-packages include ddnsto 
           rm -rf feeds/packages/lang/golang
           git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
           sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
-          #sed -i "s/%D %V, %C/openwrt $(date +'%m.%d') by yindl/g" package/base-files/files/etc/banner
+          sed -i "s/%D %V, %C/openwrt $(date +'%m.%d') by yindl/g" package/base-files/files/etc/banner
       - name: download some code
         run: |
           # compiling openwrt-19.07 need add "push @mirrors, 'https:\/\/sources.cdn.openwrt.org'"
@@ -108,9 +100,6 @@ jobs:
           cd ./dl
           wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/
           rm -rf $(find -name "index.html*")
-          #rm -rf feeds/small/xray-plugin
-          #rm -rf feeds/small/v2ray-plugin
-          #rm -rf feeds/small/trojan-plus
       - name: Generate configuration file
         run: |
           rm -f ./.config*
@@ -142,10 +131,10 @@ jobs:
           CONFIG_DEFAULT_ca-bundle=y
           CONFIG_DEFAULT_ca-certificates=y
           CONFIG_DEFAULT_curl=y
-          CONFIG_DEFAULT_ddns-scripts-cloudflare=y
-          CONFIG_DEFAULT_ddns-scripts_aliyun=y
-          CONFIG_DEFAULT_ddns-scripts_dnspod=y
-          CONFIG_DEFAULT_default-settings=y
+          CONFIG_DEFAULT_ddns-scripts-cloudflare=m
+          CONFIG_DEFAULT_ddns-scripts_aliyun=m
+          CONFIG_DEFAULT_ddns-scripts_dnspod=m
+          CONFIG_DEFAULT_default-settings=m
           CONFIG_DEFAULT_dnsmasq-full=m
           CONFIG_DEFAULT_dropbear=y
           CONFIG_DEFAULT_firewall=y
@@ -173,10 +162,10 @@ jobs:
           CONFIG_DEFAULT_luci-app-control-timewol=m
           CONFIG_DEFAULT_luci-app-control-webrestriction=y
           CONFIG_DEFAULT_luci-app-control-weburl=y
-          CONFIG_DEFAULT_luci-app-ddns=y
+          CONFIG_DEFAULT_luci-app-ddns=m
           CONFIG_DEFAULT_luci-app-ramfree=y
-          CONFIG_DEFAULT_luci-app-timecontrol=y
-          CONFIG_DEFAULT_luci-app-upnp=y
+          CONFIG_DEFAULT_luci-app-timecontrol=m
+          CONFIG_DEFAULT_luci-app-upnp=m
           CONFIG_DEFAULT_luci-app-vlmcsd=y
           CONFIG_DEFAULT_luci-app-wol=y
           CONFIG_DEFAULT_luci-compat=y
@@ -337,10 +326,10 @@ jobs:
           CONFIG_FEED_luci=y
           CONFIG_FEED_routing=y
           CONFIG_FEED_telephony=y
-          CONFIG_FEED_lienol=y
+          #CONFIG_FEED_lienol=y
           CONFIG_FEED_other=y
-          CONFIG_FEED_kenzo=y
-          CONFIG_FEED_small=y
+          #CONFIG_FEED_kenzo=y
+          #CONFIG_FEED_small=y
           CONFIG_PACKAGE_base-files=y
           CONFIG_PACKAGE_block-mount=y
           CONFIG_PACKAGE_busybox=y
@@ -934,7 +923,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Socks5_Proxy=m
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Socks_Server=m
           CONFIG_PACKAGE_luci-app-clash=m
-          CONFIG_PACKAGE_luci-app-control-timewol=n
+          CONFIG_PACKAGE_luci-app-control-timewol=m
           CONFIG_PACKAGE_luci-app-control-webrestriction=y
           CONFIG_PACKAGE_luci-app-control-weburl=y
           CONFIG_PACKAGE_luci-app-ddns=m
