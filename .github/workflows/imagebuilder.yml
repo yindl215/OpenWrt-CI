@@ -95,6 +95,7 @@ jobs:
           rm -rf package/feeds/kenzo/*alist
           rm -rf package/feeds/kenzo/*gost
           rm -rf package/feeds/small/*bandwidthd
+          rm -rf package/feeds/small/*kodexplorer
           rm -rf package/feeds/small/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
           rm -rf package/feeds/luci/themes/luci-theme-argon && rm -rf package/feeds/other/{luci-app-adguardhome,luci-app-dockerman}
           # compiling openwrt-19.07 need use branch master-libcap to replace ./feeds/packages/libs/libcap 
