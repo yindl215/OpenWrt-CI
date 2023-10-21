@@ -345,7 +345,12 @@ jobs:
           find package/feeds/ -maxdepth 1 -type d
           #find mexdepth and mindepth does not work or invalid
           ls -R -d package/feeds/*/luci-*
-          for ipk in $(ls -R -d package/feeds/*/luci-*); do
+          for ipk in $(ls -R -d package/feeds/kenzo/luci-*); do
+            if [ -e "$ipk/Makefile" ]; then 
+               make $ipk/{clean,compile} -j$(nproc) || make $ipk/compile V=s
+            fi
+          done            
+          for ipk in $(ls -R -d package/feeds/small/luci-*); do
             if [ -e "$ipk/Makefile" ]; then 
                make $ipk/{clean,compile} -j$(nproc) || make $ipk/compile V=s
             fi
