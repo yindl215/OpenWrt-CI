@@ -59,14 +59,13 @@ jobs:
           du -h --max-depth=1
       - name: add kenzo8/openwrt-packages and kenzo8/small Update feeds
         run: |
-          sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages.git' ./feeds.conf.default
-          sed -i '$a src-git small https://github.com/kenzok8/small.git' ./feeds.conf.default
-          #sed -i '$a src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git;main' feeds.conf.default
-          #sed -i '$a src-git passwall https://github.com/xiaorouji/openwrt-passwall.git;main' feeds.conf.default
+          #sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages.git' ./feeds.conf.default
+          #sed -i '$a src-git small https://github.com/kenzok8/small.git' ./feeds.conf.default
+          sed -i '$a src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git;main' feeds.conf.default
+          sed -i '$a src-git passwall https://github.com/xiaorouji/openwrt-passwall.git;main' feeds.conf.default
           #lienol-v22.03 with kenzok8/small-package occur error when linux package/install;use kenzok8/small occur bing-box compiling error
           ./scripts/feeds update -a 
           ./scripts/feeds install -a
-          rm -rf feeds/lienol && rm -rf feeds/other
           #rm -rf feeds/small/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
           #rm -rf feeds/luci/themes/luci-theme-argon && rm -rf feeds/other/{luci-app-adguardhome,luci-app-dockerman}
           #rm -rf feeds/lienol/luci-app-fileassistant && rm -rf feeds/packages/net/{adguardhome,smartdns}
