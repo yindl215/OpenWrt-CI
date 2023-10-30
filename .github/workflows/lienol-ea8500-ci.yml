@@ -78,6 +78,7 @@ jobs:
           ./scripts/feeds install -a
           pwd
           ls -l ./package
+          ls -l ./package/feeds
           #rm -rf feeds/small/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
           #rm -rf feeds/luci/themes/luci-theme-argon && rm -rf feeds/other/{luci-app-adguardhome,luci-app-dockerman}
           #rm -rf feeds/lienol/luci-app-fileassistant && rm -rf feeds/packages/net/{adguardhome,smartdns}
