@@ -75,15 +75,24 @@ jobs:
           mv ./feeds/small/luci-app-ssr-plus ./feeds/proxy/
           mv ./feeds/small/luci-app-vssr ./feeds/proxy/
           rm -rf ./feeds/kenzo && rm -rf ./feeds/small
-          rm -rf ./package/feeds/kenzo
-          #rm -rf ./package/feeds/small #it is no such file or directory
-          ls ./package/feeds/proxy
+          mv ./package/feeds/kenzo/ddnsto ./package/feeds/proxy/
+          mv ./package/feeds/kenzo/luci-app-ddnsto ./package/feeds/proxy/
+          mv ./package/feeds/kenzo/luci-app-clash ./package/feeds/proxy/
+          mv ./package/feeds/kenzo/luci-app-openclash ./package/feeds/proxy/
+          mv ./package/feeds/small/luci-app-bypass ./package/feeds/proxy/
+          mv ./package/feeds/small/luci-app-passwall2 ./package/feeds/proxy/
+          mv ./package/feeds/small/luci-app-ssr-plus ./package/feeds/proxy/
+          mv .//packagefeeds/small/luci-app-vssr ./package/feeds/proxy/
+          rm -rf ./package/feeds/kenzo && rm -rf ./package/feeds/small
+          #rm -rf ./package/feeds/small #it is no such file or directory before running ./scripts/feeds install
+          ls -l ./package/feeds/proxy
           #rm -rf feeds/small/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
           #rm -rf feeds/luci/themes/luci-theme-argon && rm -rf feeds/other/{luci-app-adguardhome,luci-app-dockerman}
           #rm -rf feeds/lienol/luci-app-fileassistant && rm -rf feeds/packages/net/{adguardhome,smartdns}
           #cp -f feeds/small/.github/diy/zzz-default-settings package/default-settings/files/zzz-default-settings
           #cp -f feeds/small/.github/diy/banner package/base-files/files/etc/banner
-          rm -rf feeds/small/luci-theme-design && git clone -b js --single-branch https://github.com/gngpp/luci-theme-design feeds/small/luci-theme-design
+          #rm -rf feeds/small/luci-theme-design && git clone -b js --single-branch https://github.com/gngpp/luci-theme-design feeds/small/luci-theme-design
+          git clone -b js --single-branch https://github.com/gngpp/luci-theme-design package/feeds/proxy/luci-theme-design
           sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
           sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
           sed -i "s/%D %V, %C/openwrt $(date +'%m.%d') by yindl/g" package/base-files/files/etc/banner
