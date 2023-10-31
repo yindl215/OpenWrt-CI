@@ -66,23 +66,15 @@ jobs:
           #lienol-v22.03 with kenzok8/small-package occur error when linux package/install;use kenzok8/small occur netfilter/(bing-box) compiling error
           ./scripts/feeds update -a 
           ./scripts/feeds install -a
-          mv ./feeds/kenzo/ddnsto ./feeds/proxy/
-          mv ./feeds/kenzo/luci-app-ddnsto ./feeds/proxy/
-          mv ./feeds/kenzo/luci-app-clash ./feeds/proxy/
-          mv ./feeds/kenzo/luci-app-openclash ./feeds/proxy/
-          mv ./feeds/small/luci-app-bypass ./feeds/proxy/
-          mv ./feeds/small/luci-app-passwall2 ./feeds/proxy/
-          mv ./feeds/small/luci-app-ssr-plus ./feeds/proxy/
-          mv ./feeds/small/luci-app-vssr ./feeds/proxy/
+          mv ./feeds/kenzo/ddnsto ./package/feeds/proxy/
+          mv ./feeds/kenzo/luci-app-ddnsto ./package/feeds/proxy/
+          mv ./feeds/kenzo/luci-app-clash ./package/feeds/proxy/
+          mv ./feeds/kenzo/luci-app-openclash ./package/feeds/proxy/
+          mv ./feeds/small/luci-app-bypass ./package/feeds/proxy/
+          mv ./feeds/small/luci-app-passwall2 ./package/feeds/proxy/
+          mv ./feeds/small/luci-app-ssr-plus ./package/feeds/proxy/
+          mv ./feeds/small/luci-app-vssr ./package/feeds/proxy/
           rm -rf ./feeds/kenzo && rm -rf ./feeds/small
-          mv ./package/feeds/kenzo/ddnsto ./package/feeds/proxy/
-          mv ./package/feeds/kenzo/luci-app-ddnsto ./package/feeds/proxy/
-          mv ./package/feeds/kenzo/luci-app-clash ./package/feeds/proxy/
-          mv ./package/feeds/kenzo/luci-app-openclash ./package/feeds/proxy/
-          mv ./package/feeds/small/luci-app-bypass ./package/feeds/proxy/
-          mv ./package/feeds/small/luci-app-passwall2 ./package/feeds/proxy/
-          mv ./package/feeds/small/luci-app-ssr-plus ./package/feeds/proxy/
-          mv ./package/feeds/small/luci-app-vssr ./package/feeds/proxy/
           rm -rf ./package/feeds/kenzo && rm -rf ./package/feeds/small
           #rm -rf ./package/feeds/small #it is no such file or directory before running ./scripts/feeds install
           ls -l ./package/feeds/proxy
