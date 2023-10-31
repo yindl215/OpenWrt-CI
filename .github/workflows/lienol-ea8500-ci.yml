@@ -82,7 +82,7 @@ jobs:
           mv ./package/feeds/small/luci-app-bypass ./package/feeds/proxy/
           mv ./package/feeds/small/luci-app-passwall2 ./package/feeds/proxy/
           mv ./package/feeds/small/luci-app-ssr-plus ./package/feeds/proxy/
-          mv .//packagefeeds/small/luci-app-vssr ./package/feeds/proxy/
+          mv ./package/feeds/small/luci-app-vssr ./package/feeds/proxy/
           rm -rf ./package/feeds/kenzo && rm -rf ./package/feeds/small
           #rm -rf ./package/feeds/small #it is no such file or directory before running ./scripts/feeds install
           ls -l ./package/feeds/proxy
