@@ -59,51 +59,26 @@ jobs:
           du -h --max-depth=1
       - name: add kenzo8/openwrt-packages and kenzo8/small Update feeds
         run: |
-          sed -i '$a src-git proxy_small https://github.com/xiaorouji/openwrt-passwall-packages.git;main' feeds.conf.default
-          sed -i '$a src-git proxy https://github.com/xiaorouji/openwrt-passwall.git;main' feeds.conf.default
+          #sed -i '$a src-git proxy_small https://github.com/xiaorouji/openwrt-passwall-packages.git;main' feeds.conf.default
+          #sed -i '$a src-git proxy https://github.com/xiaorouji/openwrt-passwall.git;main' feeds.conf.default
           sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages.git' ./feeds.conf.default
           sed -i '$a src-git small https://github.com/kenzok8/small.git' ./feeds.conf.default
-          #lienol-v22.03 with kenzok8/small-package occur error when linux package/install;use kenzok8/small occur netfilter/(bing-box) compiling error
+          # kenzok8/openwrt-packages and /small-package have some clash with lienol 
           ./scripts/feeds update -a 
           ./scripts/feeds install -a
+          rm -rf feeds/kenzo/luci-theme-design && git clone -b js --single-branch https://github.com/gngpp/luci-theme-design feeds/kenzo/luci-theme-design
+          # also have do such this:
+          cd feeds/kenzo
+          rm -rf $( find . -maxdepth 1 -type d|grep -v ddnsto|grep -v clash|grep -v design )
+          cd -
           # ./package directory have establish after running ./scripts/feeds install
-          # kenzok8/openwrt-packages have some clash with lienol 
-          mv ./feeds/kenzo/ddnsto ./package/feeds/proxy/
-          mv ./feeds/kenzo/luci-app-ddnsto ./package/feeds/proxy/
-          mv ./feeds/kenzo/luci-app-clash ./package/feeds/proxy/
-          mv ./feeds/kenzo/luci-app-openclash ./package/feeds/proxy/
-          mv ./feeds/small/luci-app-bypass ./package/feeds/proxy/
-          mv ./feeds/small/luci-app-passwall2 ./package/feeds/proxy/
-          mv ./feeds/small/luci-app-ssr-plus ./package/feeds/proxy/
-          mv ./feeds/small/luci-app-vssr ./package/feeds/proxy/
-          rm -rf ./feeds/kenzo && rm -rf ./feeds/small
-          rm -rf ./package/feeds/kenzo && rm -rf ./package/feeds/small
-          # above practice have succeed
-          ls -l ./package/feeds/proxy
-          #rm -rf feeds/small/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
-          #rm -rf feeds/luci/themes/luci-theme-argon && rm -rf feeds/other/{luci-app-adguardhome,luci-app-dockerman}
-          #rm -rf feeds/lienol/luci-app-fileassistant && rm -rf feeds/packages/net/{adguardhome,smartdns}
-          #cp -f feeds/small/.github/diy/zzz-default-settings package/default-settings/files/zzz-default-settings
-          #cp -f feeds/small/.github/diy/banner package/base-files/files/etc/banner
-          #rm -rf feeds/small/luci-theme-design && git clone -b js --single-branch https://github.com/gngpp/luci-theme-design feeds/small/luci-theme-design
-          git clone -b js --single-branch https://github.com/gngpp/luci-theme-design package/feeds/proxy/luci-theme-design
           sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
           sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
           sed -i "s/%D %V, %C/openwrt $(date +'%m.%d') by yindl/g" package/base-files/files/etc/banner
           rm -rf feeds/packages/lang/golang
           git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
-          # compiling openwrt-19.07 need use branch master-libcap to replace ./feeds/packages/libs/libcap 
-          #rm -rf feeds/packages/libs/libcap
-          # svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap ./feeds/packages/libs/libcap
-          # svn co https://github.com/coolsnowwolf/lede/trunk/package/libs/libcap ./feeds/packages/libs/libcap
-          # add luci-app-omcproxy and luci-app-iptvhelper
-          #cd ./package
-          #git clone https://github.com/riverscn/luci-app-omcproxy.git
-          #git clone https://github.com/riverscn/openwrt-iptvhelper.git
       - name: download some code
         run: |
-          # compiling openwrt-19.07 need add "push @mirrors, 'https:\/\/sources.cdn.openwrt.org'"
-          #sed -i "s/#push @mirrors, 'https:\/\/mirror1.openwrt.org';/push @mirrors, 'https:\/\/sources.cdn.openwrt.org';/g" ./scripts/download.pl
           # here is openwrt-19.07 or lede can not download some code
           #20230907 lienol-22.03 can not download trojan-plugin
           mkdir -p ./dl
