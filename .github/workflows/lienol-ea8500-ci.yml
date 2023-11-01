@@ -70,6 +70,7 @@ jobs:
           # also have do such this:
           cd feeds/kenzo
           rm -rf $(find . -maxdepth 1 -type d|grep -v ddnsto|grep -v clash|grep -v design|grep "./")
+          rm -rf ./.gif && rm -rf ./.github
           cd -
           ls -l feeds/kenzo
           # ./package directory have establish after running ./scripts/feeds install
