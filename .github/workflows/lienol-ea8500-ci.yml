@@ -69,7 +69,7 @@ jobs:
           rm -rf feeds/kenzo/luci-theme-design && git clone -b js --single-branch https://github.com/gngpp/luci-theme-design feeds/kenzo/luci-theme-design
           # also have do such this:
           cd feeds/kenzo
-          rm -rf $( find . -maxdepth 1 -type d|grep -v ddnsto|grep -v clash|grep -v design )
+          rm -rf $( find . -maxdepth 1 -type d|grep -v ddnsto|grep -v clash|grep -v design|grep -v ./|grep -v ../ )
           cd -
           # ./package directory have establish after running ./scripts/feeds install
           sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
