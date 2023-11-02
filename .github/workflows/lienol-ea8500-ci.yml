@@ -70,7 +70,7 @@ jobs:
           # also have do such this:
           cd feeds/kenzo
           rm -rf $(find . -maxdepth 1 -type d|grep -v ddnsto|grep -v clash|grep -v design|grep "./")
-          rm -rf ./.git && rm -rf ./.github
+          rm -rf ./{.git,.github,luci-app-design-config}
           cd -
           # test above have failed at last
           ls -la feeds/kenzo
