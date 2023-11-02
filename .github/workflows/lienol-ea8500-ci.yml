@@ -67,7 +67,7 @@ jobs:
           ./scripts/feeds update -a 
           ./scripts/feeds install -a
           mv feeds/kenzo/{ddnsto,luci-app-ddnsto,luci-app-clash,luci-app-openclash} package/feeds/proxy/
-          mv feeds/small/{luci-app-bypass,luci-passwall2,luci-app-ssr-plus,luci-app-vssr} package/feeds/proxy/
+          mv feeds/small/{luci-app-bypass,luci-app-passwall2,luci-app-ssr-plus,luci-app-vssr} package/feeds/proxy/
           mv feeds/small/{redsocks2,shadow-tls,v2raya,lua-neturl} package/feeds/proxy_small/
           rm -rf feeds/kenzo/luci-theme-design && git clone -b js --single-branch https://github.com/gngpp/luci-theme-design package/feeds/proxy/luci-theme-design
           rm -rf ./feeds/kenzo && rm -rf ./feeds/small
