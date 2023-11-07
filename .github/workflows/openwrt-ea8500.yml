@@ -1175,7 +1175,7 @@ jobs:
 
       - name: Upload release asset
         if: github.event == 'release'
-        uses: svenstaro/upload-release-action@v1
+        uses: svenstaro/upload-release-action@main
         with:
           repo_token: ${{ secrets.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 }}
           file: ./artifact/firmware/*
