@@ -93,10 +93,10 @@ jobs:
         run: |
           # here is openwrt-19.07 or lede can not download some code
           #20230907 lienol-22.03 can not download trojan-plugin
-          mkdir -p ./dl
-          cd ./dl
-          wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/
-          rm -rf $(find -name "index.html*")
+          #mkdir -p ./dl
+          #cd ./dl
+          #wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/
+          #rm -rf $(find -name "index.html*")
       - name: Generate configuration file
         run: |
           rm -f ./.config*
