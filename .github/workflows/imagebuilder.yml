@@ -354,7 +354,8 @@ jobs:
           #done            
           for ipk in $(ls -R -d package/feeds/small/luci-*); do
             if [ -e "$ipk/Makefile" ]; then 
-               make $ipk/{clean,compile} -j$(nproc) || make $ipk/compile V=s
+               #make $ipk/{clean,compile} -j$(nproc) || make $ipk/compile V=s
+               make $ipk/compile V=sc
             fi
           done            
           echo "======================="
