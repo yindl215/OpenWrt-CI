@@ -75,8 +75,10 @@ jobs:
           #rm -rf feeds/kenzo/luci-theme-design && git clone -b js --single-branch https://github.com/gngpp/luci-theme-design package/feeds/proxy/luci-theme-design
           #rm -rf ./feeds/kenzo && rm -rf ./feeds/small
           #rm -rf ./package/feeds/kenzo && rm -rf ./package/feeds/small
-          
           # practice above have succeed
+          rm -rf ./feeds/packages/net/xray-core
+          rm -rf ./package/feeds/packages/xray-core
+          #202402 Lienol/openwrt-packages/net/xray-core compile have ocouer error(build error)
           # also have do such this:
           # cd feeds/kenzo
           # rm -rf $(find . -maxdepth 1 -type d|grep -v ddnsto|grep -v clash|grep -v design|grep "./")
