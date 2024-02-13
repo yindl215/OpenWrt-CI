@@ -119,11 +119,11 @@ jobs:
           #rm -rf $(find ./. -maxdepth 1 -type d -name "my*")
           # here is 20230906 22.03 can not download some code
           #cd ../
-          #mkdir -p ./dl
-          #cd ./dl
-          #wget -c -r -nd -np http://204.13.154.47:8080/chfs/shareed/openwrt-dl/
-          #rm -rf $(find -name "index.html*")
-          #cd ../
+          mkdir -p ./dl
+          cd ./dl
+          wget -c -r -nd -np http://204.13.154.47:8080/chfs/shared/openwrt-dl/
+          rm -rf $(find -name "index.html*")
+          cd ../
           du -h ./ --max-depth=1
           rm -Rf tmp
       - name: Generate configuration file
