@@ -69,7 +69,7 @@ jobs:
       - name: git clone openwrt image builder
         run: |
           #curl -fL -m 300 -o sdk.tar.xz https://downloads.openwrt.org/releases/19.07.10/targets/ipq806x/generic/openwrt-sdk-19.07.10-ipq806x-generic_gcc-7.5.0_musl_eabi.Linux-x86_64.tar.xz
-          curl -fL -m 300 -o sdk.tar.xz https://downloads.openwrt.org/releases/22.03.5/targets/ipq806x/generic/openwrt-sdk-22.03.5-ipq806x-generic_gcc-11.2.0_musl_eabi.Linux-x86_64.tar.xz
+          curl -fL -m 300 -o sdk.tar.xz https://downloads.openwrt.org/releases/22.03.6/targets/ipq806x/generic/openwrt-sdk-22.03.6-ipq806x-generic_gcc-11.2.0_musl_eabi.Linux-x86_64.tar.xz
           mkdir openwrt
           tar -xJf sdk.tar.xz -C openwrt
           rm -Rf sdk.tar.xz
