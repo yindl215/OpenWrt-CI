@@ -113,17 +113,18 @@ jobs:
           #mv ./custom1/* ./custom/
           #cd ../
           rm -rf feeds/packages/lang/golang
-          git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
+          git clone https://github.com/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
           #rm -rf $(find ./. -maxdepth 1 -type d -name "diy" -or -name ".git*" -or -name "my*")
           #rm -rf $(find ./. -maxdepth 1 -type d -name ".git*")
           #rm -rf $(find ./. -maxdepth 1 -type d -name "my*")
           # here is 20230906 22.03 can not download some code
           #cd ../
-          mkdir -p ./dl
-          cd ./dl
-          wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/
-          rm -rf $(find -name "index.html*")
-          cd ../
+         
+          #mkdir -p ./dl
+          #cd ./dl
+          #wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/
+          #rm -rf $(find -name "index.html*")
+          #cd ../
           du -h ./ --max-depth=1
           rm -Rf tmp
       - name: Generate configuration file
