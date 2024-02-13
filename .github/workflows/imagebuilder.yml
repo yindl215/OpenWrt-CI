@@ -354,8 +354,8 @@ jobs:
           #done            
           for ipk in $(ls -R -d package/feeds/small/luci-*); do
             if [ -e "$ipk/Makefile" ]; then 
-               #make $ipk/{clean,compile} -j$(nproc) || make $ipk/compile V=s
-               make $ipk/compile V=sc
+               if [ ! `echo $ipk | grep -E "shadowsocks-rust"` ]; then
+               make $ipk/{clean,compile} -j$(nproc) || make $ipk/compile V=s               
             fi
           done            
           echo "======================="
