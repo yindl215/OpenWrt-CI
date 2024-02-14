@@ -68,7 +68,7 @@ jobs:
           df -h
       - name: git clone openwrt
         run: |
-          git clone --single-branch -b openwrt-22.03 https://github.com/openwrt/openwrt       
+          git clone --single-branch -b openwrt-23.05 https://github.com/openwrt/openwrt       
           mv ./openwrt/* ./ 
           du -h --max-depth=1
       - name: add packages and Update feeds
@@ -83,7 +83,7 @@ jobs:
           ./scripts/feeds install -a
           # passwall compile need golang 20.x
           rm -rf feeds/packages/lang/golang
-          git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
+          git clone https://github.com/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
           sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
           sed -i "s/%D %V, %C/openwrt $(date +'%m.%d') by yindl/g" package/base-files/files/etc/banner
       - name: download some code
@@ -91,7 +91,7 @@ jobs:
           # here is openwrt-19.07 or lede can not download some code
           mkdir -p ./dl
           cd ./dl
-          wget -c -r -nd -np http://107.173.149.5:1000/openwrt-dl/
+          wget -c -r -nd -np http://204.13.154.47:8080/chfs/shared/openwrt-dl/
           rm -rf $(find -name "index.html*")
       - name: Generate configuration file
         run: |
@@ -929,7 +929,7 @@ jobs:
           CONFIG_PACKAGE_iptables-mod-tproxy=y
           CONFIG_PACKAGE_iptables-mod-extra=y
           CONFIG_PACKAGE_luci-app-opkg=y
-          CONFIG_PACKAGE_luci-app-passwall=y
+          CONFIG_PACKAGE_luci-app-passwall=m
           CONFIG_PACKAGE_luci-app-passwall_Iptables_Transparent_Proxy=y
           CONFIG_PACKAGE_luci-app-passwall_Nftables_Transparent_Proxy=y
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=y
@@ -962,9 +962,9 @@ jobs:
           CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_V2ray_Plugin=y
           CONFIG_PACKAGE_luci-app-qbittorrent_static=y
           CONFIG_PACKAGE_luci-app-ramfree=y
-          CONFIG_PACKAGE_luci-app-ssr-plus=m
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Client=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server=y
+          CONFIG_PACKAGE_luci-app-ssr-plus=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Client=n
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server=n
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ChinaDNS_NG=y
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Hysteria=n
@@ -974,8 +974,8 @@ jobs:
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Simple_Obfs=y
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_V2ray_Plugin=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Client=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Server=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Client=n
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Server=n
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
           CONFIG_PACKAGE_luci-app-timecontrol=m
           CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_DRV=y
@@ -984,7 +984,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-unblockmusic_INCLUDE_UnblockNeteaseMusic_Go=m
           CONFIG_PACKAGE_luci-app-upnp=m
           CONFIG_PACKAGE_luci-app-vlmcsd=y
-          CONFIG_PACKAGE_luci-app-vssr=m
+          CONFIG_PACKAGE_luci-app-vssr=n
           CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray=y
           CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan=y
           CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Kcptun=n
@@ -1018,7 +1018,7 @@ jobs:
           CONFIG_PACKAGE_luci-i18n-passwall-zh-cn=m
           CONFIG_PACKAGE_luci-i18n-passwall2-zh-cn=m
           CONFIG_PACKAGE_luci-i18n-ramfree-zh-cn=y
-          CONFIG_PACKAGE_luci-i18n-ssr-plus-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-ssr-plus-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-timecontrol-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-udpxy-zh-cn=m
           CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=y
