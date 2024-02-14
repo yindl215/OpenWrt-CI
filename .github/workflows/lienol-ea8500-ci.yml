@@ -71,7 +71,7 @@ jobs:
           mv feeds/small/{luci-app-bypass,luci-app-passwall2,luci-app-ssr-plus} package/feeds/proxy/
           #202402 https://github.com/kenzok8/small.git is not luci-app-vssr (it have 4 month ago) 
           mv feeds/small/{redsocks2,shadow-tls,v2raya,lua-neturl} package/feeds/proxy_small/
-          rm -rf feeds/kenzo/luci-theme-design && git clone -b js --single-branch https://github.com/gngpp/luci-theme-design package/feeds/kenzo/luci-theme-design
+          rm -rf feeds/kenzo/luci-theme-design && git clone -b js --single-branch https://github.com/gngpp/luci-theme-design package/feeds/proxy/luci-theme-design
           rm -rf ./feeds/kenzo && rm -rf ./feeds/small
           rm -rf ./package/feeds/kenzo && rm -rf ./package/feeds/small
           # practice above have succeed
