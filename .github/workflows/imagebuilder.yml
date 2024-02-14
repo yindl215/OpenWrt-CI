@@ -100,7 +100,8 @@ jobs:
           rm -rf package/feeds/luci/themes/luci-theme-argon && rm -rf package/feeds/other/{luci-app-adguardhome,luci-app-dockerman}
          
           rm -rf package/feeds/small/shadowsocks-rust
-          #202402 small/shasowsocks-rust have ocouer download error
+          rm -rf package/feeds/packages/xray-core
+          #202402 small/shasowsocks-rust and feeds/packages/xray-core have ocouer download error
           # compiling openwrt-19.07 need use branch master-libcap to replace ./feeds/packages/libs/libcap 
           # rm -rf feeds/packages/libs/libcap
           # svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap ./feeds/packages/libs/libcap
