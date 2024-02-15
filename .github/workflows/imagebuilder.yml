@@ -69,7 +69,7 @@ jobs:
       - name: git clone openwrt image builder
         run: |
           #curl -fL -m 300 -o sdk.tar.xz https://downloads.openwrt.org/releases/19.07.10/targets/ipq806x/generic/openwrt-sdk-19.07.10-ipq806x-generic_gcc-7.5.0_musl_eabi.Linux-x86_64.tar.xz
-          curl -fL -m 300 -o sdk.tar.xz https://downloads.openwrt.org/releases/22.03.6/targets/ipq806x/generic/openwrt-sdk-22.03.6-ipq806x-generic_gcc-11.2.0_musl_eabi.Linux-x86_64.tar.xz
+          curl -fL -m 300 -o sdk.tar.xz https://downloads.openwrt.org/releases/23.05.2/targets/ipq806x/generic/openwrt-sdk-23.05.2-ipq806x-generic_gcc-12.3.0_musl_eabi.Linux-x86_64.tar.xz
           mkdir openwrt
           tar -xJf sdk.tar.xz -C openwrt
           rm -Rf sdk.tar.xz
@@ -81,10 +81,10 @@ jobs:
           cd ./openwrt
           sed -i '/	refresh_config();/d' scripts/feeds
           ls -la
-          echo "src-git base https://github.com/openwrt/openwrt.git;openwrt-22.03" > feeds.conf
-          echo "src-git packages https://github.com/openwrt/packages.git;openwrt-22.03" >> feeds.conf
-          echo "src-git luci https://github.com/openwrt/luci.git;openwrt-22.03" >> feeds.conf
-          echo "src-git routing https://git.openwrt.org/feed/routing.git;openwrt-22.03"  >> feeds.conf
+          echo "src-git base https://github.com/openwrt/openwrt.git;openwrt-23.05" > feeds.conf
+          echo "src-git packages https://github.com/openwrt/packages.git;openwrt-23.05" >> feeds.conf
+          echo "src-git luci https://github.com/openwrt/luci.git;openwrt-23.05" >> feeds.conf
+          echo "src-git routing https://git.openwrt.org/feed/routing.git;openwrt-23.05"  >> feeds.conf
           #echo "src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git;main" >> feeds.conf
           #echo "src-git passwall https://github.com/xiaorouji/openwrt-passwall.git;main" >> feeds.conf
           echo "src-git kenzo https://github.com/kenzok8/openwrt-packages.git" >> feeds.conf
@@ -99,9 +99,9 @@ jobs:
           rm -rf package/feeds/small/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
           rm -rf package/feeds/luci/themes/luci-theme-argon && rm -rf package/feeds/other/{luci-app-adguardhome,luci-app-dockerman}
          
-          rm -rf package/feeds/small/shadowsocks-rust
-          rm -rf package/feeds/packages/xray-core
-          #202402 small/shasowsocks-rust and feeds/packages/xray-core have ocouer download error
+          #rm -rf package/feeds/small/shadowsocks-rust
+          #rm -rf package/feeds/packages/xray-core
+          #202402 kernel-5.10.201 small/shasowsocks-rust and feeds/packages/xray-core have ocouer download error
           # compiling openwrt-19.07 need use branch master-libcap to replace ./feeds/packages/libs/libcap 
           # rm -rf feeds/packages/libs/libcap
           # svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap ./feeds/packages/libs/libcap
@@ -346,16 +346,14 @@ jobs:
           find package/feeds/ -maxdepth 1 -type d
           #find mexdepth and mindepth does not work or invalid
           ls -R -d package/feeds/*/luci-*
-          #for ipk in $(ls -R -d package/feeds/kenzo/luci-*); do
-          #  if [ -e "$ipk/Makefile" ]; then 
-          #     make $ipk/{clean,compile} -j$(nproc) || make $ipk/compile V=s
-          #  fi
-          #done            
+          for ipk in $(ls -R -d package/feeds/kenzo/luci-*); do
+            if [ -e "$ipk/Makefile" ]; then 
+               make $ipk/{clean,compile} -j$(nproc) || make $ipk/compile V=s
+            fi
+          done            
           for ipk in $(ls -R -d package/feeds/small/luci-*); do
             if [ -e "$ipk/Makefile" ]; then 
-               if [ ! `echo $ipk | grep -E "shadowsocks-rust"` ]; then
-                 make $ipk/{clean,compile} -j$(nproc) || make $ipk/compile V=s
-               fi  
+               make $ipk/{clean,compile} -j$(nproc) || make $ipk/compile V=sc  
             fi
           done  
           make package/index
