@@ -357,7 +357,8 @@ jobs:
                  make $ipk/{clean,compile} -j$(nproc) || make $ipk/compile V=s
                fi  
             fi
-          done            
+          done  
+          make package/index
           echo "======================="
           echo "Space usage:"
           echo "======================="
