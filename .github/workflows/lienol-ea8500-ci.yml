@@ -60,7 +60,6 @@ jobs:
       - name: add kenzo8/openwrt-packages and kenzo8/small Update feeds
         run: |
           sed -i '$a src-git proxy_small https://github.com/xiaorouji/openwrt-passwall-packages.git;main' feeds.conf.default
-          #20240207 xray-plugin compile ocouer error(go version not match)
           sed -i '$a src-git proxy https://github.com/xiaorouji/openwrt-passwall.git;main' feeds.conf.default
           sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages.git' ./feeds.conf.default
           sed -i '$a src-git small https://github.com/kenzok8/small.git' ./feeds.conf.default
@@ -866,15 +865,16 @@ jobs:
           CONFIG_PACKAGE_luci-app-autoreboot=y
           CONFIG_PACKAGE_luci-app-adbyby-plus=m
           CONFIG_PACKAGE_luci-app-bypass=m
-          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Client=y
-          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server=y
-          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Client=y
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Client=m
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server=m
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Client=m
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Simple_Obfs=y
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Xray=y
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan=y
-          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Socks_Server=y
+          CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Socks_Server=m
           CONFIG_PACKAGE_luci-app-ddns=m
           CONFIG_PACKAGE_luci-app-ddnsto=y
+          CONFIG_PACKAGE_luci-app-diskman=m
           CONFIG_PACKAGE_luci-app-diskman_INCLUDE_btrfs_progs=y
           CONFIG_PACKAGE_luci-app-diskman_INCLUDE_lsblk=y
           CONFIG_PACKAGE_luci-app-firewall=y
@@ -883,12 +883,12 @@ jobs:
           CONFIG_PACKAGE_iptables-mod-extra=y
           CONFIG_PACKAGE_luci-app-opkg=y
           CONFIG_PACKAGE_luci-app-passwall=m
-          CONFIG_PACKAGE_luci-app-passwall_Iptables_Transparent_Proxy=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Haproxy=y
+          CONFIG_PACKAGE_luci-app-passwall_Iptables_Transparent_Proxy=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Haproxy=m
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_NaiveProxy=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Client=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_Libev_Client=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Client=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server=m
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_Libev_Client=m
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Simple_Obfs=y
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_SingBox=y
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_GO=y
@@ -897,37 +897,38 @@ jobs:
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=y
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray_Plugin=y
           CONFIG_PACKAGE_luci-app-passwall2=n
-          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Haproxy=y
-          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Shadowsocks_Libev_Client=y
-          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_ShadowsocksR_Libev_Client=y
+          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Haproxy=m
+          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Shadowsocks_Libev_Client=m
+          CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_ShadowsocksR_Libev_Client=m
           CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Simple_Obfs=y
           CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_SingBox=y
           CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_V2ray_Plugin=y
-          CONFIG_PACKAGE_luci-app-qbittorrent_static=y
-          CONFIG_PACKAGE_luci-app-ramfree=y
-          CONFIG_PACKAGE_luci-app-ssr-plus=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Client=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server=y
+          CONFIG_PACKAGE_luci-app-qbittorrent_static=m
+          CONFIG_PACKAGE_luci-app-ramfree=m
+          CONFIG_PACKAGE_luci-app-ssr-plus=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Client=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ChinaDNS_NG=y
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_IPT2Socks=y
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy=y
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Simple_Obfs=y
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_V2ray_Plugin=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Client=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Server=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Client=m
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Server=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
+          CONFIG_PACKAGE_luci-app-turboacc=m
           CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_DRV=y
           CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_BBR_CCA=y
           CONFIG_PACKAGE_luci-app-unblockmusic=m
-          CONFIG_PACKAGE_luci-app-unblockmusic_INCLUDE_UnblockNeteaseMusic_Go=y
+          CONFIG_PACKAGE_luci-app-unblockmusic_INCLUDE_UnblockNeteaseMusic_Go=m
           CONFIG_PACKAGE_luci-app-vlmcsd=y
           CONFIG_PACKAGE_luci-app-vssr=m
           CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray=y
           CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan=y
           CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray_plugin=y
-          CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Libev_Server=y
-          CONFIG_PACKAGE_luci-app-wol=y
+          CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Libev_Server=m
+          CONFIG_PACKAGE_luci-app-wol=m
           CONFIG_PACKAGE_luci-theme-argon=y
           CONFIG_PACKAGE_luci-proto-ipv6=y
           CONFIG_PACKAGE_luci-proto-ppp=y
@@ -949,10 +950,10 @@ jobs:
           CONFIG_PACKAGE_luci-i18n-opkg-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-passwall-zh-cn=m
           CONFIG_PACKAGE_luci-i18n-ramfree-zh-cn=y
-          CONFIG_PACKAGE_luci-i18n-ssr-plus-zh-cn=y
+          CONFIG_PACKAGE_luci-i18n-ssr-plus-zh-cn=m
           CONFIG_PACKAGE_luci-i18n-unblockmusic-zh-cn=m
           CONFIG_PACKAGE_luci-i18n-vlmcsd-zh-cn=y
-          CONFIG_PACKAGE_luci-i18n-wol-zh-cn=y
+          CONFIG_PACKAGE_luci-i18n-wol-zh-cn=m
           CONFIG_PACKAGE_UnblockNeteaseMusic-Go=m
           CONFIG_PACKAGE_adbyby=m
           CONFIG_PACKAGE_curl=y
