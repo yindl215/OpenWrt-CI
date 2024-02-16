@@ -100,11 +100,10 @@ jobs:
           rm -rf package/feeds/small/*kodexplorer
           rm -rf package/feeds/small/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
           rm -rf package/feeds/luci/themes/luci-theme-argon
-          mv package/feeds/other/{adbyby,luci-app-adbyby-plus,luci-app-autoreboot,luci-app-turboacc,vlmcsd,luci-app-vlmcsd} package/feeds/kenzo/
-         
+          mv ./feeds/other/{adbyby,luci-app-adbyby-plus,luci-app-autoreboot,luci-app-turboacc,vlmcsd,luci-app-vlmcsd} package/feeds/kenzo/
+          rm -rf ./feeds/orther && rm -rf package/feeds/other
           #rm -rf package/feeds/small/shadowsocks-rust
-          #rm -rf package/feeds/packages/xray-core
-          #202402 kernel-5.10.201 small/shasowsocks-rust and feeds/packages/xray-core have ocouer download error
+          #202402 kernel-5.10.201 small/shasowsocks-rust have ocouer download error
           # compiling openwrt-19.07 need use branch master-libcap to replace ./feeds/packages/libs/libcap 
           # rm -rf feeds/packages/libs/libcap
           # svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap ./feeds/packages/libs/libcap
