@@ -100,7 +100,7 @@ jobs:
           rm -rf package/feeds/small/*kodexplorer
           rm -rf package/feeds/small/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
           rm -rf package/feeds/luci/themes/luci-theme-argon
-          mv ./feeds/other/{adbyby,luci-app-adbyby-plus,luci-app-autoreboot,luci-app-turboacc,vlmcsd,luci-app-vlmcsd} package/feeds/kenzo/
+          mv ./feeds/other/lean/{adbyby,luci-app-adbyby-plus,luci-app-autoreboot,luci-app-turboacc,vlmcsd,luci-app-vlmcsd} package/feeds/kenzo/
           rm -rf ./feeds/orther && rm -rf package/feeds/other
           #rm -rf package/feeds/small/shadowsocks-rust
           #202402 kernel-5.10.201 small/shasowsocks-rust have ocouer download error
