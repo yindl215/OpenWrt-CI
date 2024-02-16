@@ -863,7 +863,9 @@ jobs:
           CONFIG_PACKAGE_luci-mod-status=y
           CONFIG_PACKAGE_luci-mod-system=y
           CONFIG_PACKAGE_luci-app-advanced-reboot=y
-          CONFIG_PACKAGE_luci-app-bypass=n
+          CONFIG_PACKAGE_luci-app-autoreboot=y
+          CONFIG_PACKAGE_luci-app-adbyby-plus=m
+          CONFIG_PACKAGE_luci-app-bypass=m
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Client=y
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server=y
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Client=y
@@ -880,7 +882,7 @@ jobs:
           CONFIG_PACKAGE_iptables-mod-tproxy=y
           CONFIG_PACKAGE_iptables-mod-extra=y
           CONFIG_PACKAGE_luci-app-opkg=y
-          CONFIG_PACKAGE_luci-app-passwall=n
+          CONFIG_PACKAGE_luci-app-passwall=m
           CONFIG_PACKAGE_luci-app-passwall_Iptables_Transparent_Proxy=y
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Haproxy=y
           CONFIG_PACKAGE_luci-app-passwall_INCLUDE_NaiveProxy=y
@@ -920,7 +922,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-unblockmusic=m
           CONFIG_PACKAGE_luci-app-unblockmusic_INCLUDE_UnblockNeteaseMusic_Go=y
           CONFIG_PACKAGE_luci-app-vlmcsd=y
-          CONFIG_PACKAGE_luci-app-vssr=n
+          CONFIG_PACKAGE_luci-app-vssr=m
           CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray=y
           CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan=y
           CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray_plugin=y
@@ -937,6 +939,8 @@ jobs:
           CONFIG_PACKAGE_luci-lib-nixio_notls=y
           CONFIG_PACKAGE_default-settings=y
           CONFIG_PACKAGE_luci-i18n-advanced-reboot-zh-cn=y
+          CONFIG_PACKAGE_luci-i18n-autoreboot-zh-cn=y
+          CONFIG_PACKAGE_luci-i18n-adbyby-pus-zh-cn=m
           CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-ddns-zh-cn=m
           CONFIG_PACKAGE_luci-i18n-ddnsto-zh-cn=y
@@ -950,6 +954,7 @@ jobs:
           CONFIG_PACKAGE_luci-i18n-vlmcsd-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-wol-zh-cn=y
           CONFIG_PACKAGE_UnblockNeteaseMusic-Go=m
+          CONFIG_PACKAGE_adbyby=m
           CONFIG_PACKAGE_curl=y
           CONFIG_PACKAGE_wget-ssl=y
           CONFIG_PACKAGE_iptables-mod-conntrack-extra=y
