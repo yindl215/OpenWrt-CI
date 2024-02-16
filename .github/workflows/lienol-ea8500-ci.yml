@@ -59,23 +59,23 @@ jobs:
           du -h --max-depth=1
       - name: add kenzo8/openwrt-packages and kenzo8/small Update feeds
         run: |
-          #sed -i '$a src-git proxy_small https://github.com/xiaorouji/openwrt-passwall-packages.git;main' feeds.conf.default
+          sed -i '$a src-git proxy_small https://github.com/xiaorouji/openwrt-passwall-packages.git;main' feeds.conf.default
           #20240207 xray-plugin compile ocouer error(go version not match)
-          #sed -i '$a src-git proxy https://github.com/xiaorouji/openwrt-passwall.git;main' feeds.conf.default
-          #sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages.git' ./feeds.conf.default
-          #sed -i '$a src-git small https://github.com/kenzok8/small.git' ./feeds.conf.default
+          sed -i '$a src-git proxy https://github.com/xiaorouji/openwrt-passwall.git;main' feeds.conf.default
+          sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages.git' ./feeds.conf.default
+          sed -i '$a src-git small https://github.com/kenzok8/small.git' ./feeds.conf.default
           #kenzok8/openwrt-packages and /small-package have some clash with lienol 
           ./scripts/feeds update -a 
           ./scripts/feeds install -a
-          #mv feeds/kenzo/{ddnsto,luci-app-ddnsto,luci-app-clash,luci-app-openclash} package/feeds/proxy/
-          #mv feeds/small/{luci-app-bypass,luci-app-passwall2,luci-app-ssr-plus} package/feeds/proxy/
+          mv feeds/kenzo/{ddnsto,luci-app-ddnsto,luci-app-clash,luci-app-openclash} package/feeds/proxy/
+          mv feeds/small/{luci-app-bypass,luci-app-passwall2,luci-app-ssr-plus} package/feeds/proxy/
           #202402 https://github.com/kenzok8/small.git is not luci-app-vssr (it have 4 month ago) 
-          #mv feeds/small/{redsocks2,shadow-tls,v2raya,lua-neturl} package/feeds/proxy_small/
-          #rm -rf feeds/kenzo/luci-theme-design && git clone -b js --single-branch https://github.com/gngpp/luci-theme-design package/feeds/proxy/luci-theme-design
-          #rm -rf ./feeds/kenzo && rm -rf ./feeds/small
-          #rm -rf ./package/feeds/kenzo && rm -rf ./package/feeds/small
+          mv feeds/small/{redsocks2,shadow-tls,v2raya,lua-neturl} package/feeds/proxy_small/
+          rm -rf feeds/kenzo/luci-theme-design && git clone -b js --single-branch https://github.com/gngpp/luci-theme-design package/feeds/proxy/luci-theme-design
+          rm -rf ./feeds/kenzo && rm -rf ./feeds/small
+          rm -rf ./package/feeds/kenzo && rm -rf ./package/feeds/small
           # practice above have succeed
-          #rm -rf ./feeds/packages/net/xray-core
+          rm -rf ./feeds/packages/net/xray-core
           #rm -rf ./package/feeds/packages/xray-core
           #202402 Lienol/openwrt-packages/net/xray-core compile have ocouer error(build error)
           # also have do such this:
@@ -1055,8 +1055,7 @@ jobs:
           df -h
       - name: Compile firmware
         run: |
-          #make -j$(nproc) V=s || make -j1 V=s
-          make -j1 V=s
+          make -j$(nproc) V=s || make -j1 V=s
           echo "======================="
           echo "Space usage:"
           echo "======================="
