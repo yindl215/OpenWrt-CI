@@ -89,6 +89,8 @@ jobs:
           #echo "src-git passwall https://github.com/xiaorouji/openwrt-passwall.git;main" >> feeds.conf
           echo "src-git kenzo https://github.com/kenzok8/openwrt-packages.git" >> feeds.conf
           echo "src-git small https://github.com/kenzok8/small.git" >> feeds.conf
+          echo "src-git other https://github.com/Lienol/openwrt-package.git^60a3995" >> feeds.conf
+          #it include lede-project/source/package/lean/vlmcsd adbyby etc
           ./scripts/feeds update -a
           #./scripts/feeds install -d n luci-app-passwall
           ./scripts/feeds install -a
@@ -97,7 +99,8 @@ jobs:
           rm -rf package/feeds/small/*bandwidthd
           rm -rf package/feeds/small/*kodexplorer
           rm -rf package/feeds/small/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
-          rm -rf package/feeds/luci/themes/luci-theme-argon && rm -rf package/feeds/other/{luci-app-adguardhome,luci-app-dockerman}
+          rm -rf package/feeds/luci/themes/luci-theme-argon
+          mv package/feeds/other/{adbyby,luci-app-adbyby-plus,luci-app-autoreboot,luci-app-turboacc,vlmcsd,luci-app-vlmcsd} package/feeds/kenzo/
          
           #rm -rf package/feeds/small/shadowsocks-rust
           #rm -rf package/feeds/packages/xray-core
