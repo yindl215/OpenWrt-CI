@@ -86,7 +86,7 @@ jobs:
           echo "src-git luci https://github.com/openwrt/luci.git;openwrt-23.05" >> feeds.conf
           echo "src-git routing https://git.openwrt.org/feed/routing.git;openwrt-23.05"  >> feeds.conf
           echo "src-git proxy_small https://github.com/xiaorouji/openwrt-passwall-packages.git;main" >> feeds.conf
-          echo "src-git proxy https://github.com/xiaorouji/openwrt-passwall.git;main" >> feeds.conf
+          #echo "src-git proxy https://github.com/xiaorouji/openwrt-passwall.git;main" >> feeds.conf
           echo "src-git kenzo https://github.com/kenzok8/openwrt-packages.git" >> feeds.conf
           echo "src-git small https://github.com/kenzok8/small.git" >> feeds.conf
           echo "src-git other https://github.com/Lienol/openwrt-package.git^60a3995" >> feeds.conf
@@ -96,15 +96,14 @@ jobs:
           ./scripts/feeds install -a
           rm -rf package/feeds/kenzo/*alist
           rm -rf package/feeds/kenzo/*gost
-          #rm -rf package/feeds/small/*bandwidthd
-          #rm -rf package/feeds/small/*kodexplorer
-          #rm -rf package/feeds/small/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
+          rm -rf package/feeds/small/*bandwidthd
+          rm -rf package/feeds/small/*kodexplorer
+          rm -rf package/feeds/small/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
           rm -rf package/feeds/luci/themes/luci-theme-argon
-          mv ./feeds/other/lean/{adbyby,luci-app-adbyby-plus,luci-app-autoreboot,luci-app-turboacc,vlmcsd,luci-app-vlmcsd} package/feeds/kenzo/
+          mv ./feeds/other/lean/{adbyby,luci-app-adbyby-plus,autocore,luci-app-autoreboot,luci-app-turboacc,vlmcsd,luci-app-vlmcsd} package/feeds/kenzo/
           rm -rf ./feeds/orther && rm -rf package/feeds/other
-          mv feeds/small/{luci-app-bypass,luci-app-passwall2,luci-app-ssr-plus} package/feeds/proxy/
-          mv feeds/small/{redsocks2,shadow-tls,v2raya,lua-neturl,xray-core} package/feeds/proxy_small/
-          rm -rf ./feeds/small && rm -rf package/feeds/small
+          mv feeds/proxy_small/naiveproxy package/feeds/small/
+          rm -rf ./feeds/proxy_small && rm -rf package/feeds/proxy_small
           # compiling openwrt-19.07 need use branch master-libcap to replace ./feeds/packages/libs/libcap 
           # rm -rf feeds/packages/libs/libcap
           # svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap ./feeds/packages/libs/libcap
@@ -132,7 +131,7 @@ jobs:
           rm -rf $(find -name "index.html*")
           cd ../
           du -h ./ --max-depth=1
-          rm -Rf tmp
+          rm -rf tmp
       - name: Generate configuration file
         run: |
           cd ./openwrt
