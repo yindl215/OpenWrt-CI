@@ -874,7 +874,6 @@ jobs:
           CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Socks_Server=m
           CONFIG_PACKAGE_luci-app-ddns=m
           CONFIG_PACKAGE_luci-app-ddnsto=y
-          CONFIG_PACKAGE_luci-app-diskman=m
           CONFIG_PACKAGE_luci-app-diskman_INCLUDE_btrfs_progs=y
           CONFIG_PACKAGE_luci-app-diskman_INCLUDE_lsblk=y
           CONFIG_PACKAGE_luci-app-firewall=y
@@ -903,8 +902,8 @@ jobs:
           CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Simple_Obfs=y
           CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_SingBox=y
           CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_V2ray_Plugin=y
-          CONFIG_PACKAGE_luci-app-qbittorrent_static=m
-          CONFIG_PACKAGE_luci-app-ramfree=m
+          CONFIG_PACKAGE_luci-app-qbittorrent_static=y
+          CONFIG_PACKAGE_luci-app-ramfree=y
           CONFIG_PACKAGE_luci-app-ssr-plus=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Client=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server=m
@@ -917,7 +916,6 @@ jobs:
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Client=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Server=m
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
-          CONFIG_PACKAGE_luci-app-turboacc=m
           CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_DRV=y
           CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_BBR_CCA=y
           CONFIG_PACKAGE_luci-app-unblockmusic=m
