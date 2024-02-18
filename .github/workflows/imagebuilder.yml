@@ -317,7 +317,7 @@ jobs:
           CONFIG_PACKAGE_v2ray-plugin=m
           CONFIG_PACKAGE_xray-plugin=m
           EOF
-          #
+          #CONFIG_PACKAGE_luci-app-diskman=m or CONFIG_PACKAGE_luci-app-turboacc=m have ocouer compile linux error
           # ===============================================================
           # 
           make defconfig
