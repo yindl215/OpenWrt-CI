@@ -1038,6 +1038,7 @@ jobs:
           CONFIG_PACKAGE_ubi-utils=y
           EOF
           #
+          #CONFIG_PACKAGE_luci-app-diskman=m or CONFIG_PACKAGE_luci-app-turboacc=m have ocouer compile linux error
           # ===============================================================
           # 
           sed -i 's/^[ \t]*//g' ./.config
