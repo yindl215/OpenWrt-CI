@@ -121,7 +121,7 @@ jobs:
           CONFIG_TARGET_ARCH_PACKAGES="arm_cortex-a15_neon-vfpv4"
           CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe"
           CONFIG_CPU_TYPE="cortex-a15+neon-vfpv4"
-          CONFIG_LINUX_5_10=y
+          #CONFIG_LINUX_5_10=y
           CONFIG_DEFAULT_ath10k-firmware-qca99x0-ct=y
           CONFIG_DEFAULT_autocore-arm=y
           CONFIG_DEFAULT_base-files=y
@@ -157,15 +157,15 @@ jobs:
           CONFIG_DEFAULT_libustream-wolfssl=y
           CONFIG_DEFAULT_logd=y
           CONFIG_DEFAULT_luci=y
-          CONFIG_DEFAULT_luci-app-control-timewol=y
+          CONFIG_DEFAULT_luci-app-control-timewol=m
           CONFIG_DEFAULT_luci-app-control-webrestriction=y
-          CONFIG_DEFAULT_luci-app-control-weburl=y
-          CONFIG_DEFAULT_luci-app-ddns=y
+          CONFIG_DEFAULT_luci-app-control-weburl=m
+          CONFIG_DEFAULT_luci-app-ddns=m
           CONFIG_DEFAULT_luci-app-ramfree=y
-          CONFIG_DEFAULT_luci-app-timecontrol=y
+          CONFIG_DEFAULT_luci-app-timecontrol=m
           CONFIG_DEFAULT_luci-app-upnp=y
           CONFIG_DEFAULT_luci-app-vlmcsd=y
-          CONFIG_DEFAULT_luci-app-wol=y
+          CONFIG_DEFAULT_luci-app-wol=m
           CONFIG_DEFAULT_luci-compat=y
           CONFIG_DEFAULT_mtd=y
           CONFIG_DEFAULT_netifd=y
@@ -302,17 +302,17 @@ jobs:
           CONFIG_GDB=y
           CONFIG_USE_MUSL=y
           CONFIG_SSP_SUPPORT=y
-          CONFIG_BINUTILS_VERSION_2_37=y
-          CONFIG_BINUTILS_VERSION="2.37"
-          CONFIG_GCC_VERSION="11.2.0"
+          #CONFIG_BINUTILS_VERSION_2_37=y
+          #CONFIG_BINUTILS_VERSION="2.37"
+          #CONFIG_GCC_VERSION="12.3.0"
           CONFIG_LIBC="musl"
           CONFIG_TARGET_SUFFIX="muslgnueabi"
           CONFIG_TARGET_PREINIT_SUPPRESS_STDERR=y
           CONFIG_TARGET_PREINIT_TIMEOUT=2
           CONFIG_TARGET_PREINIT_IFNAME=""
-          CONFIG_TARGET_PREINIT_IP="192.168.1.1"
+          CONFIG_TARGET_PREINIT_IP="192.168.0.1"
           CONFIG_TARGET_PREINIT_NETMASK="255.255.255.0"
-          CONFIG_TARGET_PREINIT_BROADCAST="192.168.1.255"
+          CONFIG_TARGET_PREINIT_BROADCAST="192.168.0.255"
           CONFIG_TARGET_INIT_PATH="/usr/sbin:/usr/bin:/sbin:/bin"
           CONFIG_TARGET_INIT_ENV=""
           CONFIG_TARGET_INIT_CMD="/sbin/init"
@@ -1060,8 +1060,8 @@ jobs:
           df -h
       - name: Compile firmware
         run: |
-          #make -j$(nproc) V=s || make -j1 V=s
-          make -j1 V=sc
+          make -j$(nproc) V=s || make -j1 V=s
+          #make -j1 V=sc
           echo "======================="
           echo "Space usage:"
           echo "======================="
