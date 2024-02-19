@@ -1060,7 +1060,8 @@ jobs:
           df -h
       - name: Compile firmware
         run: |
-          make -j$(nproc) V=s || make -j1 V=s
+          #make -j$(nproc) V=s || make -j1 V=s
+          make -j1 V=sc
           echo "======================="
           echo "Space usage:"
           echo "======================="
