@@ -54,7 +54,7 @@ jobs:
           df -h
       - name: git clone Lienol
         run: |
-          git clone --depth 1 --single-branch -b 22.03 https://github.com/Lienol/openwrt.git       
+          git clone --depth 1 --single-branch -b 23.05 https://github.com/Lienol/openwrt.git       
           mv ./openwrt/* ./ 
           du -h --max-depth=1
       - name: add kenzo8/openwrt-packages and kenzo8/small Update feeds
