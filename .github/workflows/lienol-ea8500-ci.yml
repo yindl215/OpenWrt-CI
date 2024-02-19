@@ -324,8 +324,8 @@ jobs:
           CONFIG_FEED_telephony=y
           CONFIG_FEED_lienol=y
           CONFIG_FEED_other=y
-          CONFIG_FEED_kenzo=y
-          CONFIG_FEED_small=y
+          CONFIG_FEED_proxy=y
+          CONFIG_FEED_proxy_small=y
           CONFIG_PACKAGE_base-files=y
           CONFIG_PACKAGE_block-mount=y
           CONFIG_PACKAGE_busybox=y
