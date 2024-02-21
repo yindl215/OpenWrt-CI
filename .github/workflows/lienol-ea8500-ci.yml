@@ -71,7 +71,7 @@ jobs:
           #202402 https://github.com/kenzok8/small.git is not luci-app-vssr (it have 4 month ago) 
           #mv feeds/small/{redsocks2,shadow-tls,v2raya,lua-neturl,xray-core} package/feeds/proxy_small/
           #rm -rf ./feeds/packages/net/xray-core
-          cp -r package/feeds/proxy_small/xray-core ./feeds/packages/net/
+          #cp -r package/feeds/proxy_small/xray-core ./feeds/packages/net/
           #202402 Lienol/openwrt-packages/net/xray-core compile have ocouer error(build error,it is 1.8.3)
           #rm -rf ./feeds/kenzo && rm -rf ./feeds/small
           #rm -rf ./package/feeds/kenzo && rm -rf ./package/feeds/small
