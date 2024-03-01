@@ -129,12 +129,12 @@ jobs:
           CONFIG_PACKAGE_ip-full=y
           CONFIG_PACKAGE_ipset=y
           CONFIG_PACKAGE_ipt2socks=y
-          CONFIG_PACKAGE_iptables-mod-conntrack-extra=y
+          #CONFIG_PACKAGE_iptables-mod-conntrack-extra=y
           CONFIG_PACKAGE_iptables-mod-iprange=y
           CONFIG_PACKAGE_iptables-mod-socket=y
           CONFIG_PACKAGE_iptables-zz-legacy=y
           CONFIG_PACKAGE_kmod-inet-diag=y
-          CONFIG_PACKAGE_kmod-ipt-conntrack-extra=y
+          #CONFIG_PACKAGE_kmod-ipt-conntrack-extra=y
           CONFIG_PACKAGE_kmod-ipt-iprange=y
           CONFIG_PACKAGE_kmod-ipt-raw=y
           CONFIG_PACKAGE_kmod-ipt-socket=y
