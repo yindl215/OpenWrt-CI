@@ -147,7 +147,6 @@ jobs:
           CONFIG_DEFAULT_luci=y
           CONFIG_DEFAULT_mtd=y
           CONFIG_DEFAULT_netifd=y
-          CONFIG_DEFAULT_mtd=y
           CONFIG_DEFAULT_nftables=y
           CONFIG_DEFAULT_odhcp6c=y
           CONFIG_DEFAULT_odhcpd-ipv6only=y
@@ -682,7 +681,7 @@ jobs:
           CONFIG_PACKAGE_kmod-ata-ahci-platform=y
           CONFIG_PACKAGE_kmod-ata-core=y
           CONFIG_PACKAGE_kmod-scsi-core=y
-    		  CONFIG_PACKAGE_kmod-crypto-acompress=y
+          CONFIG_PACKAGE_kmod-crypto-acompress=y
           CONFIG_PACKAGE_kmod-crypto-aead=y
           CONFIG_PACKAGE_kmod-crypto-ccm=y
           CONFIG_PACKAGE_kmod-crypto-cmac=y
@@ -702,7 +701,7 @@ jobs:
           CONFIG_PACKAGE_kmod-leds-gpio=y
           CONFIG_PACKAGE_kmod-lib-crc-ccitt=y
           CONFIG_PACKAGE_kmod-lib-crc32c=y
-		      CONFIG_PACKAGE_kmod-llib-lzo=y
+          CONFIG_PACKAGE_kmod-llib-lzo=y
           CONFIG_PACKAGE_kmod-nls-base=y
           CONFIG_PACKAGE_kmod-ipt-core=m
           CONFIG_PACKAGE_kmod-ipt-ipset=m
