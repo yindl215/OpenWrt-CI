@@ -87,6 +87,7 @@ jobs:
           git clone https://github.com/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
           sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
           sed -i "s/%D %V, %C/openwrt $(date +'%m.%d') by yindl/g" package/base-files/files/etc/banner
+          #all succeed in 20240302
       - name: download some code
         run: |
           # here is openwrt-19.07 or lede can not download some code
@@ -143,8 +144,10 @@ jobs:
           CONFIG_DEFAULT_libgcc=y
           CONFIG_DEFAULT_libustream-mbedtls=y
           CONFIG_DEFAULT_logd=y
+		      CONFIG_DEFAULT_luci=y
           CONFIG_DEFAULT_mtd=y
           CONFIG_DEFAULT_netifd=y
+          CONFIG_DEFAULT_mtd=y
           CONFIG_DEFAULT_nftables=y
           CONFIG_DEFAULT_odhcp6c=y
           CONFIG_DEFAULT_odhcpd-ipv6only=y
@@ -288,9 +291,9 @@ jobs:
           CONFIG_TARGET_PREINIT_SUPPRESS_STDERR=y
           CONFIG_TARGET_PREINIT_TIMEOUT=2
           CONFIG_TARGET_PREINIT_IFNAME=""
-          CONFIG_TARGET_PREINIT_IP="192.168.1.1"
+          CONFIG_TARGET_PREINIT_IP="192.168.0.1"
           CONFIG_TARGET_PREINIT_NETMASK="255.255.255.0"
-          CONFIG_TARGET_PREINIT_BROADCAST="192.168.1.255"
+          CONFIG_TARGET_PREINIT_BROADCAST="192.168.0.255"
           CONFIG_TARGET_INIT_PATH="/usr/sbin:/usr/bin:/sbin:/bin"
           CONFIG_TARGET_INIT_ENV=""
           CONFIG_TARGET_INIT_CMD="/sbin/init"
@@ -679,6 +682,7 @@ jobs:
           CONFIG_PACKAGE_kmod-ata-ahci-platform=y
           CONFIG_PACKAGE_kmod-ata-core=y
           CONFIG_PACKAGE_kmod-scsi-core=y
+    		  CONFIG_PACKAGE_kmod-crypto-acompress=y
           CONFIG_PACKAGE_kmod-crypto-aead=y
           CONFIG_PACKAGE_kmod-crypto-ccm=y
           CONFIG_PACKAGE_kmod-crypto-cmac=y
@@ -698,6 +702,7 @@ jobs:
           CONFIG_PACKAGE_kmod-leds-gpio=y
           CONFIG_PACKAGE_kmod-lib-crc-ccitt=y
           CONFIG_PACKAGE_kmod-lib-crc32c=y
+		      CONFIG_PACKAGE_kmod-llib-lzo=y
           CONFIG_PACKAGE_kmod-nls-base=y
           CONFIG_PACKAGE_kmod-ipt-core=m
           CONFIG_PACKAGE_kmod-ipt-ipset=m
@@ -897,6 +902,7 @@ jobs:
           CONFIG_PACKAGE_rpcd-mod-luci=y
           CONFIG_PACKAGE_terminfo=m
           CONFIG_PACKAGE_zlib=m
+          CONFIG_PACKAGE_luci=y
           CONFIG_PACKAGE_luci-base=y
           CONFIG_LUCI_JSMIN=y
           CONFIG_LUCI_CSSTIDY=y
@@ -907,6 +913,7 @@ jobs:
           CONFIG_PACKAGE_luci-mod-network=y
           CONFIG_PACKAGE_luci-mod-status=y
           CONFIG_PACKAGE_luci-mod-system=y
+          CONFIG_PACKAGE_luci-app-opkg=y
           CONFIG_PACKAGE_luci-app-adblock=m
           CONFIG_PACKAGE_luci-app-adbyby-plus=m
           CONFIG_PACKAGE_luci-app-advanced-reboot=y
@@ -925,8 +932,10 @@ jobs:
           CONFIG_PACKAGE_luci-app-ddnsto=m
           CONFIG_PACKAGE_luci-app-diskman_INCLUDE_btrfs_progs=y
           CONFIG_PACKAGE_luci-app-diskman_INCLUDE_lsblk=y
+          CONFIG_PACKAGE_luci-app-firewall=y
           CONFIG_PACKAGE_luci-app-omcproxy=y
           CONFIG_PACKAGE_luci-app-openclash=m
+          CONFIG_PACKAGE_luci-app-opkg=y
           CONFIG_PACKAGE_iptables-mod-tproxy=m
           CONFIG_PACKAGE_luci-app-passwall=m
           CONFIG_PACKAGE_luci-app-passwall_Nftables_Transparent_Proxy=y
@@ -982,14 +991,20 @@ jobs:
           CONFIG_PACKAGE_luci-lib-nixio=y
           CONFIG_PACKAGE_luci-i18n-adblock-zh-cn=m
           CONFIG_PACKAGE_luci-i18n-advanced-reboot-zh-cn=y
+          CONFIG_PACKAGE_luci-i18n-autoreboot-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-argon-config-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-bypass-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-ddns-zh-cn=m
           CONFIG_PACKAGE_luci-i18n-ddnsto-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-firewall-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-omcproxy-zh-cn=y
+          CONFIG_PACKAGE_luci-i18n-opkg-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-passwall-zh-cn=m
           CONFIG_PACKAGE_luci-i18n-passwall2-zh-cn=m
           CONFIG_PACKAGE_luci-i18n-ssr-plus-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-unblockmusic-zh-cn=m
+          CONFIG_PACKAGE_luci-i18n-vlmcsd-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-wol-zh-cn=m
           CONFIG_PACKAGE_UnblockNeteaseMusic-Go=m
           CONFIG_PACKAGE_curl=y
