@@ -89,6 +89,7 @@ jobs:
           version=$(cat ./include/kernel-5.15 |grep LINUX_KERNEL |awk '{print $1}')
           kernel=$(echo ${version##*-})
           sed -i "s/%D %V, %C/openwrt v2305-kernel-$kernel $(date +'%m.%d') by yindl/g" package/base-files/files/etc/banner
+          echo $kernel 
           #all succeed in 20240302
       - name: download some code
         run: |
@@ -1095,12 +1096,12 @@ jobs:
           make defconfig
       - name: Make download
         run: |
-          make download -j$(nproc) || make download -j1 V=s
+          #make download -j$(nproc) || make download -j1 V=s
           rm -rf $(find ./dl/ -size -1024c)
           df -h
       - name: Compile firmware
         run: |
-          make -i -j$(nproc) V=s || make -j1 V=sc
+          #make -i -j$(nproc) V=s || make -j1 V=sc
           #make -i -j1 V=sc
           echo "======================="
           echo "Space usage:"
