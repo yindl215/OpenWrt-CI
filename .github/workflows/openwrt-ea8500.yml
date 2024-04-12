@@ -68,7 +68,7 @@ jobs:
           df -h
       - name: git clone openwrt
         run: |
-          git clone --single-branch -b openwrt-23.05 https://github.com/openwrt/openwrt       
+          git clone --single-branch -b v23.05.3 https://github.com/openwrt/openwrt       
           mv ./openwrt/* ./ 
           du -h --max-depth=1
       - name: add packages and Update feeds
