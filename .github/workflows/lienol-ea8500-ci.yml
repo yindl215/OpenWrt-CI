@@ -763,8 +763,8 @@ jobs:
           CONFIG_PACKAGE_kmod-mppe=y
           CONFIG_PACKAGE_kmod-pppoe=y
           CONFIG_PACKAGE_kmod-pppox=y
-          CONFIG_PACKAGE_kmod-shortcut-fe=m
-          CONFIG_PACKAGE_kmod-shortcut-fe-drv=m
+          # CONFIG_PACKAGE_kmod-shortcut-fe=m
+          # CONFIG_PACKAGE_kmod-shortcut-fe-drv=m
           CONFIG_PACKAGE_kmod-slhc=y
           CONFIG_PACKAGE_kmod-tcp-bbr=m
           CONFIG_PACKAGE_kmod-tun=m
@@ -1017,7 +1017,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
           CONFIG_PACKAGE_luci-app-timecontrol=y
           CONFIG_PACKAGE_luci-app-turboacc=m
-          CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_DRV=y
+          # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_DRV=y
           CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_BBR_CCA=y
           CONFIG_PACKAGE_luci-app-unblockmusic=m
           CONFIG_PACKAGE_luci-app-unblockmusic_INCLUDE_UnblockNeteaseMusic_Go=y
