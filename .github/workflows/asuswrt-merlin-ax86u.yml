@@ -49,15 +49,25 @@ jobs:
           sudo dpkg --add-architecture i386
           sudo dpkg-reconfigure dash
           sudo -E apt update
-          sudo apt install tar bzip2 unzip python perl flex make pkg-config \
-          gcc-multilib g++-multilib g++ cmake autoconf automake bison patch \
-          autopoint autogen automake-1.15 build-essential intltool xsltproc \
-          subversion git cvs m4 uuid-dev groff-base gettext gperf file gawk \
-          sed shtool texinfo gconf-editor diffutils libslang2 gtk-doc-tools \
-          gitk xutils-dev zlib1g zlib1g-dev libxml-parser-perl libproxy-dev \
-          libncurses5 libncurses5-dev libncurses5-dev libxml2-dev mtd-utils \
-          libexpat1-dev libvorbis-dev libglib2.0-dev libssl-dev liblzo2-dev \
-          libtool-bin libtool lib32z1-dev lib32stdc++6 libelf1:i386 
+          #sudo apt install tar bzip2 unzip python perl flex make pkg-config \
+          #gcc-multilib g++-multilib g++ cmake autoconf automake bison patch \
+          #autopoint autogen automake-1.15 build-essential intltool xsltproc \
+          #subversion git cvs m4 uuid-dev groff-base gettext gperf file gawk \
+          #sed shtool texinfo gconf-editor diffutils libslang2 gtk-doc-tools \
+          #gitk xutils-dev zlib1g zlib1g-dev libxml-parser-perl libproxy-dev \
+          #libncurses5 libncurses5-dev libncurses5-dev libxml2-dev mtd-utils \
+          #libexpat1-dev libvorbis-dev libglib2.0-dev libssl-dev liblzo2-dev \
+          #libtool-bin libtool lib32z1-dev lib32stdc++6 libelf1:i386 
+
+          sudo apt-get install libtool-bin cmake libproxy-dev uuid-dev liblzo2-dev \
+          autoconf autoconf-archive automake bash bison bzip2 diffutils file flex \
+          m4 g++ gawk groff-base libncurses5-dev libtool libslang2 make patch perl \
+          pkg-config shtool subversion tar texinfo zlib1g zlib1g-dev git gettext \
+          libexpat1-dev libssl-dev cvs gperf unzip python2 libxml-parser-perl \
+          gcc-multilib gconf-editor libxml2-dev g++-multilib gitk libncurses5 \
+          mtd-utils libncurses5-dev libvorbis-dev git autopoint autogen \
+          automake-1.15 sed build-essential intltool libglib2.0-dev xutils-dev \
+          lib32z1-dev lib32stdc++6 xsltproc gtk-doc-tools libelf1:i386 gengetopt
 
           git clone https://github.com/RMerl/am-toolchains
           # git clone https://github.com/RMerl/asuswrt-merlin.ng ~/amng-build
