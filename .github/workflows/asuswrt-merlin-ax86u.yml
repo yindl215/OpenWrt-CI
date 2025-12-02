@@ -30,7 +30,8 @@ jobs:
 
     name: Build Asuswrt firmware
 
-    runs-on: ubuntu-last
+    #runs-on: ubuntu-20.4 LTS
+    runs-on: ubuntu-latest
 
     if: github.event.repository.owner.id == github.event.sender.id
 
