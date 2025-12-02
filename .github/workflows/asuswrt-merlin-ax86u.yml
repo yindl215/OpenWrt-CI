@@ -28,9 +28,9 @@ jobs:
 
   build_openwrt:
 
-    name: Build OpenWrt firmware
+    name: Build Asuswrt firmware
 
-    runs-on: ubuntu-20.04 LTS
+    runs-on: ubuntu-last
 
     if: github.event.repository.owner.id == github.event.sender.id
 
