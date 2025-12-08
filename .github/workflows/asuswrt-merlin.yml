@@ -46,7 +46,7 @@ jobs:
         run: |
           # sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
           sudo dpkg --add-architecture i386
-          sudo dpkg-reconfigure dash
+          # sudo dpkg-reconfigure dash
           sudo -E apt update
           sudo apt install tar bzip2 unzip  perl flex make pkg-config \
           gcc-multilib g++-multilib g++ cmake autoconf automake bison patch \
@@ -58,7 +58,7 @@ jobs:
           libexpat1-dev libvorbis-dev libglib2.0-dev libssl-dev liblzo2-dev \
           libtool-bin libtool lib32z1-dev lib32stdc++6 libelf1:i386 
           
-          #sudo apt install python automake-1.15 gconf-editor libncurses5
+          # sudo apt install python automake-1.15 gconf-editor libncurses5
 
           git clone https://github.com/RMerl/am-toolchains
           # git clone https://github.com/RMerl/asuswrt-merlin.ng ~/amng-build
