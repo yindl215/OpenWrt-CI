@@ -54,7 +54,7 @@ jobs:
           subversion git cvs m4 uuid-dev groff-base gettext gperf file gawk \
           sed shtool texinfo diffutils libslang2 gtk-doc-tools \
           gitk xutils-dev zlib1g zlib1g-dev libxml-parser-perl libproxy-dev \
-          libncurses5-dev libxml2-dev mtd-utils python libncurses5 \
+          libncurses5-dev libxml2-dev mtd-utils python-is-python3 \
           libexpat1-dev libvorbis-dev libglib2.0-dev libssl-dev liblzo2-dev \
           libtool-bin libtool lib32z1-dev lib32stdc++6 libelf1:i386 
           
