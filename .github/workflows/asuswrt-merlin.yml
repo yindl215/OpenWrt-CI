@@ -49,6 +49,7 @@ jobs:
           sudo apt clean  # 清除旧缓存
           sudo apt update  # 加载新的focal源
           sudo apt -f install  # 修复依赖
+          cat /etc/apt/sources.list
           sudo apt-get install tar bzip2 unzip  perl flex make pkg-config \
           gcc-multilib g++-multilib g++ cmake autoconf automake bison patch \
           autopoint autogen  build-essential intltool xsltproc \
