@@ -49,18 +49,18 @@ jobs:
           sudo apt clean  # 清除旧缓存
           sudo apt update  # 加载新的focal源
           sudo apt -f install  # 修复依赖
-          cat /etc/apt/sources.list
+          #cat /etc/apt/sources.list
           sudo apt-get install tar bzip2 unzip  perl flex make pkg-config \
           gcc-multilib g++-multilib g++ cmake autoconf automake bison patch \
           autopoint autogen  build-essential intltool xsltproc \
-          subversion libz-dev libssl-dev git cvs m4 uuid-dev groff-base gettext gperf file gawk \
-          sed shtool texinfo diffutils libslang2 gtk-doc-tools \
-          gitk xutils-dev zlib1g zlib1g-dev libxml-parser-perl libproxy-dev \
+          subversion libz-dev libssl-dev git cvs m4 uuid-dev groff-base gettext \
+          gperf file gawk sed shtool texinfo diffutils libslang2  xutils-dev \
+          zlib1g zlib1g-dev libxml-parser-perl libproxy-dev \
           libncurses5-dev libxml2-dev mtd-utils python-is-python3 \
           libexpat1-dev libvorbis-dev libglib2.0-dev libssl-dev liblzo2-dev \
           libtool-bin libtool lib32z1-dev lib32stdc++6 libelf1:i386 
           
-          # sudo apt install python automake-1.15 gconf-editor libncurses5
+          # sudo apt install python automake-1.15 gconf-editor libncurses5 gtk-doc-tools gitk
 
           git clone https://github.com/RMerl/am-toolchains
           # git clone https://github.com/RMerl/asuswrt-merlin.ng ~/amng-build
