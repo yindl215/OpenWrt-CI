@@ -61,6 +61,7 @@ jobs:
           libtool-bin libtool lib32z1-dev lib32stdc++6 libelf1:i386 
           
           # sudo apt install python automake-1.15 gconf-editor libncurses5 gtk-doc-tools gitk
+          sudo ln -sf /bin/bash /bin/sh
 
           git clone https://github.com/RMerl/am-toolchains
           mkdir ~/amng-build
