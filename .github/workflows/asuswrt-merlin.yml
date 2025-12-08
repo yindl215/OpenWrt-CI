@@ -76,6 +76,9 @@ jobs:
 
           source ~/.profile
           df -h
+          du -h ./ --max-depth=3
+          du -h /opt/. --max-depth=3
+          du -h /bin/. --max-depth=2
       - name: Compile firmware
         run: |
           cd ~/amng-build/release/src-rt-5.02L.07p2axhnd
