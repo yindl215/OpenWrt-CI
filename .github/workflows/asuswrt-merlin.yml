@@ -48,10 +48,10 @@ jobs:
           sudo dpkg --add-architecture i386
           # sudo dpkg-reconfigure dash
           sudo -E apt update
-          sudo apt install tar bzip2 unzip  perl flex make pkg-config \
+          sudo apt-get install tar bzip2 unzip  perl flex make pkg-config \
           gcc-multilib g++-multilib g++ cmake autoconf automake bison patch \
           autopoint autogen  build-essential intltool xsltproc \
-          subversion git cvs m4 uuid-dev groff-base gettext gperf file gawk \
+          subversion libz-dev libssl-dev git cvs m4 uuid-dev groff-base gettext gperf file gawk \
           sed shtool texinfo diffutils libslang2 gtk-doc-tools \
           gitk xutils-dev zlib1g zlib1g-dev libxml-parser-perl libproxy-dev \
           libncurses5-dev libxml2-dev mtd-utils python-is-python3 \
