@@ -46,7 +46,9 @@ jobs:
           # sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
           sudo dpkg --add-architecture i386
           # sudo dpkg-reconfigure dash
-          sudo -E apt update
+          sudo apt clean  # 清除旧缓存
+          sudo apt update  # 加载新的focal源
+          sudo apt -f install  # 修复依赖
           sudo apt-get install tar bzip2 unzip  perl flex make pkg-config \
           gcc-multilib g++-multilib g++ cmake autoconf automake bison patch \
           autopoint autogen  build-essential intltool xsltproc \
