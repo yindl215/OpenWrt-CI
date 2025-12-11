@@ -66,30 +66,30 @@ jobs:
           libncurses5 mtd-utils libncurses5-dev libvorbis-dev autopoint autogen automake-1.15 sed build-essential \
           intltool libglib2.0-dev xutils-dev lib32z1-dev lib32stdc++6 xsltproc gtk-doc-tools libelf1:i386 gengetopt
 
-          # sudo apt install gconf-editor gitk libncurses5 python automake-1.15  gtk-doc-tools 
+          # sudo apt install gconf-editor gitk 
       - name: git clone source
         run: |
           git clone https://github.com/RMerl/am-toolchains
-          git clone https://github.com/RMerl/asuswrt-merlin.ng
-          
+          #全部clone将出现空间不足错误 
+          #git clone https://github.com/RMerl/asuswrt-merlin.ng
           mkdir amng-build
-          rsync -a --del asuswrt-merlin.ng/ amng-build
-          # git clone --depth=1 -b 3004.388 https://github.com/RMerl/asuswrt-merlin.ng ./amng-build
+          #rsync -a --del asuswrt-merlin.ng/ amng-build
+          git clone -b 3004.388 https://github.com/RMerl/asuswrt-merlin.ng ./amng-build
       - name: setup toolchain
         run: |      
-          # Broadcom HND ARM platform (RT-AC86U, GT-AC2900)
-          sudo ln -s ./am-toolchains/brcm-arm-hnd /opt/toolchains
-          echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/lib" >> ./.profile
-          echo "export TOOLCHAIN_BASE=/opt/toolchains" >> ./.profile
-          echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/bin" >> ./.profile
-          echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/bin" >> ./.profile
+          # RMerl已不再支持Broadcom HND ARM platform (RT-AC86U, GT-AC2900)
+          #sudo ln -s ./am-toolchains/brcm-arm-hnd /opt/toolchains
+          #echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/lib" >> ./.profile
+          #echo "export TOOLCHAIN_BASE=/opt/toolchains" >> ./.profile
+          #echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/bin" >> ./.profile
+          #echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/bin" >> ./.profile
     
           # Broadcom HND AX ARM platform (RT-AX56U, RT-AX58U, RT-AX86U, RT-AX88U, GT-AX11000, RT-AX68U):
-          #sudo ln -s ./am-toolchains/brcm-arm-hnd /opt/toolchains
-          #echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/lib" >> ./.profile
-          #echo "export TOOLCHAIN_BASE=/opt/toolchains" >> ./.profile
-          #echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
-          #echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+          sudo ln -s ./am-toolchains/brcm-arm-hnd /opt/toolchains
+          echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/lib" >> ./.profile
+          echo "export TOOLCHAIN_BASE=/opt/toolchains" >> ./.profile
+          echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+          echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
           source ./.profile
           cat ./.profile
           df -h
@@ -98,10 +98,10 @@ jobs:
           du -h ./amng-build/. --max-depth=3
       - name: Compile firmware
         run: |
-          cd ./amng-build/release/src-rt-5.02hnd
-          make rt-ac86u
-          #cd ./amng-build/release/src-rt-5.02L.07p2axhnd
-          #make rt-ax86u
+          #cd ./amng-build/release/src-rt-5.02hnd
+          #make rt-ac86u
+          cd ./amng-build/release/src-rt-5.02L.07p2axhnd
+          make rt-ax86u
 
           echo "======================="
           echo "Space usage:"
@@ -114,8 +114,8 @@ jobs:
           mkdir -p ./artifact/firmware
           mkdir -p ./artifact/package
           mkdir -p ./artifact/buildinfo
-          cd ./amng-build/release/src-rt-5.02hnd/targets
-          #cd ./amng-build/release/src-rt-5.02L.07p2axhnd/targets
+          #cd ./amng-build/release/src-rt-5.02hnd/targets
+          cd ./amng-build/release/src-rt-5.02L.07p2axhnd/targets
           du -h ./ --max-depth=3
           
           # mv -n sha256sums-ng.txt sha256sums-ng-$(date +%Y%m%d).txt
