@@ -39,51 +39,69 @@ jobs:
         with:
           ref: master
 
-      - name: Space cleanup
+      - name: Setting the Linux environment
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
           # sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
           sudo dpkg --add-architecture i386
+          #cat /etc/apt/sources.list
+          # replace 'deb' with 'deb [arch=arm64]'
+          sudo sed 's/^deb http/deb [arch=arm64] http/' -i '/etc/apt/sources.list'
+          sudo tee -a /etc/apt/sources.list.d/i386.list > /dev/null <<EOT
+          deb [arch=i386] http://security.ubuntu.com/ubuntu/ focal-security  main restricted universe multiverse
+          deb [arch=i386]  http://archive.ubuntu.com/ubuntu/ focal           main restricted universe multiverse
+          deb [arch=i386]  http://archive.ubuntu.com/ubuntu/ focal-updates   main restricted universe multiverse
+          deb [arch=i386]  http://archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse
+          EOT
           # sudo dpkg-reconfigure dash
+          sudo ln -sf /bin/bash /bin/sh #使用bash,默认dash环境
           sudo apt clean  # 清除旧缓存
           sudo apt update  # 加载新的focal源
           sudo apt -f install  # 修复依赖
-          #cat /etc/apt/sources.list
-          sudo apt-get install tar bzip2 unzip  perl flex make pkg-config \
-          gcc-multilib g++-multilib g++ cmake autoconf automake bison patch \
-          autopoint autogen  build-essential intltool xsltproc \
-          subversion libz-dev libssl-dev git cvs m4 uuid-dev groff-base gettext \
-          gperf file gawk sed shtool texinfo diffutils libslang2  xutils-dev \
-          zlib1g zlib1g-dev libxml-parser-perl libproxy-dev \
-          libncurses5-dev libxml2-dev mtd-utils python-is-python3 \
-          libexpat1-dev libvorbis-dev libglib2.0-dev libssl-dev liblzo2-dev \
-          libtool-bin libtool lib32z1-dev lib32stdc++6 libelf1:i386 
-          
+          sudo apt-get install libtool-bin cmake libproxy-dev uuid-dev liblzo2-dev autoconf autoconf-archive \
+          automake bash bison bzip2 diffutils file flex m4 g++ gawk groff-base libncurses5-dev libtool libslang2 \
+          make patch perl pkg-config shtool subversion tar texinfo zlib1g zlib1g-dev git gettext libexpat1-dev \
+          libssl-dev cvs gperf unzip python libxml-parser-perl gcc-multilib gconf-editor libxml2-dev g++-multilib \
+          gitk libncurses5 mtd-utils libncurses5-dev libvorbis-dev git autopoint autogen automake-1.15 sed build-essential \
+          intltool libglib2.0-dev xutils-dev lib32z1-dev lib32stdc++6 xsltproc gtk-doc-tools libelf1:i386 gengetopt
+
           # sudo apt install python automake-1.15 gconf-editor libncurses5 gtk-doc-tools gitk
-          sudo ln -sf /bin/bash /bin/sh
-
+      - name: git clone source
+        run: |
           git clone https://github.com/RMerl/am-toolchains
-          mkdir ./amng-build
-          # git clone https://github.com/RMerl/asuswrt-merlin.ng ~/amng-build
-          git clone --depth=1 -b 3004.388 https://github.com/RMerl/asuswrt-merlin.ng ./amng-build
+          git clone https://github.com/RMerl/asuswrt-merlin.ng
           
+          mkdir amng-build
+          rsync -a --del asuswrt-merlin.ng/ amng-build
+          # git clone --depth=1 -b 3004.388 https://github.com/RMerl/asuswrt-merlin.ng ./amng-build
+      - name: setup toolchain
+        run: |      
+          # Broadcom HND ARM platform (RT-AC86U, GT-AC2900)
           sudo ln -s ./am-toolchains/brcm-arm-hnd /opt/toolchains
-          ls -la /opt/ |grep toolchains
+          echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/lib" >> ./.profile
           echo "export TOOLCHAIN_BASE=/opt/toolchains" >> ./.profile
-          echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
-          echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
-          echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/lib" >> ./.profile
-
+          echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/bin" >> ./.profile
+          echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/bin" >> ./.profile
+    
+          # Broadcom HND AX ARM platform (RT-AX56U, RT-AX58U, RT-AX86U, RT-AX88U, GT-AX11000, RT-AX68U):
+          #sudo ln -s ./am-toolchains/brcm-arm-hnd /opt/toolchains
+          #echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/lib" >> ./.profile
+          #echo "export TOOLCHAIN_BASE=/opt/toolchains" >> ./.profile
+          #echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+          #echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
           source ./.profile
+          cat ./.profile
           df -h
           du -h ./ --max-depth=3
           du -h /opt/. --max-depth=3
           du -h ./amng-build/. --max-depth=3
       - name: Compile firmware
         run: |
-          cd ./amng-build/release/src-rt-5.02L.07p2axhnd
-          make rt-ax86u
+          cd ./amng-build/release/src-rt-5.02hnd
+          make rt-ac86u
+          #cd ./amng-build/release/src-rt-5.02L.07p2axhnd
+          #make rt-ax86u
 
           echo "======================="
           echo "Space usage:"
@@ -96,7 +114,8 @@ jobs:
           mkdir -p ./artifact/firmware
           mkdir -p ./artifact/package
           mkdir -p ./artifact/buildinfo
-          cd ~/amng-build/release/src-rt-5.02L.07p2axhnd/targets
+          cd ./amng-build/release/src-rt-5.02hnd/targets
+          #cd ./amng-build/release/src-rt-5.02L.07p2axhnd/targets
           du -h ./ --max-depth=3
           
           # mv -n sha256sums-ng.txt sha256sums-ng-$(date +%Y%m%d).txt
