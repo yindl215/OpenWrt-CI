@@ -90,6 +90,7 @@ jobs:
           ls -la amng-build/.
       - name: setup toolchain
         run: |      
+          sudo rm -rf /opt/toolchains
           # RMerl已不再支持Broadcom HND ARM platform (RT-AC86U, GT-AC2900)
           #sudo ln -s ./am-toolchains/brcm-arm-hnd /opt/toolchains
           #echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/lib" >> ./.profile
@@ -98,27 +99,28 @@ jobs:
           #echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/bin" >> ./.profile
     
           # Broadcom HND AX ARM platform (RT-AX56U, RT-AX58U, RT-AX86U, RT-AX88U, GT-AX11000, RT-AX68U):
-          #sudo ln -s ./am-toolchains/brcm-arm-hnd /opt/toolchains
-          #echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/lib" >> ./.profile
-          #echo "export TOOLCHAIN_BASE=/opt/toolchains" >> ./.profile
-          #echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
-          #echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
-          #编译出现can not find Toolchain,现在将toolchains目录放在当前目录下
-          sudo ln -s $PWD/am-toolchains/brcm-arm-hnd $PWD/toolchains
-          echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:$PWD/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/lib" >> ./.profile
-          echo "export TOOLCHAIN_BASE=$PWD/toolchains" >> ./.profile
-          echo "PATH=\$PATH:$PWD/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
-          echo "PATH=\$PATH:$PWD/toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+          sudo ln -s $PWD/am-toolchains/brcm-arm-hnd /opt/toolchains
+          echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/lib" >> ./.profile
+          echo "export TOOLCHAIN_BASE=/opt/toolchains" >> ./.profile
+          echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+          echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+          #编译出现can not find Toolchain,将toolchains目录放在当前目录下的方式不行,在/opt/toolchains下找
+          #sudo ln -s $PWD/am-toolchains/brcm-arm-hnd $PWD/toolchains
+          #echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:$PWD/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/lib" >> ./.profile
+          #echo "export TOOLCHAIN_BASE=$PWD/toolchains" >> ./.profile
+          #echo "PATH=\$PATH:$PWD/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+          #echo "PATH=\$PATH:$PWD/toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
           
           source ./.profile
           #cat ./.profile
           echo "path=$PATH"
           echo "toolchain=$TOOLCHAIN_BASE"
-          echo "ld_library=$LD_LIBRARY"
+          echo "ld_library=$LD_LIBRARY_PATH"
           df -h
           #du -h ./ --max-depth=3
-          #du -h /opt/. --max-depth=3
+          du -h /opt/toolchains. --max-depth=3
           #du -h ./amng-build/. --max-depth=3
+          ls -la /opt/toolchains
       - name: Compile firmware
         run: |
           #cd ./amng-build/release/src-rt-5.02hnd
