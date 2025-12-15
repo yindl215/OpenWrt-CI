@@ -91,7 +91,7 @@ jobs:
           #更新本地标签列表,以便检出远程仓库的标签
           git fetch --all --tags
           cd ./amng-build
-          git checkout 3004.388.10
+          git checkout origin/3004.388.10
           #git pull 此处不能使用git pull前面checkout tag已切换到相应标签中了
           cd -
           ls -la am-toolchains/brcm-arm-hnd/.
