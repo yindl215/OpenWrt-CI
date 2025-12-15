@@ -67,6 +67,17 @@ jobs:
           intltool libglib2.0-dev xutils-dev lib32z1-dev lib32stdc++6 xsltproc gtk-doc-tools libelf1:i386 gengetopt
 
           # sudo apt install gconf-editor gitk 
+          
+          # 可用空间仅有31GB,编译需要约34-38GB空间
+          sudo rm -rf /usr/share/dotnet
+          # 可获得3GB空间
+          #df -h
+          sudo rm -rf /usr/local/lib/android
+          # 可获得11GB空间
+          #df -h
+          sudo rm -rf /opt/ghc
+          # 可获得0GB空间
+          df -h
       - name: git clone source
         run: |
           git clone https://github.com/RMerl/am-toolchains
@@ -87,17 +98,24 @@ jobs:
           #echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/bin" >> ./.profile
     
           # Broadcom HND AX ARM platform (RT-AX56U, RT-AX58U, RT-AX86U, RT-AX88U, GT-AX11000, RT-AX68U):
-          sudo ln -s ./am-toolchains/brcm-arm-hnd /opt/toolchains
+          #sudo ln -s ./am-toolchains/brcm-arm-hnd /opt/toolchains
+          #echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/lib" >> ./.profile
+          #echo "export TOOLCHAIN_BASE=/opt/toolchains" >> ./.profile
+          #echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+          #echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+          #编译出现can not find Toolchain,现在将toolchains目录放在当前目录下
+          sudo ln -s ./am-toolchains/brcm-arm-hnd ./toolchains
           echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/lib" >> ./.profile
-          echo "export TOOLCHAIN_BASE=/opt/toolchains" >> ./.profile
-          echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
-          echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+          echo "export TOOLCHAIN_BASE=./toolchains" >> ./.profile
+          echo "PATH=\$PATH:./toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+          echo "PATH=\$PATH:./toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+          
           source ./.profile
           cat ./.profile
           df -h
-          du -h ./ --max-depth=3
-          du -h /opt/. --max-depth=3
-          du -h ./amng-build/. --max-depth=3
+          #du -h ./ --max-depth=3
+          #du -h /opt/. --max-depth=3
+          #du -h ./amng-build/. --max-depth=3
       - name: Compile firmware
         run: |
           #cd ./amng-build/release/src-rt-5.02hnd
