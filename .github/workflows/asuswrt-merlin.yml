@@ -104,11 +104,11 @@ jobs:
           #echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
           #echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
           #编译出现can not find Toolchain,现在将toolchains目录放在当前目录下
-          sudo ln -s ./am-toolchains/brcm-arm-hnd ./toolchains
-          echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/lib" >> ./.profile
-          echo "export TOOLCHAIN_BASE=./toolchains" >> ./.profile
-          echo "PATH=\$PATH:./toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
-          echo "PATH=\$PATH:./toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+          sudo ln -s $PWD/am-toolchains/brcm-arm-hnd $PWD/toolchains
+          echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:$PWD/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/lib" >> ./.profile
+          echo "export TOOLCHAIN_BASE=$PWD/toolchains" >> ./.profile
+          echo "PATH=\$PATH:$PWD/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+          echo "PATH=\$PATH:$PWD/toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
           
           source ./.profile
           #cat ./.profile
