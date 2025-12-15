@@ -118,9 +118,9 @@ jobs:
           echo "ld_library=$LD_LIBRARY_PATH"
           df -h
           #du -h ./ --max-depth=3
-          du -h /opt/toolchains. --max-depth=3
+          du -h /opt/toolchains/. --max-depth=3
           #du -h ./amng-build/. --max-depth=3
-          ls -la /opt/toolchains
+          ls -la /opt/toolchains/.
       - name: Compile firmware
         run: |
           #cd ./amng-build/release/src-rt-5.02hnd
