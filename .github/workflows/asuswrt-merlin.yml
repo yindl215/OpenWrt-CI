@@ -81,6 +81,8 @@ jobs:
       - name: git clone source
         run: |
           git clone https://github.com/RMerl/am-toolchains
+          #仅这样clone下来出现没有crosstools-arm-gcc-5.5和crosstools-aarch64-gcc-5.5
+          git pull
           #全部clone将出现空间不足错误 
           #git clone https://github.com/RMerl/asuswrt-merlin.ng
           mkdir amng-build
