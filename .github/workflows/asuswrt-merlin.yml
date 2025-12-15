@@ -75,6 +75,8 @@ jobs:
           mkdir amng-build
           #rsync -a --del asuswrt-merlin.ng/ amng-build
           git clone -b 3004.388 https://github.com/RMerl/asuswrt-merlin.ng ./amng-build
+          ls -la am-toolchains/.
+          ls -la amng-build/.
       - name: setup toolchain
         run: |      
           # RMerl已不再支持Broadcom HND ARM platform (RT-AC86U, GT-AC2900)
