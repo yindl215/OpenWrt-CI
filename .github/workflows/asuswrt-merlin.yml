@@ -87,9 +87,9 @@ jobs:
           #git clone https://github.com/RMerl/asuswrt-merlin.ng
           mkdir amng-build
           #rsync -a --del asuswrt-merlin.ng/ amng-build
-          git clone -b 3004.388 https://github.com/RMerl/asuswrt-merlin.ng ./amng-build
-          git checkout 3004.388
-          git pull
+          git clone -b 3004.388 --depth=1 --single-branch https://github.com/RMerl/asuswrt-merlin.ng ./amng-build
+          # git checkout 3004.388
+          #git pull
           ls -la am-toolchains/brcm-arm-hnd/.
           ls -la amng-build/.
       - name: setup toolchain
