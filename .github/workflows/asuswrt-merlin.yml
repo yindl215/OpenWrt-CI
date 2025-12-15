@@ -111,7 +111,10 @@ jobs:
           echo "PATH=\$PATH:./toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
           
           source ./.profile
-          cat ./.profile
+          #cat ./.profile
+          echo "path=$PATH"
+          echo "toolchain=$TOOLCHAIN_BASE"
+          echo "ld_library=$LD_LIBRARY"
           df -h
           #du -h ./ --max-depth=3
           #du -h /opt/. --max-depth=3
