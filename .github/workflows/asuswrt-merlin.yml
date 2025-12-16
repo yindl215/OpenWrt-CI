@@ -81,32 +81,38 @@ jobs:
       - name: git clone source
         run: |
           git clone https://github.com/RMerl/am-toolchains
-          #仅这样clone下来出现没有crosstools-arm-gcc-5.5和crosstools-aarch64-gcc-5.5
+          #仅这样clone下来,没有crosstools-arm-gcc-5.5和crosstools-aarch64-gcc-5.5
           git pull
           #全部clone将出现空间不足错误 
           #git clone https://github.com/RMerl/asuswrt-merlin.ng
           mkdir amng-build
           #rsync -a --del asuswrt-merlin.ng/ amng-build
-          git clone -b 3004.388.10 --depth=1 --single-branch https://github.com/RMerl/asuswrt-merlin.ng ./amng-build
+          #for RT-AX86U
+          #git clone -b 3004.388.10 --depth=1 --single-branch https://github.com/RMerl/asuswrt-merlin.ng ./amng-build
+          #for RT-AC86U
+          git clone -b 386.14_2 --depth=1 --single-branch https://github.com/RMerl/asuswrt-merlin.ng ./amng-build
+        
           #如果标签名称与分支名称相同，Git会优先选择分支,--depth 1 未指定，Git 会克隆完整历史记录
+          #RT-AX86U 3004.388.10_2和3004.388.10编译均出现mkquashfs.c 
           ls -la am-toolchains/brcm-arm-hnd/.
           ls -la amng-build/.
       - name: setup toolchain
         run: |      
           sudo rm -rf /opt/toolchains
           # RMerl已不再支持Broadcom HND ARM platform (RT-AC86U, GT-AC2900)
-          #sudo ln -s ./am-toolchains/brcm-arm-hnd /opt/toolchains
-          #echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/lib" >> ./.profile
-          #echo "export TOOLCHAIN_BASE=/opt/toolchains" >> ./.profile
-          #echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/bin" >> ./.profile
-          #echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/bin" >> ./.profile
+          sudo ln -s $PWD/am-toolchains/brcm-arm-hnd /opt/toolchains
+          echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/lib" >> ./.profile
+          echo "export TOOLCHAIN_BASE=/opt/toolchains" >> ./.profile
+          echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/bin" >> ./.profile
+          echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/bin" >> ./.profile
     
           # Broadcom HND AX ARM platform (RT-AX56U, RT-AX58U, RT-AX86U, RT-AX88U, GT-AX11000, RT-AX68U):
-          sudo ln -s $PWD/am-toolchains/brcm-arm-hnd /opt/toolchains
-          echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/lib" >> ./.profile
-          echo "export TOOLCHAIN_BASE=/opt/toolchains" >> ./.profile
-          echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
-          echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+          #sudo ln -s $PWD/am-toolchains/brcm-arm-hnd /opt/toolchains
+          #echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/lib" >> ./.profile
+          #echo "export TOOLCHAIN_BASE=/opt/toolchains" >> ./.profile
+          #echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+          #echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin" >> ./.profile
+         
           #编译出现can not find Toolchain,将toolchains目录放在当前目录下的方式不行,在/opt/toolchains下找
           #sudo ln -s $PWD/am-toolchains/brcm-arm-hnd $PWD/toolchains
           #echo "export LD_LIBRARY_PATH=\$LD_LIBRARY:$PWD/toolchains/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/lib" >> ./.profile
@@ -126,10 +132,13 @@ jobs:
           ls -la /opt/toolchains/.
       - name: Compile firmware
         run: |
-          #cd ./amng-build/release/src-rt-5.02hnd
-          #make rt-ac86u
-          cd ./amng-build/release/src-rt-5.02L.07p2axhnd
-          make rt-ax86u
+          #for RT-AC86U
+          cd ./amng-build/release/src-rt-5.02hnd
+          make rt-ac86u
+          
+          #for RT-AX86U
+          #cd ./amng-build/release/src-rt-5.02L.07p2axhnd
+          #make rt-ax86u
 
           echo "======================="
           echo "Space usage:"
