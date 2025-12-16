@@ -93,7 +93,7 @@ jobs:
           git clone -b 386.14_2 --depth=1 --single-branch https://github.com/RMerl/asuswrt-merlin.ng ./amng-build
         
           #如果标签名称与分支名称相同，Git会优先选择分支,--depth 1 未指定，Git 会克隆完整历史记录
-          #RT-AX86U 3004.388.10_2和3004.388.10编译均出现mkquashfs.c 
+          #RT-AX86U 3004.388.10_2和3004.388.10编译均出现mksquashfs.c:(.text+0x1c1): undefined reference to `add_dir_entry'错误,编译终止
           ls -la am-toolchains/brcm-arm-hnd/.
           ls -la amng-build/.
       - name: setup toolchain
