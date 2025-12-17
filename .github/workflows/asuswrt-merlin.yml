@@ -102,6 +102,7 @@ jobs:
           # RMerl已不再支持Broadcom HND ARM platform (RT-AC86U, GT-AC2900)
           sudo ln -s $PWD/am-toolchains/brcm-arm-hnd /opt/toolchains
           #LD_LIBRARY_PATH=$(echo "$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/lib" | sed 's/^://')
+          #上面引用了$LD_LIBRARY在系统是没有定义的,奇怪！
           echo "LD=${LD_LIBRARY_PATH}"
           LD_LIBRARY_PATH=$(echo "$LD_LIBRARY_PATH:/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/lib" | sed 's/^://')
           #上面的路径中$LD_LIBRARY为空,路径会以:开头,需移除:
